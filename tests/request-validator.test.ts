@@ -8,6 +8,20 @@ import { DomainPrimitiveProperty } from '../models/domain-primitive-property';
 */
 
 describe('request-validator.ts tests', () => {
+
+  test('When create domain primitive request is null or undefined should fail', () => {
+    const request = null;
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: false,
+      message: 'Domain primitive request cant be null or undefined',
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
   test('When properties collection is empty should fail', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: [],
