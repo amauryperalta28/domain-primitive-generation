@@ -2,6 +2,11 @@ import { validateRequest } from '../helpers/validate-request';
 import { CreateDomainPrimitivesRequest, ValidationResult } from '../models';
 import { DomainPrimitiveProperty } from '../models/domain-primitive-property';
 
+/*
+
+  When property is null, empty or whitespace should fail
+*/
+
 describe('request-validator.ts tests', () => {
   test('When properties collection is empty should fail', () => {
     const request: CreateDomainPrimitivesRequest = {
@@ -51,6 +56,29 @@ describe('request-validator.ts tests', () => {
     const expected = {
       success: false,
       message: 'Property name is required',
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  test.each([
+    { propertyType: '', condition:'empty string'},
+    {propertyType: undefined, condition:'undefined'},
+    {propertyType:null, condition:'null'},
+  ])('When properties collection has properties with type $condition should fail', ({propertyType}) => {
+    const properties: DomainPrimitiveProperty[] = [
+      { name: 'Name', type: propertyType}
+    ]
+
+    const request: CreateDomainPrimitivesRequest = {
+      properties: properties,
+    };
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: false,
+      message: 'Property type is required',
     };
 
     expect(actual).toEqual(expected);
