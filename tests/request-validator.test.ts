@@ -33,10 +33,13 @@ describe('request-validator.ts tests', () => {
     expect(actual).toEqual(expected);
   });
 
-  test('When properties collection has properties with undefined name should fail', () => {
-
+  test.each([
+    { propertyName: '', condition:'empty string'},
+    {propertyName: undefined, condition:'undefined'},
+    {propertyName:null, condition:'null'},
+  ])('When properties collection has properties $condition should fail', ({propertyName}) => {
     const properties: DomainPrimitiveProperty[] = [
-      { name: undefined, type: 'string'}
+      { name: propertyName, type: 'string'}
     ]
 
     const request: CreateDomainPrimitivesRequest = {
@@ -52,27 +55,5 @@ describe('request-validator.ts tests', () => {
 
     expect(actual).toEqual(expected);
   });
-
-  test('When properties collection has properties with empty string name should fail', () => {
-
-    const properties: DomainPrimitiveProperty[] = [
-      { name: '', type: 'string'}
-    ]
-
-    const request: CreateDomainPrimitivesRequest = {
-      properties: properties,
-    };
-
-    const actual: ValidationResult = validateRequest(request);
-
-    const expected = {
-      success: false,
-      message: 'Property name is required',
-    };
-
-    expect(actual).toEqual(expected);
-  });
-
-
 
 });
