@@ -1,8 +1,9 @@
 {
     "templates": [
         {
-            "templateFile": "./quickstart.template.ts"
+            "templateFile": "domain-primitive-string-type.template.ts"
         }
     ],
-    "compileTypeScript": true
+    "compileTypeScript": true,
+    "typeScriptConfigFile": "./tsconfig.json"
 }
