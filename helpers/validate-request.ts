@@ -10,9 +10,10 @@ const isEmptyCollection = (properties: DomainPrimitiveProperty[]) =>
 const isNullOrEmpty = (param: string) =>
   param === undefined || param === null || param.length === 0;
 
-const buildFailedValitionResult = (message: string) => {
-  return { success: false, message };
-};
+const buildFailedValitionResult = (message: string) => ({
+  success: false,
+  message,
+});
 
 export const validateRequest = (
   request: CreateDomainPrimitivesRequest
