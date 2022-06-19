@@ -17,29 +17,31 @@ const buildFailedValitionResult = (message: string) => {
 export const validateRequest = (
   request: CreateDomainPrimitivesRequest
 ): ValidationResult => {
-  if (request === null || request === undefined) {
-    return buildFailedValitionResult(
-      'Domain primitive request cant be null or undefined'
-    );
-  }
-
-  if (isEmptyCollection(request.properties)) {
-    return buildFailedValitionResult(
-      'Domain primitive properties cant be null or empty'
-    );
-  }
-
-  if (request.properties.some((property) => isNullOrEmpty(property.name))) {
-    return buildFailedValitionResult(
-        'Property name is required'
+  try {
+    if (request === null || request === undefined) {
+      return buildFailedValitionResult(
+        'Domain primitive request cant be null or undefined'
       );
-  }
+    }
 
-  if (request.properties.some((property) => isNullOrEmpty(property.type))) {
-    return buildFailedValitionResult(
-        'Property type is required'
-      );
+    validateRequestProperties(request);
+  } catch (Error) {
+    return buildFailedValitionResult(Error.message);
   }
 
   return { success: true, message: '' };
+};
+
+const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
+  if (isEmptyCollection(request.properties)) {
+    throw new Error('Domain primitive properties cant be null or empty');
+  }
+
+  if (request.properties.some((property) => isNullOrEmpty(property.name))) {
+    throw new Error('Property name is required');
+  }
+
+  if (request.properties.some((property) => isNullOrEmpty(property.type))) {
+    throw new Error('Property type is required');
+  }
 };
