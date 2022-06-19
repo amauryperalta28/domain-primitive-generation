@@ -6,6 +6,10 @@ export const validateRequest =  (request: CreateDomainPrimitivesRequest): Valida
        return {success: false, message: 'Domain primitive properties cant be null or empty'} as ValidationResult;
     }
 
+    if(request.properties.some(property => property.name === undefined || property.name.length === 0)){
+        return {success: false, message: 'Property name is required'} as ValidationResult;
+    }
+
     return {success: true, message: ''} as ValidationResult;
 };
 
