@@ -11,7 +11,7 @@ describe('request-validator.ts tests', () => {
 
     const expected = {
       success: false,
-      message: 'Properties cant be null or empty',
+      message: 'Domain primitive properties cant be null or empty',
     };
 
     expect(actual).toEqual(expected);

@@ -1,0 +1,5 @@
+{
+  "properties": [
+    { "name": "IdentificationNumber", "type": "string" }
+  ]
+}
