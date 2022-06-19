@@ -1,0 +1,29 @@
+{
+  "name": "domain-primitive-generation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^28.1.2",
+    "@yellicode/core": "^1.5.0",
+    "@yellicode/templating": "^1.8.0",
+    "jest": "^28.1.1",
+    "ts-jest": "^28.0.5"
+  },
+  "jest":{
+    "preset":"ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns":[
+      "/node_modules/",
+      "/tests/",
+      "/dist/"
+    ]
+  }
+}

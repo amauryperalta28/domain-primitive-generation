@@ -1,0 +1,8 @@
+{
+    "templates": [
+        {
+            "templateFile": "./quickstart.template.ts"
+        }
+    ],
+    "compileTypeScript": true
+}
