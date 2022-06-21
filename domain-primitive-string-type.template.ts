@@ -3,13 +3,12 @@ import {
   AccessModifier,
   ClassDefinition,
   CSharpWriter,
-  PropertyDefinition,
+  PropertyDefinition
 } from '@yellicode/csharp';
-import * as elements from '@yellicode/elements';
 import { Generator } from '@yellicode/templating';
-import { validateRequest } from './helpers/validate-request';
-import { CreateDomainPrimitivesRequest } from './models';
-import { CustomCsharpWriter } from './customWriters/customCsharpWriter';
+import { CustomCsharpWriter } from './src/customWriters/customCsharpWriter';
+import { validateRequest } from './src/helpers/validate-request';
+import { CreateDomainPrimitivesRequest } from './src/models';
 
 // Generator.generateFromModel(
 //   { outputFile: './result/Entity.cs' },
@@ -76,7 +75,7 @@ Generator.generateFromModel(
       writer.writeClassBlock(classDefinitions, (c) => {
         markdown.writeStaticReadonlyProperty('Message', 'ErrorMessage', 'new("Invalid value or format for citizen names.")');
         markdown.writeStaticReadonlyProperty('StringLengthRange', 'LengthRange', '(2, 30).ToLengthRange()');
-        // markdown.writePublicStaticMethodReturningProperty('Names');
+        markdown.writeStaticReadonlyProperty('string','Names');
         // c.writeAutoProperty(buildStringAutoProperty('Names', 'public'));
       });
     });
