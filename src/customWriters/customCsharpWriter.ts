@@ -1,15 +1,14 @@
 import { CodeWriter } from '@yellicode/core';
+import { CustomPropertyDefinition } from '../models/customPropertyDefinition';
 
 export class CustomCsharpWriter extends CodeWriter {
-  public writeStaticReadonlyProperty(
-    typeName: string,
-    propertyName: string,
-    initialValue: string = ''
-  ): void {
-    const value = initialValue.length === 0 ? ';' : `= ${initialValue};`;
+  public writeField(propertyDefinition: CustomPropertyDefinition  ): void {
+    const value = (!propertyDefinition.defaultValue ) ? ';' : `= ${propertyDefinition.defaultValue};`;
+    const accessModifier = propertyDefinition.accessModifier;
+    const staticIdentifier = propertyDefinition.isStatic ? ' static ': ' ';
 
-    const propertyResult = `private static readonly ${typeName} ${propertyName} ${value}`;
+    const propertyResult = `${accessModifier}${staticIdentifier}readonly ${propertyDefinition.typeName} ${propertyDefinition.name} ${value}`;
 
     this.writeLine(propertyResult);
-  }
+  } 
 }
