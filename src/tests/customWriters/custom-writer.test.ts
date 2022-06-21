@@ -75,4 +75,15 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
 
   });
+
+  test('When writeCsharpTenNamespace should write correct namespace', ()=>{
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+    const namespace = 'Ri.Novus'
+
+    customWriter.writeCsharpTenNamespace(namespace);
+    const expected = `namespace ${namespace};`
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  })
 });
