@@ -1,4 +1,0 @@
-/*
-writeStaticReadonlyProperty
-writePublicStaticMethodReturningProperty
-*/

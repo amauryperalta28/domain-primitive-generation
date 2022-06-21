@@ -9,7 +9,7 @@ import * as elements from '@yellicode/elements';
 import { Generator } from '@yellicode/templating';
 import { validateRequest } from './helpers/validate-request';
 import { CreateDomainPrimitivesRequest } from './models';
-import { CustomWriter } from './customWriters/customWriter';
+import { CustomCsharpWriter } from './customWriters/customCsharpWriter';
 
 // Generator.generateFromModel(
 //   { outputFile: './result/Entity.cs' },
@@ -56,7 +56,7 @@ Generator.generateFromModel(
   options,
   (textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
     const writer = new CSharpWriter(textWriter);
-    const markdown = new CustomWriter(writer);
+    const markdown = new CustomCsharpWriter(textWriter);
     const validationResult = validateRequest(model);
 
     if (!validationResult.success) {
@@ -76,7 +76,7 @@ Generator.generateFromModel(
       writer.writeClassBlock(classDefinitions, (c) => {
         markdown.writeStaticReadonlyProperty('Message', 'ErrorMessage', 'new("Invalid value or format for citizen names.")');
         markdown.writeStaticReadonlyProperty('StringLengthRange', 'LengthRange', '(2, 30).ToLengthRange()');
-        markdown.writePublicStaticMethodReturningProperty('Names');
+        // markdown.writePublicStaticMethodReturningProperty('Names');
         // c.writeAutoProperty(buildStringAutoProperty('Names', 'public'));
       });
     });
