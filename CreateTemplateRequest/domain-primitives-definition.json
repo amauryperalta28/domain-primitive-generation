@@ -1,4 +1,5 @@
 {
+  "name":"Citizen",
   "properties": [
     { "name": "Names", "type": "string" },
     { "name": "SurNames", "type": "string" }

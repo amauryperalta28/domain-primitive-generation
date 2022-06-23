@@ -84,7 +84,7 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  test('When writePublicStaticMethodReturningProperty is called should write correct method', () => {
+  test('When writeShortMethodInitialized is called should write correct method', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
 

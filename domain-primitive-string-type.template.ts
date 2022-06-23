@@ -33,7 +33,7 @@ const writeDomainPrimitiveProperty = (
   writer.writeLine(); // insert a blank line
 
   writer.writeClassBlock(classDefinitions, (c) => {
-    const propertyDefinition: CustomFieldDefinition = {
+    const errorMessageField: CustomFieldDefinition = {
       name: 'ErrorMessage',
       isStatic: true,
       typeName: 'Message',
@@ -41,7 +41,7 @@ const writeDomainPrimitiveProperty = (
       accessModifier: 'private',
     };
 
-    const propertyDefinition2: CustomFieldDefinition = {
+    const StringLengthRangeField: CustomFieldDefinition = {
       name: 'StringLengthRange',
       isStatic: true,
       typeName: 'LengthRange',
@@ -49,8 +49,16 @@ const writeDomainPrimitiveProperty = (
       accessModifier: 'private',
     };
 
-    customWriter.writeField(propertyDefinition);
-    customWriter.writeField(propertyDefinition2);
+    customWriter.writeField(errorMessageField);
+    customWriter.writeField(StringLengthRangeField);
+
+    customWriter.writeLine();
+
+    customWriter.writeXmlDocSummary([`Shortcut for constructor <see cref="${classDefinitions.name}"/>.`, 
+                                      `<param name="${classDefinitions.name.toLowerCase()}">Represents a ${classDefinitions.name.toLowerCase()}.</param>`,
+                                      `<returns>An instance of <see cref="${classDefinitions.name}"/></returns>`
+                                    ])
+    customWriter.writeShortMethodInitialized({name: 'From', returnTypeName: classDefinitions.name})
   });
 };
 
