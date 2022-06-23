@@ -1,8 +1,7 @@
-import { CodeWriter } from '@yellicode/core';
-import { MethodDefinition } from '@yellicode/csharp';
+import { CSharpWriter, MethodDefinition } from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
 
-export class CustomCsharpWriter extends CodeWriter {
+export class CustomCsharpWriter extends CSharpWriter {
   public writeField(propertyDefinition: CustomFieldDefinition): void {
     const value = !propertyDefinition.defaultValue
       ? ';'
