@@ -99,4 +99,33 @@ describe('Custom-writer.ts tests', () => {
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
+
+  test('When writePublicFieldConst with default value should write correct field', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+
+    const typeName = 'int';
+    const name = 'MinLength';
+    const defaultValue = 8;
+
+    customWriter.writePublicFieldConst(name, typeName, defaultValue);
+    const expected = `public const ${typeName} ${name} = ${defaultValue};`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
+
+  test('When writePublicFieldConst with default value should write correct field', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+
+    const typeName = 'int';
+    const name = 'MinLength';
+    const defaultValue = 0;
+
+    customWriter.writePublicFieldConst(name, typeName);
+    const expected = `public const ${typeName} ${name} = ${defaultValue};`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
+
 });

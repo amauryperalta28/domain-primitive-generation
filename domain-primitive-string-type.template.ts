@@ -48,9 +48,18 @@ const writeDomainPrimitiveProperty = (
       defaultValue: '(2, 30).ToLengthRange()',
       accessModifier: 'private',
     };
+    
+    customWriter.writeXmlDocParagraph(['Represents the Description minimum length restriction.']);
+    customWriter.writePublicFieldConst('MinLength', 'int', 1);
+    customWriter.writeLine();
+    
+    customWriter.writeXmlDocParagraph(['Represents the Description max length restriction.']);
+    customWriter.writePublicFieldConst('MinLength', 'MaxLength', 100);
+    customWriter.writeLine();
 
     customWriter.writeField(errorMessageField);
     customWriter.writeField(StringLengthRangeField);
+
 
     customWriter.writeLine();
 

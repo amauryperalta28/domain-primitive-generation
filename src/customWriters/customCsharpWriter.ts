@@ -25,4 +25,10 @@ export class CustomCsharpWriter extends CSharpWriter {
       `public static readonly ${typeName} ${method.name}(string ${lowerCasePropertyName}) => new(${lowerCasePropertyName});`
     );
   }
+
+  public writePublicFieldConst(name: string, typeName: string, defaultValue: number = 0): void {
+    this.writeLine(
+      `public const ${typeName} ${name} = ${defaultValue};`
+    );
+  }
 }

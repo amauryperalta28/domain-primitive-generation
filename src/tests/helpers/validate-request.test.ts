@@ -24,6 +24,7 @@ describe('request-validator.ts tests', () => {
   test('When properties collection is empty should fail', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: [],
+      name:'Name'
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -39,6 +40,7 @@ describe('request-validator.ts tests', () => {
   test('When properties collection has properties should succeed', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: [{ name: 'Name', type: 'string'}],
+      name:'Name'
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -62,6 +64,7 @@ describe('request-validator.ts tests', () => {
 
     const request: CreateDomainPrimitivesRequest = {
       properties: properties,
+      name:'Name'
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -85,6 +88,7 @@ describe('request-validator.ts tests', () => {
 
     const request: CreateDomainPrimitivesRequest = {
       properties: properties,
+      name:'Name'
     };
 
     const actual: ValidationResult = validateRequest(request);
