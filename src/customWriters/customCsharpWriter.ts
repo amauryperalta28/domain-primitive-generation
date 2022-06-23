@@ -1,8 +1,9 @@
 import { CodeWriter } from '@yellicode/core';
-import { CustomPropertyDefinition } from '../models/customPropertyDefinition';
+import { MethodDefinition } from '@yellicode/csharp';
+import { CustomFieldDefinition } from '../models/customPropertyDefinition';
 
 export class CustomCsharpWriter extends CodeWriter {
-  public writeField(propertyDefinition: CustomPropertyDefinition): void {
+  public writeField(propertyDefinition: CustomFieldDefinition): void {
     const value = !propertyDefinition.defaultValue
       ? ';'
       : `= ${propertyDefinition.defaultValue};`;
@@ -16,5 +17,13 @@ export class CustomCsharpWriter extends CodeWriter {
 
   public writeCsharpTenNamespace(namespace: string): void {
     this.writeLine(`namespace ${namespace};`);
+  }
+
+  public writeShortMethodInitialized(method: MethodDefinition): void {
+    const typeName = method.returnTypeName;
+    const lowerCasePropertyName = typeName.toLowerCase();
+    this.writeLine(
+      `public static readonly ${typeName} ${method.name}(string ${lowerCasePropertyName}) => new(${lowerCasePropertyName});`
+    );
   }
 }

@@ -9,7 +9,7 @@ import { Generator } from '@yellicode/templating';
 import { CustomCsharpWriter } from './src/customWriters/customCsharpWriter';
 import { validateRequest } from './src/helpers/validate-request';
 import { CreateDomainPrimitivesRequest } from './src/models';
-import { CustomPropertyDefinition } from './src/models/customPropertyDefinition';
+import { CustomFieldDefinition } from './src/models/customPropertyDefinition';
 
 // Generator.generateFromModel(
 //   { outputFile: './result/Entity.cs' },
@@ -74,23 +74,24 @@ Generator.generateFromModel(
       };
 
       writer.writeClassBlock(classDefinitions, (c) => {
-        const propertyDefinition: CustomPropertyDefinition = {
+        const propertyDefinition: CustomFieldDefinition = {
           name: 'ErrorMessage',
           isStatic: true,
           typeName: 'Message',
-          defaultValue: 'new("Invalid value or format for citizen names.")'
+          defaultValue: 'new("Invalid value or format for citizen names.")',
+          accessModifier: 'private'
         };
 
-        const propertyDefinition2: CustomPropertyDefinition = {
+        const propertyDefinition2: CustomFieldDefinition = {
           name: 'StringLengthRange',
           isStatic: true,
           typeName: 'LengthRange',
-          defaultValue: '(2, 30).ToLengthRange()'
+          defaultValue: '(2, 30).ToLengthRange()',
+          accessModifier: 'private'
         };
 
         markdown.writeField(propertyDefinition);
         markdown.writeField(propertyDefinition2);
-        // c.writeAutoProperty(buildStringAutoProperty('Names', 'public'));
       });
     });
   }
