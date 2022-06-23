@@ -1,4 +1,4 @@
-import { writeDomainPrimitiveStringProperty } from './StringGenerator';
+import { writeDomainPrimitiveStringProperty } from './writeDomainPrimitiveStringProperty';
 
 
 export {writeDomainPrimitiveStringProperty}

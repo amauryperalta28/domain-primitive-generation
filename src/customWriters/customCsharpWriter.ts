@@ -26,6 +26,14 @@ export class CustomCsharpWriter extends CSharpWriter {
     );
   }
 
+  public writeShortMethodInitializedWithoutParameters(method: MethodDefinition, defaultValue: string): void {
+    const typeName = method.returnTypeName;
+    const lowerCasePropertyName = typeName.toLowerCase();
+    this.writeLine(
+      `public static readonly ${typeName} ${method.name}() => new(${defaultValue});`
+    );
+  }
+
   public writePublicFieldConst(name: string, typeName: string, defaultValue: number = 0): void {
     this.writeLine(
       `public const ${typeName} ${name} = ${defaultValue};`

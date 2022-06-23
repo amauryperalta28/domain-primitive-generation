@@ -1,6 +1,7 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
 import { writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
+import { writeDomainPrimitiveGuidProperty } from './src/domainPrimitiveGenerators/writeDomainPrimitiveGuidProperty';
 import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest,
@@ -23,7 +24,7 @@ Generator.generateFromModel(
       (property) => property.type === 'string'
     );
 
-    stringProperties.forEach((property, index) => {
+    stringProperties.forEach((property: DomainPrimitiveProperty) => {
       const className = property.name;
 
       Generator.generate(
@@ -33,6 +34,7 @@ Generator.generateFromModel(
             `/* This file contains the code for class '${className}'. */`
           );
           writeDomainPrimitiveStringProperty(writer, className, 'User', 'Users');
+          writeDomainPrimitiveGuidProperty(writer, 'Id', 'Id', 'Users');
         }
       );
     });
