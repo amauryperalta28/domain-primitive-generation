@@ -1,8 +1,5 @@
 import { TextWriter } from '@yellicode/core';
-import {
-  ClassDefinition,
-  CSharpWriter
-} from '@yellicode/csharp';
+import { ClassDefinition, CSharpWriter } from '@yellicode/csharp';
 import { Generator } from '@yellicode/templating';
 import { CustomCsharpWriter } from './src/customWriters/customCsharpWriter';
 import { validateRequest } from './src/helpers/validate-request';
@@ -15,21 +12,21 @@ import { CustomFieldDefinition } from './src/models/customPropertyDefinition';
 const outputDirectory = './result';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
 
-const writeDomainPrimitiveClass = (
+const writeDomainPrimitiveProperty = (
   textWriter: TextWriter,
-  className: string
+  className: string,
+  entityName: string
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
     implements: ['AbstractStringPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: ["Represents an entity's description"],
+    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };
 
   const writer = new CSharpWriter(textWriter);
   const customWriter = new CustomCsharpWriter(textWriter);
 
-  // writer.writeUsingDirectives('System', 'System.Collections.Generic');
   writer.writeLine(); // insert a blank line
 
   customWriter.writeCsharpTenNamespace('Ri.Novus.Core');
@@ -70,14 +67,24 @@ Generator.generateFromModel(
       (property) => property.type === 'string'
     );
 
-    // options = { outputFile: `${outputDirectory}/Entity.cs` };
-
     stringProperties.forEach((property, index) => {
-      options = { outputFile: `${outputDirectory}/${property.name}.cs` };
       const className = property.name;
-      writeDomainPrimitiveClass(textWriter, className);
+
+      Generator.generate(
+        { outputFile: `./result/${className}.cs` },
+        (writer: TextWriter) => {
+          writer.writeLine(
+            `/* This file contains the code for class '${className}'. */`
+          );
+          writeDomainPrimitiveProperty(writer, className, 'Citizen');
+        }
+      );
     });
   }
 );
 
-//TODO: Lograr generar un archivo por clase
+const writeDomainPrimitiveEntity = ()=>{
+  //TODO: implementar
+}
+
+//TODO: ver como usar nodemon para compilar cambios inmediatamente

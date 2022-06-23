@@ -1,5 +1,6 @@
 {
   "properties": [
-    { "name": "IdentificationNumber", "type": "string" }
+    { "name": "Names", "type": "string" },
+    { "name": "SurNames", "type": "string" }
   ]
 }
