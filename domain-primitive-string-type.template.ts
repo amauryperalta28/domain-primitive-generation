@@ -1,75 +1,14 @@
 import { TextWriter } from '@yellicode/core';
-import { ClassDefinition, CSharpWriter } from '@yellicode/csharp';
 import { Generator } from '@yellicode/templating';
-import { CustomCsharpWriter } from './src/customWriters/customCsharpWriter';
+import { writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
 import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest,
   DomainPrimitiveProperty
 } from './src/models';
-import { CustomFieldDefinition } from './src/models/customPropertyDefinition';
 
 const outputDirectory = './result';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
-
-const writeDomainPrimitiveProperty = (
-  textWriter: TextWriter,
-  className: string,
-  entityName: string
-) => {
-  const classDefinitions: ClassDefinition = {
-    name: className,
-    implements: ['AbstractStringPrimitive'],
-    accessModifier: 'public',
-    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
-  };
-
-  const writer = new CSharpWriter(textWriter);
-  const customWriter = new CustomCsharpWriter(textWriter);
-
-  writer.writeLine(); // insert a blank line
-
-  customWriter.writeCsharpTenNamespace('Ri.Novus.Core');
-  writer.writeLine(); // insert a blank line
-
-  writer.writeClassBlock(classDefinitions, (c) => {
-    const errorMessageField: CustomFieldDefinition = {
-      name: 'ErrorMessage',
-      isStatic: true,
-      typeName: 'Message',
-      defaultValue: `new("Invalid value or format for ${classDefinitions.name}")`,
-      accessModifier: 'private',
-    };
-
-    const StringLengthRangeField: CustomFieldDefinition = {
-      name: 'StringLengthRange',
-      isStatic: true,
-      typeName: 'LengthRange',
-      defaultValue: '(2, 30).ToLengthRange()',
-      accessModifier: 'private',
-    };
-    
-    customWriter.writeXmlDocParagraph(['Represents the Description minimum length restriction.']);
-    customWriter.writePublicFieldConst('MinLength', 'int', 1);
-    customWriter.writeLine();
-    
-    customWriter.writeXmlDocParagraph(['Represents the Description max length restriction.']);
-    customWriter.writePublicFieldConst('MinLength', 'MaxLength', 100);
-    customWriter.writeLine();
-
-    customWriter.writeField(errorMessageField);
-    customWriter.writeField(StringLengthRangeField);
-
-
-    customWriter.writeLine();
-
-    customWriter.writeXmlDocSummary([`Shortcut for constructor <see cref="${classDefinitions.name}"/>.`, 
-                                      `<param name="${classDefinitions.name.toLowerCase()}">Represents a ${classDefinitions.name.toLowerCase()}.</param>`,
-                                      `<returns>An instance of <see cref="${classDefinitions.name}"/></returns>`
-                                    ])
-    customWriter.writeShortMethodInitialized({name: 'From', returnTypeName: classDefinitions.name})
-  });
-};
 
 Generator.generateFromModel(
   options,
@@ -93,7 +32,7 @@ Generator.generateFromModel(
           writer.writeLine(
             `/* This file contains the code for class '${className}'. */`
           );
-          writeDomainPrimitiveProperty(writer, className, 'Citizen');
+          writeDomainPrimitiveStringProperty(writer, className, 'User', 'Users');
         }
       );
     });

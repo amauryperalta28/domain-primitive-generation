@@ -1,6 +1,7 @@
 import { DomainPrimitiveProperty } from './domain-primitive-property';
 
 export interface CreateDomainPrimitivesRequest {
-  name: string;
+  entityName: string;
+  folderName: string;
   properties: DomainPrimitiveProperty[];
 }
