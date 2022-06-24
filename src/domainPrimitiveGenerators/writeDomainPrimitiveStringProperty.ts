@@ -9,25 +9,18 @@ export const writeDomainPrimitiveStringProperty = (
   entityName: string,
   folderName: string
 ) => {
+  const customWriter = new CustomCsharpWriter(textWriter);
+
+  customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
+  customWriter.writeLine(); // insert a blank line
+
   const classDefinitions: ClassDefinition = {
     name: className,
     implements: ['AbstractStringPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };
-
-  const minLength = 1;
-  const maxLength = 100;
-
-  const writer = new CSharpWriter(textWriter);
-  const customWriter = new CustomCsharpWriter(textWriter);
-
-  writer.writeLine(); // insert a blank line
-
-  customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
-  writer.writeLine(); // insert a blank line
-
-  writer.writeClassBlock(classDefinitions, (c) => {
+  customWriter.writeClassBlock(classDefinitions, (c) => {
     const errorMessageField: CustomFieldDefinition = {
       name: 'ErrorMessage',
       isStatic: true,
@@ -39,25 +32,27 @@ export const writeDomainPrimitiveStringProperty = (
     customWriter.writeXmlDocParagraph([
       'Represents the Description minimum length restriction.',
     ]);
+    const minLength = 1;
     customWriter.writePublicFieldConst('MinLength', 'int', minLength);
     customWriter.writeLine();
 
     customWriter.writeXmlDocParagraph([
       'Represents the Description max length restriction.',
     ]);
+
+    const maxLength = 100;
     customWriter.writePublicFieldConst('MaxLength', 'int', maxLength);
     customWriter.writeLine();
 
     customWriter.writeField(errorMessageField);
 
-    
     const StringLengthRangeField: CustomFieldDefinition = {
-        name: 'StringLengthRange',
-        isStatic: true,
-        typeName: 'LengthRange',
-        defaultValue: `(MinLength, MaxLength).ToLengthRange()`,
-        accessModifier: 'private',
-      };
+      name: 'StringLengthRange',
+      isStatic: true,
+      typeName: 'LengthRange',
+      defaultValue: `(MinLength, MaxLength).ToLengthRange()`,
+      accessModifier: 'private',
+    };
     customWriter.writeField(StringLengthRangeField);
 
     customWriter.writeLine();
