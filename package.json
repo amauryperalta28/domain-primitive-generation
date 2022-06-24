@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generation":"yellicode",
+    "generation-watch": "yellicode --watch",
     "test": "yellicode && jest",
-    "test-watch": "jest --watch",
-    "generate-watch": "yellicode --watch"
+    "test-watch": "jest --watch"
   },
   "keywords": [],
   "author": "",

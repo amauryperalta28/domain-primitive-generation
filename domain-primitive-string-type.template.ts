@@ -24,16 +24,31 @@ Generator.generateFromModel(
       (property) => property.type === 'string'
     );
 
+    const guidProperties: DomainPrimitiveProperty[] = model.properties.filter(
+      (property) => property.type === 'Guid'
+    );
+
+
     stringProperties.forEach((property: DomainPrimitiveProperty) => {
       const className = property.name;
 
       Generator.generate(
         { outputFile: `./result/${className}.cs` },
         (writer: TextWriter) => {
-          writer.writeLine(
-            `/* This file contains the code for class '${className}'. */`
-          );
+
           writeDomainPrimitiveStringProperty(writer, className, 'User', 'Users');
+        }
+      );
+    });
+
+    
+    guidProperties.forEach((property: DomainPrimitiveProperty) => {
+      const className = property.name;
+
+      Generator.generate(
+        { outputFile: `./result/${className}.cs` },
+        (writer: TextWriter) => {
+
           writeDomainPrimitiveGuidProperty(writer, 'Id', 'Id', 'Users');
         }
       );

@@ -3,6 +3,7 @@
   "folderName":"Users",
   "properties": [
     { "name": "Names", "type": "string" },
-    { "name": "SurNames", "type": "string" }
+    { "name": "SurNames", "type": "string" },
+    { "name": "Id", "type": "Guid" }
   ]
 }
