@@ -1,5 +1,5 @@
 import { CodeWriter, TextWriter } from '@yellicode/core';
-import { MethodDefinition } from '@yellicode/csharp';
+import { MethodDefinition, ParameterDefinition } from '@yellicode/csharp';
 import { mock } from 'jest-mock-extended';
 import { CustomCsharpWriter } from '../../customWriters/customCsharpWriter';
 import { CustomFieldDefinition as CustomFieldDefinition } from '../../models/customPropertyDefinition';
@@ -146,5 +146,22 @@ describe('Custom-writer.ts tests', () => {
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
+
+  test('When writePublicFieldConst with default value should write correct field', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+
+    const name = 'Id';
+    const parameters: ParameterDefinition[] = [
+      { typeName:'Guid', name: 'rawId' }
+    ]
+
+    customWriter.writePrivateConstructor(name, parameters, 'base(rawId)');
+    const expected = `private ${name}(Guid rawId) : base(rawId)`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
+
+  
 
 });

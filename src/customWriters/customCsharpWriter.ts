@@ -1,4 +1,8 @@
-import { CSharpWriter, MethodDefinition } from '@yellicode/csharp';
+import {
+  CSharpWriter,
+  MethodDefinition,
+  ParameterDefinition,
+} from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
 
 export class CustomCsharpWriter extends CSharpWriter {
@@ -26,7 +30,10 @@ export class CustomCsharpWriter extends CSharpWriter {
     );
   }
 
-  public writeShortMethodInitializedWithoutParameters(method: MethodDefinition, defaultValue: string): void {
+  public writeShortMethodInitializedWithoutParameters(
+    method: MethodDefinition,
+    defaultValue: string
+  ): void {
     const typeName = method.returnTypeName;
     const lowerCasePropertyName = typeName.toLowerCase();
     this.writeLine(
@@ -34,9 +41,40 @@ export class CustomCsharpWriter extends CSharpWriter {
     );
   }
 
-  public writePublicFieldConst(name: string, typeName: string, defaultValue: number = 0): void {
-    this.writeLine(
-      `public const ${typeName} ${name} = ${defaultValue};`
-    );
+  public writePublicFieldConst(
+    name: string,
+    typeName: string,
+    defaultValue: number = 0
+  ): void {
+    this.writeLine(`public const ${typeName} ${name} = ${defaultValue};`);
+  }
+
+  public writePrivateConstructor(
+    name: string,
+    parameters: ParameterDefinition[],
+    baseMethodImplementation: string
+  ) {
+    let params = this.getStringParameters(parameters);
+
+    const baseImplementation = baseMethodImplementation ? `: ${baseMethodImplementation}` : '';
+
+    this.writeLine(`private ${name}(${params}) ${baseImplementation}`);
+  }
+
+  private getStringParameters(parameters: ParameterDefinition[]): string {
+    let params = '';
+
+
+    for (let index = 0; index < parameters.length; index++) {
+      const parameter = parameters[index];
+
+      if (index == parameters.length - 1) {
+        params = `${parameter.typeName} ${parameter.name}`;
+      } else {
+        params = `${parameter.typeName} ${parameter.name},`;
+      }
+    }
+
+    return params;
   }
 }
