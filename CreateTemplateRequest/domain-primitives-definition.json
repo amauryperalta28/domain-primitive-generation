@@ -1,5 +1,5 @@
 {
-  "entityName":"Citizen",
+  "entityName":"User",
   "folderName":"Users",
   "properties": [
     { "name": "Names", "type": "string" },

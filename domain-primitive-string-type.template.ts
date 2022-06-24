@@ -4,7 +4,7 @@ import { writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerat
 import { writeDomainPrimitiveGuidProperty } from './src/domainPrimitiveGenerators/writeDomainPrimitiveGuidProperty';
 import { validateRequest } from './src/helpers/validate-request';
 import { CustomFieldDefinition } from './src/models/customPropertyDefinition';
-import { ClassDefinition } from '@yellicode/csharp';
+import { ClassDefinition, PropertyFeatures } from '@yellicode/csharp';
 import { CustomCsharpWriter } from './src/customWriters/customCsharpWriter';
 import {
   CreateDomainPrimitivesRequest,
@@ -23,12 +23,12 @@ Generator.generateFromModel(
       throw new Error(validationResult.message);
     }
 
-      writeDomainPrimitiveEntity(
-        textWriter,
-        model.entityName,
-        model.folderName,
-        model.properties
-      );
+    writeDomainPrimitiveEntity(
+      textWriter,
+      model.entityName,
+      model.folderName,
+      model.properties
+    );
 
     const stringProperties: DomainPrimitiveProperty[] = model.properties.filter(
       (property) => property.type === 'string'
@@ -78,16 +78,24 @@ const writeDomainPrimitiveEntity = (
   customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
   customWriter.writeLine(); // insert a blank line
 
-  // Escribir comentario de clase
   const classDefinitions: ClassDefinition = {
     name: className,
     accessModifier: 'public',
     xmlDocSummary: [`Represents ${className} entity.`],
   };
-
-  // Escribir bloque de clase publica
-
-  customWriter.writeClassBlock(classDefinitions, (c) => {});
+  customWriter.writeClassBlock(classDefinitions, (c) => {
+    properties.forEach((property) => {
+      customWriter.writeAutoProperty({
+        name: property.name,
+        typeName: property.name,
+        noGetter: false,
+        noSetter: true,
+        accessModifier: 'public',
+        xmlDocSummary: [`Represents ${className}'s ${property.name}`],
+      });
+      customWriter.writeLine();
+    });
+  });
 
   //Escribir autproperties publicas solo con get
 };
