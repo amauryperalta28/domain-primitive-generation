@@ -100,6 +100,25 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
+  test('When writeShortMethodInitializedWithoutParameters is called should write correct method', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+
+    const typeName = 'Id';
+
+    const methodDefinition: MethodDefinition = {
+      name: 'Generate',
+      returnTypeName: typeName,
+    };
+
+    const defaultValue = 'Guid.NewGuid()';
+
+    customWriter.writeShortMethodInitializedWithoutParameters(methodDefinition, defaultValue);
+    const expected = `public static readonly ${typeName} ${methodDefinition.name}() => new(${defaultValue});`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
+
   test('When writePublicFieldConst with default value should write correct field', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
