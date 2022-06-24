@@ -1,9 +1,7 @@
 import { TextWriter } from '@yellicode/core';
 import {
   ClassDefinition,
-  CSharpWriter,
-  MethodDefinition,
-  ParameterDefinition,
+  CSharpWriter, ParameterDefinition
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 
@@ -20,7 +18,7 @@ export const writeDomainPrimitiveGuidProperty = (
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };
 
-  const emptyContentCallback = ()=>{};
+  const emptyContentCallback = () => {};
 
   const writer = new CSharpWriter(textWriter);
   const customWriter = new CustomCsharpWriter(textWriter);
@@ -31,13 +29,6 @@ export const writeDomainPrimitiveGuidProperty = (
   writer.writeLine(); // insert a blank line
 
   writer.writeClassBlock(classDefinitions, (c) => {
-    const method: MethodDefinition = {
-      name: 'Id',
-      isConstructor: true,
-      accessModifier: 'private',
-      parameters: [{ name: 'rawId', typeName: 'Guid' }],
-    };
-
     const parameters: ParameterDefinition[] = [
       { typeName: 'Guid', name: 'rawId' },
     ];

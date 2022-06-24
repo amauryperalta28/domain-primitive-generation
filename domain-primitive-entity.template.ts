@@ -4,7 +4,7 @@ import { writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerat
 import { writeDomainPrimitiveGuidProperty } from './src/domainPrimitiveGenerators/writeDomainPrimitiveGuidProperty';
 import { validateRequest } from './src/helpers/validate-request';
 import { CustomFieldDefinition } from './src/models/customPropertyDefinition';
-import { ClassDefinition, PropertyFeatures } from '@yellicode/csharp';
+import { ClassDefinition, ParameterDefinition, PropertyFeatures } from '@yellicode/csharp';
 import { CustomCsharpWriter } from './src/customWriters/customCsharpWriter';
 import {
   CreateDomainPrimitivesRequest,
@@ -95,6 +95,18 @@ const writeDomainPrimitiveEntity = (
       });
       customWriter.writeLine();
     });
+
+    const parameters: ParameterDefinition[] = [
+      { typeName: 'Builder', name: 'builder' },
+    ];
+    customWriter.writePrivateConstructor(className, parameters, null);
+    customWriter.writeCodeBlock(()=>{
+      customWriter.writeLine('Arguments.NotNull(builder, nameof(builder));');
+    });
+    customWriter.writeLine();
+
+
+    //TODO: Agregar inicializacion de campos desde el builder
   });
 
   //Escribir autproperties publicas solo con get

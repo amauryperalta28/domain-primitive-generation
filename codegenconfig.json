@@ -2,7 +2,7 @@
     "templates": [
         {
             "modelFile":"CreateTemplateRequest/domain-primitives-definition.json",
-            "templateFile": "domain-primitive-string-type.template.ts"
+            "templateFile": "domain-primitive-entity.template.ts"
         }
     ],
     "compileTypeScript": true,
