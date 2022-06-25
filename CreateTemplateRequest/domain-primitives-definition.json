@@ -4,6 +4,9 @@
   "properties": [
     { "name": "Id", "type": "Guid" },
     { "name": "Names", "type": "string" },
-    { "name": "SurNames", "type": "string" }
+    { "name": "SurNames", "type": "string" },
+    { "name": "SurNamesw", "type": "string" },
+    { "name": "SurNamest", "type": "string" },
+    { "name": "SurNamesp", "type": "string" }
   ]
 }
