@@ -1,5 +1,5 @@
 import { validateRequest } from '../../helpers/validate-request';
-import { CreateDomainPrimitivesRequest, ValidationResult, DomainPrimitiveProperty } from '../../models';
+import { CreateDomainPrimitivesRequest, DomainPrimitiveProperty, ValidationResult } from '../../models';
 
 /*
 

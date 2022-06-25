@@ -2,11 +2,9 @@
   "entityName":"User",
   "folderName":"Users",
   "properties": [
-    { "name": "Id", "type": "Guid" },
+    { "name": "Id", "type": "guid" },
     { "name": "Names", "type": "string" },
-    { "name": "SurNames", "type": "string" },
-    { "name": "SurNamesw", "type": "string" },
-    { "name": "SurNamest", "type": "string" },
-    { "name": "SurNamesp", "type": "string" }
+    { "name": "Amount", "type": "decimal" }
+
   ]
 }

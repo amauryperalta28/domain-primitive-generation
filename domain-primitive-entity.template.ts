@@ -1,6 +1,6 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
-import { writeDomainPrimitiveEntity,
+import { writeDomainPrimitiveDecimalProperty, writeDomainPrimitiveEntity,
          writeDomainPrimitiveGuidProperty, 
          writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
 import { validateRequest } from './src/helpers/validate-request';
@@ -32,7 +32,11 @@ Generator.generateFromModel(
     );
 
     const guidProperties: DomainPrimitiveProperty[] = model.properties.filter(
-      (property) => property.type === 'Guid'
+      (property) => property.type === 'guid'
+    );
+
+    const decimalProperties: DomainPrimitiveProperty[] = model.properties.filter(
+      (property) => property.type === 'decimal'
     );
 
     stringProperties.forEach((property: DomainPrimitiveProperty) => {
@@ -44,20 +48,28 @@ Generator.generateFromModel(
           writeDomainPrimitiveStringProperty(
             writer,
             className,
-            'User',
-            'Users'
+            model.entityName,
+            model.folderName
           );
         }
       );
     });
 
     guidProperties.forEach((property: DomainPrimitiveProperty) => {
-      const className = property.name;
-
       Generator.generate(
-        { outputFile: `./result/${model.entityName}/${className}.cs` },
+        { outputFile: `./result/${model.entityName}/${property.name}.cs` },
         (writer: TextWriter) => {
-          writeDomainPrimitiveGuidProperty(writer, 'Id', 'User', 'Users');
+          writeDomainPrimitiveGuidProperty(writer, property.name, model.entityName, model.folderName);
+        }
+      );
+    });
+
+
+    decimalProperties.forEach((property: DomainPrimitiveProperty) => {
+      Generator.generate(
+        { outputFile: `./result/${model.entityName}/${property.name}.cs` },
+        (writer: TextWriter) => {
+          writeDomainPrimitiveDecimalProperty(writer, property.name, model.entityName, model.folderName);
         }
       );
     });

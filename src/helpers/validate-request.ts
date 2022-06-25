@@ -48,3 +48,5 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
 
   //TODO: Validate property type to be correct string or Guid
 };
+
+export type PropertyType = 'string' | 'Guid';
