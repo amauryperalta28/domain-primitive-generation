@@ -162,6 +162,8 @@ const writeDoBuild = (className: string, customWriter: CustomCsharpWriter, prope
       customWriter.writeLine(`State.IsTrue(${property.name.toLowerCase()}Option.HasValue, "${className}'s ${property.name} is missing");`)
       
     })
+
+    customWriter.writeLine(`return new ${className}(this);`)
    });
 
    customWriter.writeLine();
