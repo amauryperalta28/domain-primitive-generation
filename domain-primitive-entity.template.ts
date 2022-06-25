@@ -1,7 +1,6 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
-import { writeDomainPrimitiveEntity, writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
-import { writeDomainPrimitiveGuidProperty } from './src/domainPrimitiveGenerators/writeDomainPrimitiveGuidProperty';
+import { writeDomainPrimitiveEntity,writeDomainPrimitiveGuidProperty, writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
 import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest,
@@ -13,7 +12,7 @@ let options = { outputFile: `${outputDirectory}/Entity.cs` };
 
 Generator.generateFromModel(
   options,
-  (textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
+  (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
     const validationResult = validateRequest(model);
 
     if (!validationResult.success) {
@@ -21,7 +20,6 @@ Generator.generateFromModel(
     }
 
     writeDomainPrimitiveEntity(
-      textWriter,
       model.entityName,
       model.folderName,
       model.properties
@@ -39,7 +37,7 @@ Generator.generateFromModel(
       const className = property.name;
 
       Generator.generate(
-        { outputFile: `./result/${className}.cs` },
+        { outputFile: `./result/${model.entityName}/${className}.cs` },
         (writer: TextWriter) => {
           writeDomainPrimitiveStringProperty(
             writer,
@@ -55,7 +53,7 @@ Generator.generateFromModel(
       const className = property.name;
 
       Generator.generate(
-        { outputFile: `./result/${className}.cs` },
+        { outputFile: `./result/${model.entityName}/${className}.cs` },
         (writer: TextWriter) => {
           writeDomainPrimitiveGuidProperty(writer, 'Id', 'User', 'Users');
         }
