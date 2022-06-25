@@ -45,4 +45,6 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
   if (request.properties.some((property) => isNullOrEmpty(property.type))) {
     throw new Error('Property type is required');
   }
+
+  //TODO: Validate property type to be correct string or Guid
 };

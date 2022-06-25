@@ -111,3 +111,4 @@ const writeDoBuild = (className: string, customWriter: CustomCsharpWriter, prope
 
     customWriter.writeLine();
 }
+

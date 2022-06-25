@@ -32,33 +32,36 @@ export const writeDomainPrimitiveGuidProperty = (
     const parameters: ParameterDefinition[] = [
       { typeName: 'Guid', name: 'rawId' },
     ];
+
+    const classNameLower = classDefinitions.name.toLowerCase();
+
     customWriter.writePrivateConstructor(className, parameters, 'base(rawId)');
     customWriter.writeCodeBlock(emptyContentCallback);
     customWriter.writeLine();
 
     customWriter.writeXmlDocSummary([
-      `Shortcut for constructor <see cref="${classDefinitions.name}"/>.`,
-      `<param name="${classDefinitions.name.toLowerCase()}">Represents a ${classDefinitions.name.toLowerCase()}.</param>`,
-      `<returns>An instance of <see cref="${classDefinitions.name}"/></returns>`,
+      `Shortcut for constructor <see cref="${className}"/>.`,
+      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
+      `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
     customWriter.writeShortMethodInitialized({
       name: 'From',
-      returnTypeName: classDefinitions.name,
+      returnTypeName: className,
     });
 
     customWriter.writeLine();
 
     customWriter.writeXmlDocSummary([
-      `Shortcut for constructor <see cref="${classDefinitions.name}"/>.`,
-      `<param name="${classDefinitions.name.toLowerCase()}">Represents a ${classDefinitions.name.toLowerCase()}.</param>`,
-      `<returns>An instance of <see cref="${classDefinitions.name}"/></returns>`,
+      `Shortcut for constructor <see cref="${className}"/>.`,
+      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
+      `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
     customWriter.writeShortMethodInitializedWithoutParameters(
       {
         name: 'Generate',
-        returnTypeName: classDefinitions.name,
+        returnTypeName: className,
       },
       'Guid.NewGuid()'
     );

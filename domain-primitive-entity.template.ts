@@ -1,6 +1,8 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
-import { writeDomainPrimitiveEntity,writeDomainPrimitiveGuidProperty, writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
+import { writeDomainPrimitiveEntity,
+         writeDomainPrimitiveGuidProperty, 
+         writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
 import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest,

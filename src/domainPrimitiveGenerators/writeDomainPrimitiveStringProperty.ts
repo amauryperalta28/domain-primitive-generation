@@ -1,7 +1,9 @@
 import { TextWriter } from '@yellicode/core';
-import { ClassDefinition, CSharpWriter } from '@yellicode/csharp';
+import { ClassDefinition } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
+
+//TODO: Take min and max from json model
 
 export const writeDomainPrimitiveStringProperty = (
   textWriter: TextWriter,
@@ -25,7 +27,7 @@ export const writeDomainPrimitiveStringProperty = (
       name: 'ErrorMessage',
       isStatic: true,
       typeName: 'Message',
-      defaultValue: `new("Invalid value or format for ${classDefinitions.name}")`,
+      defaultValue: `new("Invalid value or format for ${className}")`,
       accessModifier: 'private',
     };
 
@@ -58,13 +60,13 @@ export const writeDomainPrimitiveStringProperty = (
     customWriter.writeLine();
 
     customWriter.writeXmlDocSummary([
-      `Shortcut for constructor <see cref="${classDefinitions.name}"/>.`,
-      `<param name="${classDefinitions.name.toLowerCase()}">Represents a ${classDefinitions.name.toLowerCase()}.</param>`,
-      `<returns>An instance of <see cref="${classDefinitions.name}"/></returns>`,
+      `Shortcut for constructor <see cref="${className}"/>.`,
+      `<param name="${className.toLowerCase()}">Represents a ${className.toLowerCase()}.</param>`,
+      `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
     customWriter.writeShortMethodInitialized({
       name: 'From',
-      returnTypeName: classDefinitions.name,
+      returnTypeName: className,
     });
   });
 };
