@@ -4,7 +4,8 @@
   "properties": [
     { "name": "Id", "type": "guid" },
     { "name": "Names", "type": "string" },
-    { "name": "Amount", "type": "decimal" }
+    { "name": "Amount", "type": "decimal" },
+    { "name": "Quantity", "type": "int" }
 
   ]
 }

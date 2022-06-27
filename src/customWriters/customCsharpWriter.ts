@@ -23,11 +23,19 @@ export class CustomCsharpWriter extends CSharpWriter {
     this.writeLine(`namespace ${namespace};`);
   }
 
-  public writeShortMethodInitialized(method: MethodDefinition): void {
+  public writeShortMethodInitializedWithParameter(method: MethodDefinition): void {
     const typeName = method.returnTypeName;
     const lowerCasePropertyName = typeName.toLowerCase();
     this.writeLine(
       `public static readonly ${typeName} ${method.name}(string ${lowerCasePropertyName}) => new(${lowerCasePropertyName});`
+    );
+  }
+
+  public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string): void {
+    const typeName = method.returnTypeName;
+    const lowerCasePropertyName = typeName.toLowerCase();
+    this.writeLine(
+      `public static readonly ${typeName} ${method.name}(string ${lowerCasePropertyName}) => new(${defaultValue});`
     );
   }
 

@@ -94,7 +94,7 @@ describe('Custom-writer.ts tests', () => {
       name: 'From',
       returnTypeName: typeName,
     };
-    customWriter.writeShortMethodInitialized(methodDefinition);
+    customWriter.writeShortMethodInitializedWithParameter(methodDefinition);
     const expected = `public static readonly ${typeName} From(string ${typeName.toLowerCase()}) => new(${typeName.toLowerCase()});`;
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
@@ -150,7 +150,7 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  test('When writePrivateConstructor with default value should write correct field', () => {
+  test('When writeConstructor with default value should write correct field', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
 
@@ -165,7 +165,7 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  test('When writePrivateConstructor with default value and multiple parameters should write correct field', () => {
+  test('When writeConstructor with default value and multiple parameters should write correct field', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
 
@@ -181,7 +181,7 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  test('When writePrivateConstructor without default value and multiple parameters should write correct field', () => {
+  test('When writeConstructor without default value and multiple parameters should write correct field', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
 

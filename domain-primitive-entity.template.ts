@@ -2,6 +2,7 @@ import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
 import { writeDomainPrimitiveDecimalProperty, writeDomainPrimitiveEntity,
          writeDomainPrimitiveGuidProperty, 
+         writeDomainPrimitiveIntegerProperty, 
          writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
 import { validateRequest } from './src/helpers/validate-request';
 import {
@@ -38,6 +39,10 @@ Generator.generateFromModel(
     const decimalProperties: DomainPrimitiveProperty[] = model.properties.filter(
       (property) => property.type === 'decimal'
     );
+    
+    const integerProperties: DomainPrimitiveProperty[] = model.properties.filter(
+      (property) => property.type === 'int'
+    );
 
     stringProperties.forEach((property: DomainPrimitiveProperty) => {
       const className = property.name;
@@ -73,6 +78,16 @@ Generator.generateFromModel(
         }
       );
     });
+
+    integerProperties.forEach((property: DomainPrimitiveProperty) => {
+      Generator.generate(
+        { outputFile: `./result/${model.entityName}/${property.name}.cs` },
+        (writer: TextWriter) => {
+          writeDomainPrimitiveIntegerProperty(writer, property.name, model.entityName, model.folderName);
+        }
+      );
+    });
+
   }
 );
 

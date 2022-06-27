@@ -35,7 +35,7 @@ export const writeDomainPrimitiveGuidProperty = (
 
     const classNameLower = classDefinitions.name.toLowerCase();
 
-    customWriter.writeConstructor(className, parameters, 'base(rawId)');
+    customWriter.writeConstructor('private', className, parameters, 'base(rawId)');
     customWriter.writeCodeBlock(emptyContentCallback);
     customWriter.writeLine();
 
@@ -45,7 +45,7 @@ export const writeDomainPrimitiveGuidProperty = (
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
-    customWriter.writeShortMethodInitialized({
+    customWriter.writeShortMethodInitializedWithParameter({
       name: 'From',
       returnTypeName: className,
     });

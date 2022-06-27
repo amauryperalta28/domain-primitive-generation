@@ -64,7 +64,7 @@ export const writeDomainPrimitiveStringProperty = (
       `<param name="${className.toLowerCase()}">Represents a ${className.toLowerCase()}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
-    customWriter.writeShortMethodInitialized({
+    customWriter.writeShortMethodInitializedWithParameter({
       name: 'From',
       returnTypeName: className,
     });

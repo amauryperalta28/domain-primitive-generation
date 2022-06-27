@@ -30,25 +30,32 @@ export const writeDomainPrimitiveIntegerProperty = (
 
   writer.writeClassBlock(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
-      { typeName: 'Guid', name: 'rawId' },
+      { typeName: 'PositiveInteger', name: 'rawValue' },
     ];
 
-    const classNameLower = classDefinitions.name.toLowerCase();
-
-    customWriter.writeConstructor(className, parameters, 'base(rawId)');
+    customWriter.writeField({accessModifier: 'private', isStatic: true, typeName:'PositiveInteger', name: 'MinValue', defaultValue:'new(1)'})
+    customWriter.writeField({accessModifier: 'private', isStatic: true, typeName:'PositiveInteger', name: 'MinValue', defaultValue:'new(100)'})
+    
+    writer.writeLine(); // insert a blank line
+    customWriter.writeXmlDocSummary([
+      `Creates an instance of <see cref="${className}"/>.`, 
+      `<param name="rawValue"></param>`
+    ]);
+    customWriter.writeConstructor('public', className, parameters, 'base(rawValue, MinValue, MaxValue)');
     customWriter.writeCodeBlock(emptyContentCallback);
     customWriter.writeLine();
-
+    
+    const classNameLower = classDefinitions.name.toLowerCase();
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
       `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
-    customWriter.writeShortMethodInitialized({
+    customWriter.writeShortMethodInitializedWithGivenValue({
       name: 'From',
-      returnTypeName: className,
-    });
+      returnTypeName: className
+    },`(new PositiveInteger(${classNameLower}))`);
 
     customWriter.writeLine();
 
