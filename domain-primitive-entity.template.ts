@@ -1,17 +1,34 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
-import { writeDomainPrimitiveDecimalProperty, writeDomainPrimitiveEntity,
-         writeDomainPrimitiveGuidProperty, 
-         writeDomainPrimitiveIntegerProperty, 
-         writeDomainPrimitiveStringProperty } from './src/domainPrimitiveGenerators';
+import {
+  writeDomainPrimitiveDecimalProperty,
+  writeDomainPrimitiveEntity,
+  writeDomainPrimitiveGuidProperty,
+  writeDomainPrimitiveIntegerProperty,
+  writeDomainPrimitiveStringProperty
+} from './src/domainPrimitiveGenerators';
 import { validateRequest } from './src/helpers/validate-request';
 import {
-  CreateDomainPrimitivesRequest,
-  DomainPrimitiveProperty
+  CreateDomainPrimitivesRequest, DomainPrimitiveProperty
 } from './src/models';
 
 const outputDirectory = './result';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
+
+let domainGenerators = new Map<
+  string,
+  (
+    textWriter: TextWriter,
+    className: string,
+    entityName: string,
+    folderName: string
+  ) => void
+>();
+
+domainGenerators.set('string', writeDomainPrimitiveStringProperty);
+domainGenerators.set('guid', writeDomainPrimitiveGuidProperty);
+domainGenerators.set('decimal', writeDomainPrimitiveDecimalProperty);
+domainGenerators.set('int', writeDomainPrimitiveIntegerProperty);
 
 Generator.generateFromModel(
   options,
@@ -28,29 +45,15 @@ Generator.generateFromModel(
       model.properties
     );
 
-    const stringProperties: DomainPrimitiveProperty[] = model.properties.filter(
-      (property) => property.type === 'string'
-    );
-
-    const guidProperties: DomainPrimitiveProperty[] = model.properties.filter(
-      (property) => property.type === 'guid'
-    );
-
-    const decimalProperties: DomainPrimitiveProperty[] = model.properties.filter(
-      (property) => property.type === 'decimal'
-    );
-    
-    const integerProperties: DomainPrimitiveProperty[] = model.properties.filter(
-      (property) => property.type === 'int'
-    );
-
-    stringProperties.forEach((property: DomainPrimitiveProperty) => {
+    model.properties.forEach((property: DomainPrimitiveProperty) => {
       const className = property.name;
+
+      const domainPrimitivePropertyGenerator = domainGenerators.get(property.type);
 
       Generator.generate(
         { outputFile: `./result/${model.entityName}/${className}.cs` },
         (writer: TextWriter) => {
-          writeDomainPrimitiveStringProperty(
+          domainPrimitivePropertyGenerator(
             writer,
             className,
             model.entityName,
@@ -59,35 +62,5 @@ Generator.generateFromModel(
         }
       );
     });
-
-    guidProperties.forEach((property: DomainPrimitiveProperty) => {
-      Generator.generate(
-        { outputFile: `./result/${model.entityName}/${property.name}.cs` },
-        (writer: TextWriter) => {
-          writeDomainPrimitiveGuidProperty(writer, property.name, model.entityName, model.folderName);
-        }
-      );
-    });
-
-
-    decimalProperties.forEach((property: DomainPrimitiveProperty) => {
-      Generator.generate(
-        { outputFile: `./result/${model.entityName}/${property.name}.cs` },
-        (writer: TextWriter) => {
-          writeDomainPrimitiveDecimalProperty(writer, property.name, model.entityName, model.folderName);
-        }
-      );
-    });
-
-    integerProperties.forEach((property: DomainPrimitiveProperty) => {
-      Generator.generate(
-        { outputFile: `./result/${model.entityName}/${property.name}.cs` },
-        (writer: TextWriter) => {
-          writeDomainPrimitiveIntegerProperty(writer, property.name, model.entityName, model.folderName);
-        }
-      );
-    });
-
   }
 );
-

@@ -1,7 +1,8 @@
 import { TextWriter } from '@yellicode/core';
 import {
   ClassDefinition,
-  CSharpWriter, ParameterDefinition
+  CSharpWriter,
+  ParameterDefinition,
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 
@@ -23,28 +24,45 @@ export const writeDomainPrimitiveIntegerProperty = (
   const writer = new CSharpWriter(textWriter);
   const customWriter = new CustomCsharpWriter(textWriter);
 
-  writer.writeLine(); // insert a blank line
+  writer.writeLine();
 
   customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
-  writer.writeLine(); // insert a blank line
+  writer.writeLine();
 
   writer.writeClassBlock(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PositiveInteger', name: 'rawValue' },
     ];
 
-    customWriter.writeField({accessModifier: 'private', isStatic: true, typeName:'PositiveInteger', name: 'MinValue', defaultValue:'new(1)'})
-    customWriter.writeField({accessModifier: 'private', isStatic: true, typeName:'PositiveInteger', name: 'MinValue', defaultValue:'new(100)'})
-    
-    writer.writeLine(); // insert a blank line
+    customWriter.writeField({
+      accessModifier: 'private',
+      isStatic: true,
+      typeName: 'PositiveInteger',
+      name: 'MinValue',
+      defaultValue: 'new(1)',
+    });
+    customWriter.writeField({
+      accessModifier: 'private',
+      isStatic: true,
+      typeName: 'PositiveInteger',
+      name: 'MinValue',
+      defaultValue: 'new(100)',
+    });
+
+    writer.writeLine();
     customWriter.writeXmlDocSummary([
-      `Creates an instance of <see cref="${className}"/>.`, 
-      `<param name="rawValue"></param>`
+      `Creates an instance of <see cref="${className}"/>.`,
+      `<param name="rawValue"></param>`,
     ]);
-    customWriter.writeConstructor('public', className, parameters, 'base(rawValue, MinValue, MaxValue)');
+    customWriter.writeConstructor(
+      'public',
+      className,
+      parameters,
+      'base(rawValue, MinValue, MaxValue)'
+    );
     customWriter.writeCodeBlock(emptyContentCallback);
     customWriter.writeLine();
-    
+
     const classNameLower = classDefinitions.name.toLowerCase();
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
@@ -52,12 +70,14 @@ export const writeDomainPrimitiveIntegerProperty = (
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
-    customWriter.writeShortMethodInitializedWithGivenValue({
-      name: 'From',
-      returnTypeName: className
-    },`(new PositiveInteger(${classNameLower}))`);
+    customWriter.writeShortMethodInitializedWithGivenValue(
+      {
+        name: 'From',
+        returnTypeName: className,
+      },
+      `(new PositiveInteger(${classNameLower}))`
+    );
 
     customWriter.writeLine();
-
   });
 };
