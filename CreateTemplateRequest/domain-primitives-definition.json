@@ -1,6 +1,6 @@
 {
-  "entityName":"User",
-  "folderName":"Users",
+  "entityName":"NotarialReceipt",
+  "folderName":"Invoicing",
   "properties": [
     { "name": "Id", "type": "guid" },
     { "name": "Names", "type": "string" },

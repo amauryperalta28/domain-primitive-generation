@@ -4,6 +4,7 @@ import {
   ParameterDefinition,
 } from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
+import { AccessModifier } from '@yellicode/csharp';
 
 export class CustomCsharpWriter extends CSharpWriter {
   public writeField(propertyDefinition: CustomFieldDefinition): void {
@@ -48,16 +49,17 @@ export class CustomCsharpWriter extends CSharpWriter {
     this.writeLine(`public const ${typeName} ${name} = ${defaultValue};`);
   }
 
-  public writePrivateConstructor(
+  public writeConstructor(
+    accessModifier: AccessModifier,
     name: string,
     parameters: ParameterDefinition[],
-    baseMethodImplementation: string
+    baseMethodImplementation: string = undefined
   ) {
     let params = this.getStringParameters(parameters);
 
     const baseImplementation = baseMethodImplementation ? `: ${baseMethodImplementation}` : '';
-
-    this.writeLine(`private ${name}(${params}) ${baseImplementation}`);
+    const result = `${accessModifier} ${name}(${params}) ${baseImplementation}`;
+    this.writeLine(result.trim());
   }
 
   private getStringParameters(parameters: ParameterDefinition[]): string {
@@ -68,9 +70,9 @@ export class CustomCsharpWriter extends CSharpWriter {
       const parameter = parameters[index];
 
       if (index == parameters.length - 1) {
-        params = `${parameter.typeName} ${parameter.name}`;
+        params += `${parameter.typeName} ${parameter.name}`;
       } else {
-        params = `${parameter.typeName} ${parameter.name},`;
+        params += `${parameter.typeName} ${parameter.name}, `;
       }
     }
 

@@ -113,7 +113,10 @@ describe('Custom-writer.ts tests', () => {
 
     const defaultValue = 'Guid.NewGuid()';
 
-    customWriter.writeShortMethodInitializedWithoutParameters(methodDefinition, defaultValue);
+    customWriter.writeShortMethodInitializedWithoutParameters(
+      methodDefinition,
+      defaultValue
+    );
     const expected = `public static readonly ${typeName} ${methodDefinition.name}() => new(${defaultValue});`;
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
@@ -147,21 +150,50 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  test('When writePublicFieldConst with default value should write correct field', () => {
+  test('When writePrivateConstructor with default value should write correct field', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
 
     const name = 'Id';
     const parameters: ParameterDefinition[] = [
-      { typeName:'Guid', name: 'rawId' }
-    ]
+      { typeName: 'Guid', name: 'rawId' },
+    ];
 
-    customWriter.writePrivateConstructor(name, parameters, 'base(rawId)');
+    customWriter.writeConstructor('private', name, parameters, 'base(rawId)');
     const expected = `private ${name}(Guid rawId) : base(rawId)`;
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  
+  test('When writePrivateConstructor with default value and multiple parameters should write correct field', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
 
+    const name = 'Id';
+    const parameters: ParameterDefinition[] = [
+      { typeName: 'Guid', name: 'rawId' },
+      { typeName: 'string', name: 'rawName' },
+    ];
+
+    customWriter.writeConstructor('private', name, parameters, 'base(rawId)');
+    const expected = `private ${name}(Guid rawId, string rawName) : base(rawId)`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
+
+  test('When writePrivateConstructor without default value and multiple parameters should write correct field', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+
+    const name = 'Id';
+    const parameters: ParameterDefinition[] = [
+      { typeName: 'Guid', name: 'rawId' },
+      { typeName: 'string', name: 'rawName' },
+    ];
+
+    customWriter.writeConstructor('private', name, parameters);
+    const expected = `private ${name}(Guid rawId, string rawName)`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
 });

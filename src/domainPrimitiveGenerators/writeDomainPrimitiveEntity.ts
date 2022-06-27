@@ -50,7 +50,7 @@ const writeEntityConstructor = (customWriter: CustomCsharpWriter, className: str
     const parameters: ParameterDefinition[] = [
         { typeName: 'Builder', name: 'builder' },
     ];
-    customWriter.writePrivateConstructor(className, parameters, null);
+    customWriter.writeConstructor('private', className, parameters, null);
     customWriter.writeCodeBlock(() => {
         customWriter.writeLine('Arguments.NotNull(builder, nameof(builder));');
 

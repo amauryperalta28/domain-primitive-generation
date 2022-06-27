@@ -5,7 +5,7 @@ import {
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 
-export const writeDomainPrimitiveGuidProperty = (
+export const writeDomainPrimitiveIntegerProperty = (
   textWriter: TextWriter,
   className: string,
   entityName: string,
@@ -13,7 +13,7 @@ export const writeDomainPrimitiveGuidProperty = (
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
-    implements: ['AbstractGuidBasedIdPrimitive'],
+    implements: ['AbstractPositiveIntegerPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };
@@ -52,18 +52,5 @@ export const writeDomainPrimitiveGuidProperty = (
 
     customWriter.writeLine();
 
-    customWriter.writeXmlDocSummary([
-      `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
-      `<returns>An instance of <see cref="${className}"/></returns>`,
-    ]);
-
-    customWriter.writeShortMethodInitializedWithoutParameters(
-      {
-        name: 'Generate',
-        returnTypeName: className,
-      },
-      'Guid.NewGuid()'
-    );
   });
 };
