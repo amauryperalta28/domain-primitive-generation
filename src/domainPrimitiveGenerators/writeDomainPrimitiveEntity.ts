@@ -23,7 +23,7 @@ export const writeDomainPrimitiveEntity = (
                 accessModifier: 'public',
                 xmlDocSummary: [`Represents ${className} entity.`],
             };
-            customWriter.writeClassBlock(classDefinitions, (c) => {
+            customWriter.writeSealedClass(classDefinitions, (c) => {
                 properties.forEach((property: DomainPrimitiveProperty) => {
                     customWriter.writeAutoProperty({
                         name: property.name,

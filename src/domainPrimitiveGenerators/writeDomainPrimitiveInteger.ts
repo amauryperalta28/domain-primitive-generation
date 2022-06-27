@@ -21,15 +21,14 @@ export const writeDomainPrimitiveIntegerProperty = (
 
   const emptyContentCallback = () => {};
 
-  const writer = new CSharpWriter(textWriter);
   const customWriter = new CustomCsharpWriter(textWriter);
 
-  writer.writeLine();
+  customWriter.writeLine();
 
   customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
-  writer.writeLine();
+  customWriter.writeLine();
 
-  writer.writeClassBlock(classDefinitions, (c) => {
+  customWriter.writeSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PositiveInteger', name: 'rawValue' },
     ];
@@ -49,7 +48,7 @@ export const writeDomainPrimitiveIntegerProperty = (
       defaultValue: 'new(100)',
     });
 
-    writer.writeLine();
+    customWriter.writeLine();
     customWriter.writeXmlDocSummary([
       `Creates an instance of <see cref="${className}"/>.`,
       `<param name="rawValue"></param>`,

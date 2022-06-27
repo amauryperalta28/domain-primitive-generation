@@ -4,7 +4,7 @@ import {
   ParameterDefinition,
 } from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
-import { AccessModifier } from '@yellicode/csharp';
+import { AccessModifier, ClassDefinition } from '@yellicode/csharp';
 
 export class CustomCsharpWriter extends CSharpWriter {
   public writeField(propertyDefinition: CustomFieldDefinition): void {
@@ -85,6 +85,21 @@ export class CustomCsharpWriter extends CSharpWriter {
     }
 
     return params;
+  }
+
+  public writeSealedClass(classDefinition : ClassDefinition, contents: (writer: CSharpWriter) => void){
+    if(classDefinition.xmlDocSummary != undefined){
+      this.writeXmlDocSummary(classDefinition.xmlDocSummary);
+    }
+
+    this.writeLine(`public sealed class ${classDefinition.name} `);
+
+    if(classDefinition.inherits != undefined){
+      const inherits = classDefinition.inherits.reduce((x, y) => x + ',' + y );
+      this.writeLine(`: ${inherits}`);
+    }
+
+    this.writeCodeBlock(contents);
   }
 
 }

@@ -19,16 +19,14 @@ export const writeDomainPrimitiveGuidProperty = (
   };
 
   const emptyContentCallback = () => {};
-
-  const writer = new CSharpWriter(textWriter);
   const customWriter = new CustomCsharpWriter(textWriter);
 
-  writer.writeLine(); // insert a blank line
+  customWriter.writeLine(); // insert a blank line
 
   customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
-  writer.writeLine(); // insert a blank line
+  customWriter.writeLine(); // insert a blank line
 
-  writer.writeClassBlock(classDefinitions, (c) => {
+  customWriter.writeSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'Guid', name: 'rawId' },
     ];
