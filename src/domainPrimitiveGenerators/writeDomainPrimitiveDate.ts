@@ -28,7 +28,7 @@ export const writeDomainPrimitiveDateProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
 
-  customWriter.writeSealedClass(classDefinitions, (c) => {
+  customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PastOrPresentTimestamp', name: 'date' },
     ];

@@ -28,7 +28,7 @@ export const writeDomainPrimitiveIntegerProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
 
-  customWriter.writeSealedClass(classDefinitions, (c) => {
+  customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PositiveInteger', name: 'rawValue' },
     ];
@@ -74,7 +74,7 @@ export const writeDomainPrimitiveIntegerProperty = (
         name: 'From',
         returnTypeName: className,
       },
-      `(new PositiveInteger(${classNameLower}))`,
+      `new PositiveInteger(${classNameLower})`,
       'int',
     );
 

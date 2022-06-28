@@ -26,7 +26,7 @@ export const writeDomainPrimitiveDecimalProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine(); // insert a blank line
 
-  customWriter.writeSealedClass(classDefinitions, (c) => {
+  customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const classNameLower = classDefinitions.name.toLowerCase();
 
     customWriter.writeXmlDocSummary([

@@ -87,7 +87,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     return params;
   }
 
-  public writeSealedClass(classDefinition : ClassDefinition, contents: (writer: CSharpWriter) => void){
+  public writePublicSealedClass(classDefinition : ClassDefinition, contents: (writer: CSharpWriter) => void){
     if(classDefinition.xmlDocSummary != undefined){
       this.writeXmlDocSummary(classDefinition.xmlDocSummary);
     }
@@ -95,7 +95,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     this.writeLine(`public sealed class ${classDefinition.name} `);
 
     if(classDefinition.inherits != undefined){
-      const inherits = classDefinition.inherits.reduce((x, y) => x + ',' + y );
+      const inherits = classDefinition.inherits.reduce((currentInherit, nextInherit) => currentInherit + ',' + nextInherit );
       this.writeLine(`: ${inherits}`);
     }
 

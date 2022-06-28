@@ -26,7 +26,7 @@ export const writeDomainPrimitiveGuidProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine(); // insert a blank line
 
-  customWriter.writeSealedClass(classDefinitions, (c) => {
+  customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'Guid', name: 'rawId' },
     ];

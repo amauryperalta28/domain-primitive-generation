@@ -1,5 +1,5 @@
 import { CodeWriter, TextWriter } from '@yellicode/core';
-import { MethodDefinition, ParameterDefinition } from '@yellicode/csharp';
+import { MethodDefinition, ParameterDefinition, ClassDefinition } from '@yellicode/csharp';
 import { mock } from 'jest-mock-extended';
 import { CustomCsharpWriter } from '../../customWriters/customCsharpWriter';
 import { CustomFieldDefinition as CustomFieldDefinition } from '../../models/customPropertyDefinition';
@@ -219,4 +219,19 @@ describe('Custom-writer.ts tests', () => {
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
+
+  test('When writePublicSealedClass is only with class name should write correct class', ()=>{
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+    const className = 'User';
+
+    const ClassDefinition:ClassDefinition = {
+      name: className
+    }
+
+    customWriter.writePublicSealedClass(ClassDefinition, ()=>{});
+    expect(myWriter.writeLine).toHaveBeenCalledWith(`public sealed class ${className} `);
+    expect(myWriter.writeLine).toHaveBeenCalledWith('{');
+    expect(myWriter.writeLine).toHaveBeenCalledWith('}');
+  })
 });
