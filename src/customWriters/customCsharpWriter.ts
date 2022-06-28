@@ -31,11 +31,11 @@ export class CustomCsharpWriter extends CSharpWriter {
     );
   }
 
-  public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string): void {
+  public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string, paramType: string): void {
     const typeName = method.returnTypeName;
     const lowerCasePropertyName = typeName.toLowerCase();
     this.writeLine(
-      `public static readonly ${typeName} ${method.name}(string ${lowerCasePropertyName}) => new(${defaultValue});`
+      `public static readonly ${typeName} ${method.name}(${paramType} ${lowerCasePropertyName}) => new(${defaultValue});`
     );
   }
 

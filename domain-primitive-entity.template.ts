@@ -1,6 +1,7 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
 import {
+  writeDomainPrimitiveDateProperty,
   writeDomainPrimitiveDecimalProperty,
   writeDomainPrimitiveEntity,
   writeDomainPrimitiveGuidProperty,
@@ -29,6 +30,7 @@ domainGenerators.set('string', writeDomainPrimitiveStringProperty);
 domainGenerators.set('guid', writeDomainPrimitiveGuidProperty);
 domainGenerators.set('decimal', writeDomainPrimitiveDecimalProperty);
 domainGenerators.set('int', writeDomainPrimitiveIntegerProperty);
+domainGenerators.set('datetime', writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
