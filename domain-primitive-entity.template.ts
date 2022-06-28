@@ -13,6 +13,7 @@ import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest, DomainPrimitiveProperty
 } from './src/models';
+import * as fsPromises from 'fs/promises';
 
 const outputDirectory = './result';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
@@ -33,14 +34,18 @@ domainGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
 domainGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
 domainGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
 
+
+
 Generator.generateFromModel(
   options,
-  (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
+ async (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
     const validationResult = validateRequest(model);
 
     if (!validationResult.success) {
       throw new Error(validationResult.message);
     }
+
+    await fsPromises.rm(outputDirectory, { recursive: true });
 
     writeDomainPrimitiveEntity(
       model.entityName,
