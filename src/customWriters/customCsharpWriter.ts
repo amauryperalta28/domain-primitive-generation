@@ -62,7 +62,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     name: string,
     parameters: ParameterDefinition[],
     baseMethodImplementation: string = undefined
-  ) {
+  ): void  {
     let params = this.getStringParameters(parameters);
 
     const baseImplementation = baseMethodImplementation ? `: ${baseMethodImplementation}` : '';
@@ -87,7 +87,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     return params;
   }
 
-  public writePublicSealedClass(classDefinition : ClassDefinition, contents: (writer: CSharpWriter) => void){
+  public writePublicSealedClass(classDefinition : ClassDefinition, contents: (writer: CSharpWriter) => void): void {
     if(classDefinition.xmlDocSummary != undefined){
       this.writeXmlDocSummary(classDefinition.xmlDocSummary);
     }

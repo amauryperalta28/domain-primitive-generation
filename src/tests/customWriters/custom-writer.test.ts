@@ -3,6 +3,7 @@ import {
   MethodDefinition,
   ParameterDefinition,
   ClassDefinition,
+  CSharpWriter,
 } from '@yellicode/csharp';
 import { mock } from 'jest-mock-extended';
 import { CustomCsharpWriter } from '../../customWriters/customCsharpWriter';
@@ -243,7 +244,7 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith('}');
   });
 
-  test('When writePublicSealedClass is called only with class name should write correct class', () => {
+  test('When writePublicSealedClass is called only with class name implement 3 interfaces should write correct class', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
     const className = 'User';
@@ -257,7 +258,27 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(
       `public sealed class ${className} : interfaz1, interfaz2, interfaz3`
     );
-    expect(myWriter.writeLine).toHaveBeenCalledWith('{');
-    expect(myWriter.writeLine).toHaveBeenCalledWith('}');
+    expect(myWriter.writeLine).toHaveBeenCalledWith(`{`);
+    expect(myWriter.writeLine).toHaveBeenCalledWith(`}`);
+  });
+
+  test('When writePublicSealedClass is called only with class name implement 3 interfaces should write correct class with documentation', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+    const className = 'User';
+    const documentation = 'This is a documentation';
+
+    const ClassDefinition: ClassDefinition = {
+      name: className,
+      xmlDocSummary: [documentation]
+    };
+
+    customWriter.writePublicSealedClass(ClassDefinition, () => {});
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith( '/// <summary>');
+    expect(myWriter.writeLine).toHaveBeenCalledWith( '/// This is a documentation');
+    expect(myWriter.writeLine).toHaveBeenCalledWith( '/// </summary>');
+    expect(myWriter.writeLine).toHaveBeenCalledWith( '{');
+    expect(myWriter.writeLine).toHaveBeenLastCalledWith( '}');
   });
 });
