@@ -25,7 +25,7 @@ describe('request-validator.ts tests', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: [],
       entityName:'Name',
-      folderName: 'Users'
+      namespace: 'Users'
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -42,7 +42,7 @@ describe('request-validator.ts tests', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: [{ name: 'Name', type: 'string'}],
       entityName:'Name',
-      folderName: 'Users'
+      namespace: 'Users'
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -67,7 +67,7 @@ describe('request-validator.ts tests', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: properties,
       entityName:'Name',
-      folderName: 'Users'
+      namespace: 'Users'
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -92,7 +92,7 @@ describe('request-validator.ts tests', () => {
     const request: CreateDomainPrimitivesRequest = {
       properties: properties,
       entityName:'Name',
-      folderName: 'Users'
+      namespace: 'Users'
     };
 
     const actual: ValidationResult = validateRequest(request);

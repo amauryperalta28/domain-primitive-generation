@@ -10,7 +10,7 @@ export const writeDomainPrimitiveDateProperty = (
   textWriter: TextWriter,
   className: string,
   entityName: string,
-  folderName: string
+  namespace: string
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
@@ -25,7 +25,7 @@ export const writeDomainPrimitiveDateProperty = (
 
   customWriter.writeLine();
 
-  customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
+  customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
 
   customWriter.writeSealedClass(classDefinitions, (c) => {

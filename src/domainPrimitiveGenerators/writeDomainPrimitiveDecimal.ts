@@ -10,7 +10,7 @@ export const writeDomainPrimitiveDecimalProperty = (
   textWriter: TextWriter,
   className: string,
   entityName: string,
-  folderName: string
+  namespace: string
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
@@ -23,7 +23,7 @@ export const writeDomainPrimitiveDecimalProperty = (
 
   customWriter.writeLine(); // insert a blank line
 
-  customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
+  customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine(); // insert a blank line
 
   customWriter.writeSealedClass(classDefinitions, (c) => {

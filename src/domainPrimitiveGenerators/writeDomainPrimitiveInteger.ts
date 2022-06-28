@@ -10,7 +10,7 @@ export const writeDomainPrimitiveIntegerProperty = (
   textWriter: TextWriter,
   className: string,
   entityName: string,
-  folderName: string
+  namespace: string
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
@@ -25,7 +25,7 @@ export const writeDomainPrimitiveIntegerProperty = (
 
   customWriter.writeLine();
 
-  customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
+  customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
 
   customWriter.writeSealedClass(classDefinitions, (c) => {
@@ -74,7 +74,8 @@ export const writeDomainPrimitiveIntegerProperty = (
         name: 'From',
         returnTypeName: className,
       },
-      `(new PositiveInteger(${classNameLower}))`
+      `(new PositiveInteger(${classNameLower}))`,
+      'int',
     );
 
     customWriter.writeLine();

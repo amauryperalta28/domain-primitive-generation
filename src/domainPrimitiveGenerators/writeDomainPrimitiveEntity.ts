@@ -6,7 +6,7 @@ import { DomainPrimitiveProperty } from '../models';
 
 export const writeDomainPrimitiveEntity = (
     className: string,
-    folderName: string,
+    namespace: string,
     properties: DomainPrimitiveProperty[]
 ) => {
 
@@ -15,7 +15,7 @@ export const writeDomainPrimitiveEntity = (
         (writer: TextWriter) => {
             const customWriter = new CustomCsharpWriter(writer);
 
-            customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
+            customWriter.writeCsharpTenNamespace(namespace);
             customWriter.writeLine(); // insert a blank line
 
             const classDefinitions: ClassDefinition = {

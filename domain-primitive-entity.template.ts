@@ -43,7 +43,7 @@ Generator.generateFromModel(
 
     writeDomainPrimitiveEntity(
       model.entityName,
-      model.folderName,
+      model.namespace,
       model.properties
     );
 
@@ -59,7 +59,7 @@ Generator.generateFromModel(
             writer,
             className,
             model.entityName,
-            model.folderName
+            model.namespace
           );
         }
       );

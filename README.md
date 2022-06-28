@@ -1,5 +1,5 @@
 # Introduction 
-Mono repo for "Domain Primitive Generation" software project. For ```Wepsys.Core 3.1.1```
+Mono repo for "**Domain Primitive Generation**" software project. For ```Wepsys.Core 3.1.1```
 
 # Getting Started
 
@@ -19,6 +19,32 @@ npm run test-watch
 ```
 
 ## Run template generation
+
+From root (`~`) go to **GenerateEntityRequest** folder
+
+Modify **domain-primitives-definition.json** to produce the needed result.
+
+```json
+{
+  "entityName":"User",
+  "namespace":"RI.Novus.Core.Users",
+  "properties": [
+    { "name": "Id", "type": "guid" },
+    { "name": "Names", "type": "string" },
+    { "name": "Salary", "type": "decimal" },
+    { "name": "Age", "type": "int" },
+    { "name": "Birthday", "type": "datetime" }
+  ]
+}
+```
+.... 
+
+The supported property types for the moment are:
+1. **guid**
+2. **string**
+3. **decimal**
+4. **int**
+5. **datetime**
 
 ```
 npm run generation

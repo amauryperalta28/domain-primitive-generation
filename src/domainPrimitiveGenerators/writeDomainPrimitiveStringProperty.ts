@@ -9,11 +9,11 @@ export const writeDomainPrimitiveStringProperty = (
   textWriter: TextWriter,
   className: string,
   entityName: string,
-  folderName: string
+  namespace: string
 ) => {
   const customWriter = new CustomCsharpWriter(textWriter);
 
-  customWriter.writeCsharpTenNamespace(`Ri.Novus.Core.${folderName}`);
+  customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine(); // insert a blank line
 
   const classDefinitions: ClassDefinition = {
