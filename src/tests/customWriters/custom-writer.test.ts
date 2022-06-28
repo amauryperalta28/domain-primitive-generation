@@ -122,6 +122,29 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
+  test('When writeShortMethodInitializedWithGivenValue is called should write correct method', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+
+    const typeName = 'EventId';
+
+    const methodDefinition: MethodDefinition = {
+      name: 'From',
+      returnTypeName: typeName,
+    };
+
+    const defaultValue = `(new PositiveInteger(${typeName.toLowerCase()}))`;
+    const paramType = 'int';
+    customWriter.writeShortMethodInitializedWithGivenValue(
+      methodDefinition,
+      defaultValue,
+      paramType
+    );
+    const expected = `public static readonly ${typeName} ${methodDefinition.name}(${paramType} ${typeName.toLowerCase()}) => new(${defaultValue});`;
+
+    expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
+  });
+
   test('When writePublicFieldConst with default value should write correct field', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
