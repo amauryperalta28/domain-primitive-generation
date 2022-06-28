@@ -1,7 +1,7 @@
 {
     "templates": [
         {
-            "modelFile":"CreateTemplateRequest/domain-primitives-definition.json",
+            "modelFile":"GenerateEntityRequest/domain-primitives-definition.json",
             "templateFile": "domain-primitive-entity.template.ts"
         }
     ],
