@@ -14,6 +14,8 @@ export const writeDomainPrimitiveEntity = (
         { outputFile: `./result/${className}/${className}.cs` },
         (writer: TextWriter) => {
             const customWriter = new CustomCsharpWriter(writer);
+            customWriter.writeUsingDirectives('Optional', 'Triplex.Validations');
+            customWriter.writeLine(); // insert a blank line
 
             customWriter.writeCsharpTenNamespace(namespace);
             customWriter.writeLine(); // insert a blank line
@@ -27,7 +29,7 @@ export const writeDomainPrimitiveEntity = (
                 properties.forEach((property: DomainPrimitiveProperty) => {
                     customWriter.writeAutoProperty({
                         name: property.name,
-                        typeName: property.name,
+                        typeName: property.isOptional? `Option<${property.name}>` : property.name,
                         noGetter: false,
                         noSetter: true,
                         accessModifier: 'public',
@@ -55,7 +57,9 @@ const writeEntityConstructor = (customWriter: CustomCsharpWriter, className: str
         customWriter.writeLine('Arguments.NotNull(builder, nameof(builder));');
 
         properties.forEach((property: DomainPrimitiveProperty) => {
-            customWriter.writeLine(`${property.name} = builder.${property.name}Option.ValueOrFailure();`);
+            const propertyInitialization = property.isOptional? `builder.${property.name}Option;` : 
+                                                                `builder.${property.name}Option.ValueOrFailure();`
+            customWriter.writeLine(`${property.name} = ${propertyInitialization}`);
         })
     });
     customWriter.writeLine();
@@ -104,8 +108,9 @@ const writeDoBuild = (className: string, customWriter: CustomCsharpWriter, prope
         properties.forEach((property) => {
             customWriter.writeLine(`State.IsTrue(${property.name.toLowerCase()}Option.HasValue, "${className}'s ${property.name} is missing");`)
 
-        })
-
+        });
+        
+        customWriter.writeLine();
         customWriter.writeLine(`return new ${className}(this);`)
     });
 

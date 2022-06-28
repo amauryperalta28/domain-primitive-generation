@@ -29,13 +29,15 @@ Modify **domain-primitives-definition.json** to produce the needed result.
   "entityName":"User",
   "namespace":"RI.Novus.Core.Users",
   "properties": [
-    { "name": "Id", "type": "guid" },
-    { "name": "Names", "type": "string" },
-    { "name": "Salary", "type": "decimal" },
-    { "name": "Age", "type": "int" },
-    { "name": "Birthday", "type": "datetime" }
+    { "name": "Id", "type": "guid", "isOptional": false },
+    { "name": "Names", "type": "string", "isOptional": true },
+    { "name": "Salary", "type": "decimal", "isOptional": true },
+    { "name": "Age", "type": "int", "isOptional": false },
+    { "name": "Birthday", "type": "datetime", "isOptional": false }
+
   ]
 }
+
 ```
 .... 
 
