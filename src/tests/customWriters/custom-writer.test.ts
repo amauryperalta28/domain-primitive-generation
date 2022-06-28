@@ -1,5 +1,9 @@
 import { CodeWriter, TextWriter } from '@yellicode/core';
-import { MethodDefinition, ParameterDefinition, ClassDefinition } from '@yellicode/csharp';
+import {
+  MethodDefinition,
+  ParameterDefinition,
+  ClassDefinition,
+} from '@yellicode/csharp';
 import { mock } from 'jest-mock-extended';
 import { CustomCsharpWriter } from '../../customWriters/customCsharpWriter';
 import { CustomFieldDefinition as CustomFieldDefinition } from '../../models/customPropertyDefinition';
@@ -140,7 +144,9 @@ describe('Custom-writer.ts tests', () => {
       defaultValue,
       paramType
     );
-    const expected = `public static readonly ${typeName} ${methodDefinition.name}(${paramType} ${typeName.toLowerCase()}) => new(${defaultValue});`;
+    const expected = `public static readonly ${typeName} ${
+      methodDefinition.name
+    }(${paramType} ${typeName.toLowerCase()}) => new(${defaultValue});`;
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
@@ -220,18 +226,38 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
 
-  test('When writePublicSealedClass is only with class name should write correct class', ()=>{
+  test('When writePublicSealedClass is called only with class name should write correct class', () => {
     const myWriter = mock<CodeWriter>();
     const customWriter = new CustomCsharpWriter(myWriter);
     const className = 'User';
 
-    const ClassDefinition:ClassDefinition = {
-      name: className
-    }
+    const ClassDefinition: ClassDefinition = {
+      name: className,
+    };
 
-    customWriter.writePublicSealedClass(ClassDefinition, ()=>{});
-    expect(myWriter.writeLine).toHaveBeenCalledWith(`public sealed class ${className} `);
+    customWriter.writePublicSealedClass(ClassDefinition, () => {});
+    expect(myWriter.writeLine).toHaveBeenCalledWith(
+      `public sealed class ${className} `
+    );
     expect(myWriter.writeLine).toHaveBeenCalledWith('{');
     expect(myWriter.writeLine).toHaveBeenCalledWith('}');
-  })
+  });
+
+  test('When writePublicSealedClass is called only with class name should write correct class', () => {
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+    const className = 'User';
+
+    const ClassDefinition: ClassDefinition = {
+      name: className,
+      inherits:['interfaz1, interfaz2', 'interfaz3']
+    };
+
+    customWriter.writePublicSealedClass(ClassDefinition, () => {});
+    expect(myWriter.writeLine).toHaveBeenCalledWith(
+      `public sealed class ${className} : interfaz1, interfaz2, interfaz3`
+    );
+    expect(myWriter.writeLine).toHaveBeenCalledWith('{');
+    expect(myWriter.writeLine).toHaveBeenCalledWith('}');
+  });
 });

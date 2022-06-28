@@ -92,12 +92,14 @@ export class CustomCsharpWriter extends CSharpWriter {
       this.writeXmlDocSummary(classDefinition.xmlDocSummary);
     }
 
-    this.writeLine(`public sealed class ${classDefinition.name} `);
+    let classHeader = `public sealed class ${classDefinition.name} `
 
     if(classDefinition.inherits != undefined){
-      const inherits = classDefinition.inherits.reduce((currentInherit, nextInherit) => currentInherit + ',' + nextInherit );
-      this.writeLine(`: ${inherits}`);
+      const inherits = classDefinition.inherits.reduce((currentInherit, nextInherit) => currentInherit + ', ' + nextInherit );
+      classHeader += `: ${inherits}`;
     }
+
+    this.writeLine(classHeader);
 
     this.writeCodeBlock(contents);
   }
