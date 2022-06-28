@@ -1,3 +1,4 @@
+import { PropertyType } from '../enums/property-types';
 import {
   CreateDomainPrimitivesRequest,
   DomainPrimitiveProperty,
@@ -34,6 +35,14 @@ export const validateRequest = (
 };
 
 const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
+  const validPropertyTypes = [
+    PropertyType.string,
+    PropertyType.guid,
+    PropertyType.decimal,
+    PropertyType.int,
+    PropertyType.datetime,
+  ];
+
   if (isEmptyCollection(request.properties)) {
     throw new Error('Domain primitive properties cant be null or empty');
   }
@@ -46,7 +55,10 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     throw new Error('Property type is required');
   }
 
-  //TODO: Validate property type to be correct string or Guid
+  request.properties.forEach((property)=>{
+    const isInvalidPropertyType = !validPropertyTypes.some(validPropertyType => validPropertyType == property.type);
+    if(isInvalidPropertyType){
+      throw new Error(`${property.name} Property type is invalid`);
+    }
+  })
 };
-
-export type PropertyType = 'string' | 'Guid';

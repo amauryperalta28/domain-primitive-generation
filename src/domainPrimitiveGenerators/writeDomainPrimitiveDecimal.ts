@@ -84,8 +84,6 @@ export const writeDomainPrimitiveDecimalProperty = (
       xmlDocSummary: ['Gets property value'],
     });
     customWriter.writeLine();
-
-    //TODO: Agregar constructor
   });
 };
 

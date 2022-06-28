@@ -40,7 +40,7 @@ describe('request-validator.ts tests', () => {
 
   test('When properties collection has properties should succeed', () => {
     const request: CreateDomainPrimitivesRequest = {
-      properties: [{ name: 'Name', type: 'string'}],
+      properties: [{ name: 'Name', type: 'string', isOptional: false}],
       entityName:'Name',
       namespace: 'Users'
     };
@@ -61,7 +61,7 @@ describe('request-validator.ts tests', () => {
     {propertyName:null, condition:'null'},
   ])('When properties collection has properties $condition should fail', ({propertyName}) => {
     const properties: DomainPrimitiveProperty[] = [
-      { name: propertyName, type: 'string'}
+      { name: propertyName, type: 'string', isOptional: false}
     ]
 
     const request: CreateDomainPrimitivesRequest = {
@@ -86,7 +86,7 @@ describe('request-validator.ts tests', () => {
     {propertyType:null, condition:'null'},
   ])('When properties collection has properties with type $condition should fail', ({propertyType}) => {
     const properties: DomainPrimitiveProperty[] = [
-      { name: 'Name', type: propertyType}
+      { name: 'Name', type: propertyType, isOptional: false}
     ]
 
     const request: CreateDomainPrimitivesRequest = {
@@ -100,6 +100,28 @@ describe('request-validator.ts tests', () => {
     const expected = {
       success: false,
       message: 'Property type is required',
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  test('When property type is invalid should fail', () => {
+    const properties: DomainPrimitiveProperty[] = [
+      { name: 'Name', type: 'string', isOptional: false},
+      { name: 'Lastnames', type: 'unknown', isOptional: false},
+    ]
+
+    const request: CreateDomainPrimitivesRequest = {
+      properties: properties,
+      entityName:'Name',
+      namespace: 'Users'
+    };
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: false,
+      message: 'Lastnames Property type is invalid',
     };
 
     expect(actual).toEqual(expected);

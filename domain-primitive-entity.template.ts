@@ -8,6 +8,7 @@ import {
   writeDomainPrimitiveIntegerProperty,
   writeDomainPrimitiveStringProperty
 } from './src/domainPrimitiveGenerators';
+import { PropertyType } from './src/enums/property-types';
 import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest, DomainPrimitiveProperty
@@ -26,11 +27,11 @@ let domainGenerators = new Map<
   ) => void
 >();
 
-domainGenerators.set('string', writeDomainPrimitiveStringProperty);
-domainGenerators.set('guid', writeDomainPrimitiveGuidProperty);
-domainGenerators.set('decimal', writeDomainPrimitiveDecimalProperty);
-domainGenerators.set('int', writeDomainPrimitiveIntegerProperty);
-domainGenerators.set('datetime', writeDomainPrimitiveDateProperty);
+domainGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
+domainGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
+domainGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
+domainGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
+domainGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
