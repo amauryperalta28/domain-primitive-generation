@@ -43,22 +43,26 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     PropertyType.datetime,
   ];
 
-  if (isEmptyCollection(request.properties)) {
-    throw new Error('Domain primitive properties cant be null or empty');
-  }
-
-  if (request.properties.some((property) => isNullOrEmpty(property.name))) {
-    throw new Error('Property name is required');
-  }
-
-  if (request.properties.some((property) => isNullOrEmpty(property.type))) {
-    throw new Error('Property type is required');
-  }
-
-  request.properties.forEach((property)=>{
-    const isInvalidPropertyType = !validPropertyTypes.some(validPropertyType => validPropertyType == property.type);
-    if(isInvalidPropertyType){
-      throw new Error(`${property.name} Property type is invalid`);
+  request.entities.forEach((entity)=>{
+    if (isEmptyCollection(entity.properties)) {
+      throw new Error('Domain primitive properties cant be null or empty');
     }
+  
+    if (entity.properties.some((property) => isNullOrEmpty(property.name))) {
+      throw new Error('Property name is required');
+    }
+  
+    if (entity.properties.some((property) => isNullOrEmpty(property.type))) {
+      throw new Error('Property type is required');
+    }
+  
+    entity.properties.forEach((property)=>{
+      const isInvalidPropertyType = !validPropertyTypes.some(validPropertyType => validPropertyType == property.type);
+      if(isInvalidPropertyType){
+        throw new Error(`${property.name} Property type is invalid`);
+      }
+    })
   })
+
+
 };

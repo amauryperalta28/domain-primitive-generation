@@ -1,5 +1,9 @@
 import { validateRequest } from '../../helpers/validate-request';
-import { CreateDomainPrimitivesRequest, DomainPrimitiveProperty, ValidationResult } from '../../models';
+import {
+  CreateDomainPrimitivesRequest,
+  DomainPrimitiveProperty,
+  ValidationResult,
+} from '../../models';
 
 /*
 
@@ -7,7 +11,6 @@ import { CreateDomainPrimitivesRequest, DomainPrimitiveProperty, ValidationResul
 */
 
 describe('request-validator.ts tests', () => {
-
   test('When create domain primitive request is null or undefined should fail', () => {
     const request = null;
 
@@ -23,9 +26,7 @@ describe('request-validator.ts tests', () => {
 
   test('When properties collection is empty should fail', () => {
     const request: CreateDomainPrimitivesRequest = {
-      properties: [],
-      entityName:'Name',
-      namespace: 'Users'
+      entities: [{ properties: [], entityName: 'Name', namespace: 'Users' }],
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -40,9 +41,13 @@ describe('request-validator.ts tests', () => {
 
   test('When properties collection has properties should succeed', () => {
     const request: CreateDomainPrimitivesRequest = {
-      properties: [{ name: 'Name', type: 'string', isOptional: false}],
-      entityName:'Name',
-      namespace: 'Users'
+      entities: [
+        {
+          properties: [{ name: 'Name', type: 'string', isOptional: false }],
+          entityName: 'Name',
+          namespace: 'Users',
+        },
+      ],
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -56,65 +61,71 @@ describe('request-validator.ts tests', () => {
   });
 
   test.each([
-    { propertyName: '', condition:'empty string'},
-    {propertyName: undefined, condition:'undefined'},
-    {propertyName:null, condition:'null'},
-  ])('When properties collection has properties $condition should fail', ({propertyName}) => {
-    const properties: DomainPrimitiveProperty[] = [
-      { name: propertyName, type: 'string', isOptional: false}
-    ]
+    { propertyName: '', condition: 'empty string' },
+    { propertyName: undefined, condition: 'undefined' },
+    { propertyName: null, condition: 'null' },
+  ])(
+    'When properties collection has properties $condition should fail',
+    ({ propertyName }) => {
+      const properties: DomainPrimitiveProperty[] = [
+        { name: propertyName, type: 'string', isOptional: false },
+      ];
 
-    const request: CreateDomainPrimitivesRequest = {
-      properties: properties,
-      entityName:'Name',
-      namespace: 'Users'
-    };
+      const request: CreateDomainPrimitivesRequest = {
+        entities: [
+          { properties: properties, entityName: 'Name', namespace: 'Users' },
+        ],
+      };
 
-    const actual: ValidationResult = validateRequest(request);
+      const actual: ValidationResult = validateRequest(request);
 
-    const expected = {
-      success: false,
-      message: 'Property name is required',
-    };
+      const expected = {
+        success: false,
+        message: 'Property name is required',
+      };
 
-    expect(actual).toEqual(expected);
-  });
+      expect(actual).toEqual(expected);
+    }
+  );
 
   test.each([
-    { propertyType: '', condition:'empty string'},
-    {propertyType: undefined, condition:'undefined'},
-    {propertyType:null, condition:'null'},
-  ])('When properties collection has properties with type $condition should fail', ({propertyType}) => {
-    const properties: DomainPrimitiveProperty[] = [
-      { name: 'Name', type: propertyType, isOptional: false}
-    ]
+    { propertyType: '', condition: 'empty string' },
+    { propertyType: undefined, condition: 'undefined' },
+    { propertyType: null, condition: 'null' },
+  ])(
+    'When properties collection has properties with type $condition should fail',
+    ({ propertyType }) => {
+      const properties: DomainPrimitiveProperty[] = [
+        { name: 'Name', type: propertyType, isOptional: false },
+      ];
 
-    const request: CreateDomainPrimitivesRequest = {
-      properties: properties,
-      entityName:'Name',
-      namespace: 'Users'
-    };
+      const request: CreateDomainPrimitivesRequest = {
+        entities: [
+          { properties: properties, entityName: 'Name', namespace: 'Users' },
+        ],
+      };
 
-    const actual: ValidationResult = validateRequest(request);
+      const actual: ValidationResult = validateRequest(request);
 
-    const expected = {
-      success: false,
-      message: 'Property type is required',
-    };
+      const expected = {
+        success: false,
+        message: 'Property type is required',
+      };
 
-    expect(actual).toEqual(expected);
-  });
+      expect(actual).toEqual(expected);
+    }
+  );
 
   test('When property type is invalid should fail', () => {
     const properties: DomainPrimitiveProperty[] = [
-      { name: 'Name', type: 'string', isOptional: false},
-      { name: 'Lastnames', type: 'unknown', isOptional: false},
-    ]
+      { name: 'Name', type: 'string', isOptional: false },
+      { name: 'Lastnames', type: 'unknown', isOptional: false },
+    ];
 
     const request: CreateDomainPrimitivesRequest = {
-      properties: properties,
-      entityName:'Name',
-      namespace: 'Users'
+      entities: [
+        { properties: properties, entityName: 'Name', namespace: 'Users' },
+      ],
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -126,5 +137,4 @@ describe('request-validator.ts tests', () => {
 
     expect(actual).toEqual(expected);
   });
-
 });

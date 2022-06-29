@@ -26,15 +26,29 @@ Modify **domain-primitives-definition.json** to produce the needed result.
 
 ```json
 {
-  "entityName":"User",
-  "namespace":"RI.Novus.Core.Users",
-  "properties": [
-    { "name": "Id", "type": "guid", "isOptional": false },
-    { "name": "Names", "type": "string", "isOptional": true },
-    { "name": "Salary", "type": "decimal", "isOptional": true },
-    { "name": "Age", "type": "int", "isOptional": false },
-    { "name": "Birthday", "type": "datetime", "isOptional": false }
-
+  "entities": [
+    {
+      "entityName": "User",
+      "namespace": "RI.Novus.Core.Users",
+      "properties": [
+        { "name": "Id", "type": "guid", "isOptional": false },
+        { "name": "Names", "type": "string", "isOptional": false },
+        { "name": "Salary", "type": "decimal", "isOptional": true },
+        { "name": "Age", "type": "int", "isOptional": false },
+        { "name": "Birthday", "type": "datetime", "isOptional": false }
+      ]
+    },
+    {
+      "entityName": "Citizen",
+      "namespace": "RI.Novus.Core.Users",
+      "properties": [
+        { "name": "Id", "type": "guid", "isOptional": false },
+        { "name": "Names", "type": "string", "isOptional": false },
+        { "name": "Salary", "type": "decimal", "isOptional": true },
+        { "name": "Age", "type": "int", "isOptional": false },
+        { "name": "Birthday", "type": "datetime", "isOptional": false }
+      ]
+    }
   ]
 }
 

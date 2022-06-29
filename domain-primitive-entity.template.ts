@@ -14,6 +14,7 @@ import {
   CreateDomainPrimitivesRequest, DomainPrimitiveProperty
 } from './src/models';
 import * as fsPromises from 'fs/promises';
+import { Entity } from './src/models/create-domain-primitive-request';
 
 const outputDirectory = './result';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
@@ -47,28 +48,34 @@ Generator.generateFromModel(
 
     await fsPromises.rm(outputDirectory, { recursive: true });
 
-    writeDomainPrimitiveEntity(
-      model.entityName,
-      model.namespace,
-      model.properties
-    );
-
-    model.properties.forEach((property: DomainPrimitiveProperty) => {
-      const className = property.name;
-
-      const domainPrimitivePropertyGenerator = domainGenerators.get(property.type);
-
-      Generator.generate(
-        { outputFile: `./result/${model.entityName}/${className}.cs` },
-        (writer: TextWriter) => {
-          domainPrimitivePropertyGenerator(
-            writer,
-            className,
-            model.entityName,
-            model.namespace
-          );
-        }
-      );
-    });
+    model.entities.forEach((entity: Entity)=>{
+      generateEntityClass(entity);
+    })
   }
 );
+
+const generateEntityClass = (entity: Entity)=>{
+  writeDomainPrimitiveEntity(
+    entity.entityName,
+    entity.namespace,
+    entity.properties
+  );
+
+  entity.properties.forEach((property: DomainPrimitiveProperty) => {
+    const className = property.name;
+
+    const domainPrimitivePropertyGenerator = domainGenerators.get(property.type);
+
+    Generator.generate(
+      { outputFile: `./result/${entity.entityName}/${className}.cs` },
+      (writer: TextWriter) => {
+        domainPrimitivePropertyGenerator(
+          writer,
+          className,
+          entity.entityName,
+          entity.namespace
+        );
+      }
+    );
+  });
+}
