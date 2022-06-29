@@ -13,12 +13,12 @@ export const writeDomainPrimitiveStringProperty = (
   const customWriter = new CustomCsharpWriter(textWriter);
 
   customWriter.writeUsingDirectives('Wepsys.Core');
-  customWriter.writeLine(); 
+  customWriter.writeLine();
 
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
   const className = property.name;
-  
+
   const classDefinitions: ClassDefinition = {
     name: className,
     inherits: ['AbstractStringPrimitive'],
@@ -38,7 +38,11 @@ export const writeDomainPrimitiveStringProperty = (
       'Represents the Description minimum length restriction.',
     ]);
     const minLength = property.min ? property.min : 1;
-    customWriter.writePublicFieldConst('MinLength', 'int', minLength);
+    customWriter.writePublicFieldConst(
+      'MinLength',
+      'int',
+      minLength.toString()
+    );
     customWriter.writeLine();
 
     customWriter.writeXmlDocParagraph([
@@ -46,7 +50,11 @@ export const writeDomainPrimitiveStringProperty = (
     ]);
 
     const maxLength = property.max ? property.max : 100;
-    customWriter.writePublicFieldConst('MaxLength', 'int', maxLength);
+    customWriter.writePublicFieldConst(
+      'MaxLength',
+      'int',
+      maxLength.toString()
+    );
     customWriter.writeLine();
 
     customWriter.writeField(errorMessageField);
@@ -62,6 +70,15 @@ export const writeDomainPrimitiveStringProperty = (
 
     customWriter.writeLine();
 
+    if (property.regex) {
+      customWriter.writePublicFieldConst(
+        'ValidPattern',
+        'string',
+        `@"${property.regex}"`
+      );
+      customWriter.writeLine();
+    }
+
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
       `<param name="${className.toLowerCase()}">Represents a ${className.toLowerCase()}.</param>`,
@@ -76,7 +93,22 @@ export const writeDomainPrimitiveStringProperty = (
       { typeName: 'string', name: `raw${className}` },
     ];
 
-    customWriter.writeConstructor('private', className, parameters, `base(raw${className}, LengthRange, ErrorMessage)`);
-    customWriter.writeCodeBlock(()=>{});
+    customWriter.writeConstructor(
+      'private',
+      className,
+      parameters,
+      getConstructorBaseImplementation(property)
+    );
+    customWriter.writeCodeBlock(() => {});
   });
+};
+
+const getConstructorBaseImplementation = (
+  property: DomainPrimitiveProperty
+): string => {
+  if (property.regex) {
+    return `base(raw${property.name}, LengthRange, ValidPattern, ErrorMessage)`;
+  } else {
+    return `base(raw${property.name}, LengthRange, ErrorMessage)`;
+  }
 };

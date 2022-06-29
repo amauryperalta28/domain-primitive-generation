@@ -4,5 +4,6 @@ export interface DomainPrimitiveProperty {
   isOptional: boolean;
   min?: number;
   max?: number;
+  regex?: string;
 
 }

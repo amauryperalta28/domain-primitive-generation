@@ -52,7 +52,7 @@ export class CustomCsharpWriter extends CSharpWriter {
   public writePublicFieldConst(
     name: string,
     typeName: string,
-    defaultValue: number = 0
+    defaultValue: string = '0'
   ): void {
     this.writeLine(`public const ${typeName} ${name} = ${defaultValue};`);
   }

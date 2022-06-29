@@ -28,23 +28,24 @@ Modify **domain-primitives-definition.json** to produce the needed result.
 {
   "entities": [
     {
-      "entityName": "User",
+      "name": "User",
       "namespace": "RI.Novus.Core.Users",
       "properties": [
         { "name": "Id", "type": "guid", "isOptional": false },
-        { "name": "Names", "type": "string", "isOptional": false },
+        { "name": "Names", "type": "string", "isOptional": false, "min": 1, "max": 50 },
+        { "name": "Domain", "type": "string", "isOptional": false, "min": 1, "max": 50, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
         { "name": "Salary", "type": "decimal", "isOptional": true },
-        { "name": "Age", "type": "int", "isOptional": false },
+        { "name": "Age", "type": "int", "isOptional": false, "min": 18, "max": 70 },
         { "name": "Birthday", "type": "datetime", "isOptional": false }
       ]
     },
     {
-      "entityName": "Citizen",
+      "name": "Citizen",
       "namespace": "RI.Novus.Core.Users",
       "properties": [
         { "name": "Id", "type": "guid", "isOptional": false },
         { "name": "Names", "type": "string", "isOptional": false },
-        { "name": "Salary", "type": "decimal", "isOptional": true },
+        { "name": "Salary", "type": "decimal", "isOptional": true,  "min": 0.01, "max": 100.5  },
         { "name": "Age", "type": "int", "isOptional": false },
         { "name": "Birthday", "type": "datetime", "isOptional": false }
       ]

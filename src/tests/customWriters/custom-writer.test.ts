@@ -158,7 +158,7 @@ describe('Custom-writer.ts tests', () => {
 
     const typeName = 'int';
     const name = 'MinLength';
-    const defaultValue = 8;
+    const defaultValue = '8';
 
     customWriter.writePublicFieldConst(name, typeName, defaultValue);
     const expected = `public const ${typeName} ${name} = ${defaultValue};`;
