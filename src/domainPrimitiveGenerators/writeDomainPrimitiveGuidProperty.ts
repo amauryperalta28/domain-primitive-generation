@@ -47,10 +47,15 @@ export const writeDomainPrimitiveGuidProperty = (
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
-    customWriter.writeShortMethodInitializedWithParameter({
+    customWriter.writeShortMethodInitializedWithGivenValue({
       name: 'From',
       returnTypeName: className,
-    });
+
+
+    },
+    className.toLowerCase(),
+    'Guid'
+    );
 
     customWriter.writeLine();
 

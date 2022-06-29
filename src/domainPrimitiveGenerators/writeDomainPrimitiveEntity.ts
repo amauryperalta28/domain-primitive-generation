@@ -40,6 +40,9 @@ export const writeDomainPrimitiveEntity = (
 
                 writeEntityConstructor(customWriter, className, properties);
 
+                customWriter.writeXmlDocParagraph(['TODO: Remember to write tests for businnes logic','TODO: and then if code coverage decreases comment or delete the code not used']);
+
+                customWriter.writeLine();
                 writeEntityBuilder(customWriter, className, properties);
             }
             );
