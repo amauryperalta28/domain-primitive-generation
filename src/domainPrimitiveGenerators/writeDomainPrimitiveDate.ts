@@ -14,7 +14,7 @@ export const writeDomainPrimitiveDateProperty = (
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
-    implements: ['AbstractPastOrPresentTimestampPrimitive'],
+    inherits: ['AbstractPastOrPresentTimestampPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };

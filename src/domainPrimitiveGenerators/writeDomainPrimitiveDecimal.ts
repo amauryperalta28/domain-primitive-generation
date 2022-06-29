@@ -14,7 +14,7 @@ export const writeDomainPrimitiveDecimalProperty = (
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
-    implements: ['ICoreDomainPrimitive<decimal>'],
+    inherits: ['ICoreDomainPrimitive<decimal>'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };

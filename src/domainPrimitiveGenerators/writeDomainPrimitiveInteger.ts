@@ -14,7 +14,7 @@ export const writeDomainPrimitiveIntegerProperty = (
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
-    implements: ['AbstractPositiveIntegerPrimitive'],
+    inherits: ['AbstractPositiveIntegerPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };

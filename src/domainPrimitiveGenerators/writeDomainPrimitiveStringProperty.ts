@@ -18,7 +18,7 @@ export const writeDomainPrimitiveStringProperty = (
 
   const classDefinitions: ClassDefinition = {
     name: className,
-    implements: ['AbstractStringPrimitive'],
+    inherits: ['AbstractStringPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };

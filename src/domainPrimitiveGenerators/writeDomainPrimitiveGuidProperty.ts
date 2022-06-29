@@ -13,7 +13,7 @@ export const writeDomainPrimitiveGuidProperty = (
 ) => {
   const classDefinitions: ClassDefinition = {
     name: className,
-    implements: ['AbstractGuidBasedIdPrimitive'],
+    inherits: ['AbstractGuidBasedIdPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
   };
