@@ -26,7 +26,7 @@ describe('request-validator.ts tests', () => {
 
   test('When properties collection is empty should fail', () => {
     const request: CreateDomainPrimitivesRequest = {
-      entities: [{ properties: [], entityName: 'Name', namespace: 'Users' }],
+      entities: [{ properties: [], name: 'Name', namespace: 'Users' }],
     };
 
     const actual: ValidationResult = validateRequest(request);
@@ -44,7 +44,7 @@ describe('request-validator.ts tests', () => {
       entities: [
         {
           properties: [{ name: 'Name', type: 'string', isOptional: false }],
-          entityName: 'Name',
+          name: 'Name',
           namespace: 'Users',
         },
       ],
@@ -73,7 +73,7 @@ describe('request-validator.ts tests', () => {
 
       const request: CreateDomainPrimitivesRequest = {
         entities: [
-          { properties: properties, entityName: 'Name', namespace: 'Users' },
+          { properties: properties, name: 'Name', namespace: 'Users' },
         ],
       };
 
@@ -101,7 +101,7 @@ describe('request-validator.ts tests', () => {
 
       const request: CreateDomainPrimitivesRequest = {
         entities: [
-          { properties: properties, entityName: 'Name', namespace: 'Users' },
+          { properties: properties, name: 'Name', namespace: 'Users' },
         ],
       };
 
@@ -124,7 +124,7 @@ describe('request-validator.ts tests', () => {
 
     const request: CreateDomainPrimitivesRequest = {
       entities: [
-        { properties: properties, entityName: 'Name', namespace: 'Users' },
+        { properties: properties, name: 'Name', namespace: 'Users' },
       ],
     };
 

@@ -1,7 +1,7 @@
 {
   "entities": [
     {
-      "entityName": "User",
+      "name": "User",
       "namespace": "RI.Novus.Core.Users",
       "properties": [
         { "name": "Id", "type": "guid", "isOptional": false },
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "entityName": "Citizen",
+      "name": "Citizen",
       "namespace": "RI.Novus.Core.Users",
       "properties": [
         { "name": "Id", "type": "guid", "isOptional": false },

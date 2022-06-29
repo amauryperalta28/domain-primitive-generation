@@ -5,7 +5,7 @@ export interface CreateDomainPrimitivesRequest {
 }
 
 export interface Entity {
-  entityName: string;
+  name: string;
   namespace: string;
   properties: DomainPrimitiveProperty[];
 }
