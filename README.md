@@ -24,6 +24,8 @@ From root (`~`) go to **GenerateEntityRequest** folder
 
 Modify **domain-primitives-definition.json** to produce the needed result.
 
+**Note that regex "\\" character should be scaped with "\\\\"** so the json file can take it.
+
 ```json
 {
   "entities": [
