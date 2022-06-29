@@ -39,7 +39,7 @@ export const writeDomainPrimitiveStringProperty = (
     customWriter.writeXmlDocParagraph([
       'Represents the Description minimum length restriction.',
     ]);
-    const minLength = 1;
+    const minLength = property.min ? property.min : 1;
     customWriter.writePublicFieldConst('MinLength', 'int', minLength);
     customWriter.writeLine();
 
@@ -47,7 +47,7 @@ export const writeDomainPrimitiveStringProperty = (
       'Represents the Description max length restriction.',
     ]);
 
-    const maxLength = 100;
+    const maxLength = property.max ? property.max : 100;
     customWriter.writePublicFieldConst('MaxLength', 'int', maxLength);
     customWriter.writeLine();
 
