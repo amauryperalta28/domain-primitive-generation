@@ -17,7 +17,7 @@
       "properties": [
         { "name": "Id", "type": "guid", "isOptional": false },
         { "name": "Names", "type": "string", "isOptional": false },
-        { "name": "Salary", "type": "decimal", "isOptional": true },
+        { "name": "Salary", "type": "decimal", "isOptional": true,  "min": 0.01, "max": 100.5  },
         { "name": "Age", "type": "int", "isOptional": false },
         { "name": "Birthday", "type": "datetime", "isOptional": false }
       ]

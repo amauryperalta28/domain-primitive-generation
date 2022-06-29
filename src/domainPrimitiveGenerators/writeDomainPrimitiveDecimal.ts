@@ -45,7 +45,7 @@ export const writeDomainPrimitiveDecimalProperty = (
       accessModifier: 'private',
       name: 'MinValue',
       typeName: 'decimal',
-      defaultValue: '0.01M',
+      defaultValue: property.min ? `${property.min}M`: '0.01M',
       isStatic: true,
     });
     customWriter.writeLine();
@@ -54,7 +54,7 @@ export const writeDomainPrimitiveDecimalProperty = (
       accessModifier: 'private',
       name: 'MaxValue',
       typeName: 'decimal',
-      defaultValue: '99_999',
+      defaultValue: property.max ? `${property.max}M` :'99_999M',
       isStatic: true,
     });
     customWriter.writeLine();
