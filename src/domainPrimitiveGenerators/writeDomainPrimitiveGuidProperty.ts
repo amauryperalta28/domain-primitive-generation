@@ -53,7 +53,7 @@ export const writeDomainPrimitiveGuidProperty = (
 
 
     },
-    className.toLowerCase(),
+    `raw${className}`,
     'Guid'
     );
 

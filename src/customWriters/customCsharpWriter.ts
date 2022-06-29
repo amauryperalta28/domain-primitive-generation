@@ -35,7 +35,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     const typeName = method.returnTypeName;
     const lowerCasePropertyName = typeName.toLowerCase();
     this.writeLine(
-      `public static readonly ${typeName} ${method.name}(${paramType} ${lowerCasePropertyName}) => new(${defaultValue});`
+      `public static readonly ${typeName} ${method.name}(${paramType} raw${typeName}) => new(${defaultValue});`
     );
   }
 

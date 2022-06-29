@@ -147,7 +147,7 @@ describe('Custom-writer.ts tests', () => {
     );
     const expected = `public static readonly ${typeName} ${
       methodDefinition.name
-    }(${paramType} ${typeName.toLowerCase()}) => new(${defaultValue});`;
+    }(${paramType} raw${typeName}) => new(${defaultValue});`;
 
     expect(myWriter.writeLine).toHaveBeenCalledWith(expected);
   });
