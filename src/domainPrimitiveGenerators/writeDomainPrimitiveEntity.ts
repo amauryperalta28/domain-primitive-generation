@@ -73,7 +73,7 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
         inherits: ['AbstractEntityBuilder<Domain>'],
         xmlDocSummary: [`${className}'s builder.`],
     };
-    customWriter.writeClassBlock(classDefinitions, (c) => {
+    customWriter.writePublicSealedClass(classDefinitions, (c) => {
 
         customWriter.writeLine('protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();');
         customWriter.writeLine('protected override Option<string> MustBeBuiltErrorMessage => Option.None<string>();');
