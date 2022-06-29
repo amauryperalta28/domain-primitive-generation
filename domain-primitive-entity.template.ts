@@ -23,7 +23,7 @@ let domainGenerators = new Map<
   string,
   (
     textWriter: TextWriter,
-    className: string,
+    property: DomainPrimitiveProperty,
     entityName: string,
     folderName: string
   ) => void
@@ -71,7 +71,7 @@ const generateEntityClass = (entity: Entity)=>{
       (writer: TextWriter) => {
         domainPrimitivePropertyGenerator(
           writer,
-          className,
+          property,
           entity.name,
           entity.namespace
         );

@@ -5,15 +5,18 @@ import {
   ParameterDefinition,
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
+import { DomainPrimitiveProperty } from '../models';
 
 export const writeDomainPrimitiveIntegerProperty = (
   textWriter: TextWriter,
-  className: string,
+  property: DomainPrimitiveProperty,
   entityName: string,
   namespace: string
 ) => {
+  const className = property.name;
+  
   const classDefinitions: ClassDefinition = {
-    name: className,
+    name: property.name,
     inherits: ['AbstractPositiveIntegerPrimitive'],
     accessModifier: 'public',
     xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
@@ -39,14 +42,14 @@ export const writeDomainPrimitiveIntegerProperty = (
       isStatic: true,
       typeName: 'PositiveInteger',
       name: 'MinValue',
-      defaultValue: 'new(1)',
+      defaultValue: property.min ? `new(${property.min})` : 'new(1)',
     });
     customWriter.writeField({
       accessModifier: 'private',
       isStatic: true,
       typeName: 'PositiveInteger',
       name: 'MinValue',
-      defaultValue: 'new(100)',
+      defaultValue: property.max ? `new(${property.max})`: 'new(100)',
     });
 
     customWriter.writeLine();

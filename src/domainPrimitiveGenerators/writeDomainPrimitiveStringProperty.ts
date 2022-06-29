@@ -1,13 +1,14 @@
 import { TextWriter } from '@yellicode/core';
 import { ClassDefinition } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
+import { DomainPrimitiveProperty } from '../models';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
 
 //TODO: Take min and max from json model
 
 export const writeDomainPrimitiveStringProperty = (
   textWriter: TextWriter,
-  className: string,
+  property: DomainPrimitiveProperty,
   entityName: string,
   namespace: string
 ) => {
@@ -18,7 +19,8 @@ export const writeDomainPrimitiveStringProperty = (
 
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
-
+  const className = property.name;
+  
   const classDefinitions: ClassDefinition = {
     name: className,
     inherits: ['AbstractStringPrimitive'],

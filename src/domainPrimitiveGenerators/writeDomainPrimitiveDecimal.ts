@@ -5,13 +5,16 @@ import {
   ParameterDefinition,
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
+import { DomainPrimitiveProperty } from '../models';
 
 export const writeDomainPrimitiveDecimalProperty = (
   textWriter: TextWriter,
-  className: string,
+  property: DomainPrimitiveProperty,
   entityName: string,
   namespace: string
 ) => {
+  const className = property.name;
+  
   const classDefinitions: ClassDefinition = {
     name: className,
     inherits: ['ICoreDomainPrimitive<decimal>'],
