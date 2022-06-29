@@ -21,6 +21,7 @@ export const writeDomainPrimitiveDecimalProperty = (
 
   const customWriter = new CustomCsharpWriter(textWriter);
 
+  customWriter.writeUsingDirectives('Wepsys.Core');
   customWriter.writeLine(); // insert a blank line
 
   customWriter.writeCsharpTenNamespace(namespace);

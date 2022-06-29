@@ -23,6 +23,7 @@ export const writeDomainPrimitiveIntegerProperty = (
 
   const customWriter = new CustomCsharpWriter(textWriter);
 
+  customWriter.writeUsingDirectives('Wepsys.Core');
   customWriter.writeLine();
 
   customWriter.writeCsharpTenNamespace(namespace);

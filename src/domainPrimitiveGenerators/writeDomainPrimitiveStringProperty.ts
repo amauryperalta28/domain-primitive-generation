@@ -13,8 +13,11 @@ export const writeDomainPrimitiveStringProperty = (
 ) => {
   const customWriter = new CustomCsharpWriter(textWriter);
 
+  customWriter.writeUsingDirectives('Wepsys.Core');
+  customWriter.writeLine(); 
+
   customWriter.writeCsharpTenNamespace(namespace);
-  customWriter.writeLine(); // insert a blank line
+  customWriter.writeLine();
 
   const classDefinitions: ClassDefinition = {
     name: className,
