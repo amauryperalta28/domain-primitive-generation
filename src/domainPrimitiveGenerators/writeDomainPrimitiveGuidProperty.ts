@@ -18,7 +18,7 @@ export const writeDomainPrimitiveGuidProperty = (
     name: className,
     inherits: ['AbstractGuidBasedIdPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
+    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const emptyContentCallback = () => {};

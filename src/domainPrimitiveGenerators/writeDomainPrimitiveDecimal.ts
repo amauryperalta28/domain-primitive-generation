@@ -1,8 +1,6 @@
 import { TextWriter } from '@yellicode/core';
 import {
-  ClassDefinition,
-  CSharpWriter,
-  ParameterDefinition,
+  ClassDefinition
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
@@ -19,7 +17,7 @@ export const writeDomainPrimitiveDecimalProperty = (
     name: className,
     inherits: ['ICoreDomainPrimitive<decimal>'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
+    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const customWriter = new CustomCsharpWriter(textWriter);
@@ -98,7 +96,7 @@ const writeConstructorMethod = (
 ) => {
   customWriter.writeLine(`private ${className}(decimal raw${className})`);
   customWriter.writeLine(
-    `  => Value = Arguments.Between(raw${className}, MinValue, MaxValue, nameof(raw${className}), "Invalid value or format for ${entityName}'s amount");`
+    `  => Value = Arguments.Between(raw${className}, MinValue, MaxValue, nameof(raw${className}), "Invalid value or format for ${entityName}'s ${className}");`
   );
   customWriter.writeLine();
 };

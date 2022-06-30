@@ -23,7 +23,7 @@ export const writeDomainPrimitiveStringProperty = (
     name: className,
     inherits: ['AbstractStringPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
+    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
   customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const errorMessageField: CustomFieldDefinition = {

@@ -1,8 +1,6 @@
 import { TextWriter } from '@yellicode/core';
 import {
-  ClassDefinition,
-  CSharpWriter,
-  ParameterDefinition,
+  ClassDefinition, ParameterDefinition
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
@@ -19,7 +17,7 @@ export const writeDomainPrimitiveDateProperty = (
     name: className,
     inherits: ['AbstractPastOrPresentTimestampPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
+    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const emptyContentCallback = () => {};

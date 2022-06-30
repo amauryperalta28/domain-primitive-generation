@@ -19,7 +19,7 @@ export const writeDomainPrimitiveIntegerProperty = (
     name: property.name,
     inherits: ['AbstractPositiveIntegerPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents an ${entityName}'s ${className}`],
+    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const emptyContentCallback = () => {};
@@ -78,7 +78,7 @@ export const writeDomainPrimitiveIntegerProperty = (
         name: 'From',
         returnTypeName: className,
       },
-      `new PositiveInteger(${classNameLower})`,
+      `new PositiveInteger(raw${className})`,
       'int',
     );
 
