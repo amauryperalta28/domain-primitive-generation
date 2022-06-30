@@ -10,7 +10,7 @@ Mono repo for "**Domain Primitive Generation**" software project. For ```Wepsys.
 
 ## Run ALL tests and see test coverage
 ```
-npm run test 
+npm test 
 ```
 
 ## Run ALL tests in watch mode and see test coverage

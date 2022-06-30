@@ -4,10 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generation":"yellicode",
+    "generation": "yellicode",
     "generation-watch": "yellicode --watch",
     "test": "yellicode && jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   },
   "keywords": [],
   "author": "",
@@ -17,8 +23,10 @@
     "@yellicode/core": "^1.5.0",
     "@yellicode/csharp": "^1.10.0",
     "@yellicode/templating": "^1.8.0",
+    "husky": "^8.0.1",
     "jest": "^28.1.1",
     "jest-mock-extended": "^2.0.6",
+    "lint-staged": "^13.0.3",
     "ts-jest": "^28.0.5"
   },
   "jest": {
