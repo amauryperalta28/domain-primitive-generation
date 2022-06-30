@@ -1,11 +1,7 @@
-import { DomainPrimitiveProperty } from './domain-primitive-property';
+import { Entity } from './Entity';
 
 export interface CreateDomainPrimitivesRequest {
   entities: Entity[];
 }
 
-export interface Entity {
-  name: string;
-  namespace: string;
-  properties: DomainPrimitiveProperty[];
-}
+

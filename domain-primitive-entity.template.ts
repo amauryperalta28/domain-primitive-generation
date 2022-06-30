@@ -11,15 +11,14 @@ import {
 import { PropertyType } from './src/enums/property-types';
 import { validateRequest } from './src/helpers/validate-request';
 import {
-  CreateDomainPrimitivesRequest, DomainPrimitiveProperty
+  CreateDomainPrimitivesRequest, DomainPrimitiveProperty, Entity
 } from './src/models';
 import * as fsPromises from 'fs/promises';
-import { Entity } from './src/models/create-domain-primitive-request';
 
 const outputDirectory = './result';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
 
-let domainGenerators = new Map<
+let domainPrimitiveGenerators = new Map<
   string,
   (
     textWriter: TextWriter,
@@ -29,13 +28,11 @@ let domainGenerators = new Map<
   ) => void
 >();
 
-domainGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
-domainGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
-domainGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
-domainGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
-domainGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
-
-
+domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
+domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
+domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
+domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
+domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
@@ -64,7 +61,7 @@ const generateEntityClass = (entity: Entity)=>{
   entity.properties.forEach((property: DomainPrimitiveProperty) => {
     const className = property.name;
 
-    const domainPrimitivePropertyGenerator = domainGenerators.get(property.type);
+    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(property.type);
 
     Generator.generate(
       { outputFile: `./result/${entity.name}/${className}.cs` },
