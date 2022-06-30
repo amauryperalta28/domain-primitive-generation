@@ -3,6 +3,10 @@
         {
             "modelFile":"GenerateEntityRequest/domain-primitives-definition.json",
             "templateFile": "domain-primitive-entity.template.ts"
+        },
+        {
+            "modelFile":"src/tests/domain-primitives-definition-test.json",
+            "templateFile": "src/tests/domain-primitive-entity.template-test.ts"
         }
     ],
     "compileTypeScript": true,
