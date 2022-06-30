@@ -69,7 +69,7 @@ export const writeDomainPrimitiveIntegerProperty = (
     const classNameLower = classDefinitions.name.toLowerCase();
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
+      `<param name="raw${className}">Represents a ${classNameLower}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 

@@ -43,7 +43,7 @@ export const writeDomainPrimitiveGuidProperty = (
 
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
+      `<param name="raw${className}">Represents a ${classNameLower}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
@@ -61,7 +61,6 @@ export const writeDomainPrimitiveGuidProperty = (
 
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
