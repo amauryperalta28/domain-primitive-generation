@@ -6,7 +6,7 @@ import { PropertyType } from '../enums/property-types';
 import { validateRequest } from '../helpers/validate-request';
 import { CreateDomainPrimitivesRequest, DomainPrimitiveProperty, Entity } from '../models';
 
-const outputDirectory = './domainPrimitiveGenerators/template-test-result';
+const outputDirectory = './domainPrimitiveGenerators/templateTestResult';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
 
 let domainPrimitiveGenerators = new Map<
@@ -55,7 +55,7 @@ const generateEntityClass = (entity: Entity)=>{
     const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(property.type);
 
     Generator.generate(
-      { outputFile: `./domainPrimitiveGenerators/template-test-result/${entity.name}/${className}.cs` },
+      { outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs` },
       (writer: TextWriter) => {
         domainPrimitivePropertyGenerator(
           writer,
