@@ -27,12 +27,12 @@ describe('writeDomainPrimitiveDecimal.ts tests', () => {
      ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
    });
 
-//    test('When a Decimal domain primitive property is with min and max generated should generate property template correctly', (done) => {
-//     const generatedTemplateFilePath  = `${__dirname}/templateTestResult/User/DecimalIdMinAndMax.cs`;
-//     const expectedTemplateFilePath = `${__dirname}/expectedTemplateResults/int/DecimalIdMinAndMaxProperty.cs`; 
+   test('When a Decimal domain primitive property is with min and max generated should generate property template correctly', (done) => {
+    const generatedTemplateFilePath  = `${__dirname}/templateTestResult/User/DecimalSalaryMinAndMax.cs`;
+    const expectedTemplateFilePath = `${__dirname}/expectedTemplateResults/decimal/DecimalSalaryMinAndMaxProperty.cs`; 
  
-//      ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
-//    });
+     ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
+   });
 
 });
 
