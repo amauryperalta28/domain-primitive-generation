@@ -5,7 +5,11 @@
       "namespace": "RI.Novus.Core.Users",
       "properties": [
         { "name": "Id", "type": "guid", "isOptional": false },
-        { "name": "Names", "type": "string", "isOptional": false, "min": 1, "max": 50 },
+        { "name": "Names", "type": "string", "isOptional": false},
+        { "name": "NamesWithMin", "type": "string", "isOptional": false, "min": 10, "max": 50 },
+        { "name": "NamesWithMax", "type": "string", "isOptional": false, "max": 65 },
+        { "name": "NamesWithMinMax", "type": "string", "isOptional": false, "min": 15,"max": 65 },
+        { "name": "NamesWithRegex", "type": "string", "isOptional": false, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
         { "name": "Domain", "type": "string", "isOptional": false, "min": 1, "max": 50, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
         { "name": "Salary", "type": "decimal", "isOptional": true },
         { "name": "Age", "type": "int", "isOptional": false, "min": 18, "max": 70 },

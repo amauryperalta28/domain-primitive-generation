@@ -60,9 +60,9 @@ export const writeDomainPrimitiveStringProperty = (
     customWriter.writeField(errorMessageField);
 
     const StringLengthRangeField: CustomFieldDefinition = {
-      name: 'StringLengthRange',
+      name: 'LengthRange',
       isStatic: true,
-      typeName: 'LengthRange',
+      typeName: 'StringLengthRange',
       defaultValue: `(MinLength, MaxLength).ToLengthRange()`,
       accessModifier: 'private',
     };
