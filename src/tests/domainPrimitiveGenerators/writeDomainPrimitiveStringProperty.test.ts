@@ -51,5 +51,12 @@ describe('writeDomainPrimitiveStringProperty.ts tests', () => {
      ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
    });
 
+   test('When string domain primitive property is generated with regex min and max should generate result template correctly', (done) => {
+    const generatedTemplateFilePath  = `${__dirname}/templateTestResult/User/NamesWithRegexMinMax.cs`;
+    const expectedTemplateFilePath = `${__dirname}//expectedTemplateResults/NamesStringPropertyWithRegexMinMax.cs`; 
+ 
+     ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
+   });
+
 });
 
