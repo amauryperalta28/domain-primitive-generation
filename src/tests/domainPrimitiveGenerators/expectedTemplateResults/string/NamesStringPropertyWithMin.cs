@@ -18,10 +18,10 @@ public sealed class NamesWithMin : AbstractStringPrimitive
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="NamesWithMin"/>.
-	/// <param name="nameswithmin">Represents a nameswithmin.</param>
+	/// <param name="namesWithMin">Represents a namesWithMin.</param>
 	/// <returns>An instance of <see cref="NamesWithMin"/></returns>
 	/// </summary>
-	public static readonly NamesWithMin From(string nameswithmin) => new(nameswithmin);
+	public static readonly NamesWithMin From(string namesWithMin) => new(namesWithMin);
 	private NamesWithMin(string rawNamesWithMin) : base(rawNamesWithMin, LengthRange, ErrorMessage)
 	{
 	}

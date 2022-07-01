@@ -4,6 +4,7 @@ import {
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
+var _ = require('lodash');
 
 export const writeDomainPrimitiveDecimalProperty = (
   textWriter: TextWriter,
@@ -62,9 +63,10 @@ export const writeDomainPrimitiveDecimalProperty = (
     );
     customWriter.writeLine();
 
+    
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="${classNameLower}">Represents a ${classNameLower}.</param>`,
+      `<param name="${_.camelCase(className)}">Represents a ${_.camelCase(className)}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 

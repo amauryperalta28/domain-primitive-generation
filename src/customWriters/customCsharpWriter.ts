@@ -5,6 +5,8 @@ import {
 } from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
 import { AccessModifier, ClassDefinition } from '@yellicode/csharp';
+import { UnCapitalizingTransform } from '@yellicode/elements';
+var _ = require('lodash');
 
 export class CustomCsharpWriter extends CSharpWriter {
   public writeField(propertyDefinition: CustomFieldDefinition): void {
@@ -24,10 +26,11 @@ export class CustomCsharpWriter extends CSharpWriter {
   }
 
   public writeShortMethodInitializedWithParameter(method: MethodDefinition): void {
+
     const typeName = method.returnTypeName;
-    const lowerCasePropertyName = typeName.toLowerCase();
+    const camelCasePropertyName =  _.camelCase(typeName);
     this.writeLine(
-      `public static readonly ${typeName} ${method.name}(string ${lowerCasePropertyName}) => new(${lowerCasePropertyName});`
+      `public static readonly ${typeName} ${method.name}(string ${camelCasePropertyName}) => new(${camelCasePropertyName});`
     );
   }
 

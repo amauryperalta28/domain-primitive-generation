@@ -18,10 +18,10 @@ public sealed class NamesWithMinMax : AbstractStringPrimitive
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="NamesWithMinMax"/>.
-	/// <param name="nameswithminmax">Represents a nameswithminmax.</param>
+	/// <param name="namesWithMinMax">Represents a namesWithMinMax.</param>
 	/// <returns>An instance of <see cref="NamesWithMinMax"/></returns>
 	/// </summary>
-	public static readonly NamesWithMinMax From(string nameswithminmax) => new(nameswithminmax);
+	public static readonly NamesWithMinMax From(string namesWithMinMax) => new(namesWithMinMax);
 	private NamesWithMinMax(string rawNamesWithMinMax) : base(rawNamesWithMinMax, LengthRange, ErrorMessage)
 	{
 	}

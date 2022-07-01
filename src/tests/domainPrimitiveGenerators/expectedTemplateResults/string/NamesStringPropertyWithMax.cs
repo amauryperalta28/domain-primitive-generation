@@ -18,10 +18,10 @@ public sealed class NamesWithMax : AbstractStringPrimitive
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="NamesWithMax"/>.
-	/// <param name="nameswithmax">Represents a nameswithmax.</param>
+	/// <param name="namesWithMax">Represents a namesWithMax.</param>
 	/// <returns>An instance of <see cref="NamesWithMax"/></returns>
 	/// </summary>
-	public static readonly NamesWithMax From(string nameswithmax) => new(nameswithmax);
+	public static readonly NamesWithMax From(string namesWithMax) => new(namesWithMax);
 	private NamesWithMax(string rawNamesWithMax) : base(rawNamesWithMax, LengthRange, ErrorMessage)
 	{
 	}

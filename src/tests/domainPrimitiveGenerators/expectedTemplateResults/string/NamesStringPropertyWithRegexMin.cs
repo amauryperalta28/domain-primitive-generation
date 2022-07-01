@@ -20,10 +20,10 @@ public sealed class NamesWithRegexMin : AbstractStringPrimitive
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="NamesWithRegexMin"/>.
-	/// <param name="nameswithregexmin">Represents a nameswithregexmin.</param>
+	/// <param name="namesWithRegexMin">Represents a namesWithRegexMin.</param>
 	/// <returns>An instance of <see cref="NamesWithRegexMin"/></returns>
 	/// </summary>
-	public static readonly NamesWithRegexMin From(string nameswithregexmin) => new(nameswithregexmin);
+	public static readonly NamesWithRegexMin From(string namesWithRegexMin) => new(namesWithRegexMin);
 	private NamesWithRegexMin(string rawNamesWithRegexMin) : base(rawNamesWithRegexMin, LengthRange, ValidPattern, ErrorMessage)
 	{
 	}

@@ -3,6 +3,7 @@ import { ClassDefinition, ParameterDefinition } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
+var _ = require('lodash');
 
 export const writeDomainPrimitiveStringProperty = (
   textWriter: TextWriter,
@@ -79,9 +80,10 @@ export const writeDomainPrimitiveStringProperty = (
       customWriter.writeLine();
     }
 
+    
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="${className.toLowerCase()}">Represents a ${className.toLowerCase()}.</param>`,
+      `<param name="${_.camelCase(className)}">Represents a ${_.camelCase(className)}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
     customWriter.writeShortMethodInitializedWithParameter({

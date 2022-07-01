@@ -1,5 +1,9 @@
 # Introduction 
-Mono repo for "**Domain Primitive Generation**" software project. For ```Wepsys.Core 3.1.1```
+Mono repo for "**Domain Primitive Generation**" software project in **Node js** for ```Wepsys.Core 3.1.1```. 
+For template generation "**yellicode**" is being used 
+[Template generation with yellicode](https://www.yellicode.com/docs/quickstart "Template generation with yellicode") alongside with a yellicode extension library for C#
+[@yellicode/csharp](https://www.npmjs.com/package/@yellicode/csharp "@yellicode/csharp")
+
 
 # Getting Started
 

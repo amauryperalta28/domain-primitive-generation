@@ -20,10 +20,10 @@ public sealed class DecimalSalaryMin : ICoreDomainPrimitive<decimal>
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="DecimalSalaryMin"/>.
-	/// <param name="decimalsalarymin">Represents a decimalsalarymin.</param>
+	/// <param name="decimalSalaryMin">Represents a decimalSalaryMin.</param>
 	/// <returns>An instance of <see cref="DecimalSalaryMin"/></returns>
 	/// </summary>
-	public static readonly DecimalSalaryMin From(string decimalsalarymin) => new(decimalsalarymin);
+	public static readonly DecimalSalaryMin From(string decimalSalaryMin) => new(decimalSalaryMin);
 
 	private DecimalSalaryMin(decimal rawDecimalSalaryMin)
 	  => Value = Arguments.Between(rawDecimalSalaryMin, MinValue, MaxValue, nameof(rawDecimalSalaryMin), "Invalid value or format for User's DecimalSalaryMin");
