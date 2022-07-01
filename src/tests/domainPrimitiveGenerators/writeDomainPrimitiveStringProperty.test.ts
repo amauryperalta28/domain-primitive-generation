@@ -36,6 +36,20 @@ describe('writeDomainPrimitiveStringProperty.ts tests', () => {
  
      ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
    });
+   
+   test('When string domain primitive property is generated with regex and min should generate result template correctly', (done) => {
+    const generatedTemplateFilePath  = `${__dirname}/templateTestResult/User/NamesWithRegexMin.cs`;
+    const expectedTemplateFilePath = `${__dirname}//expectedTemplateResults/NamesStringPropertyWithRegexMin.cs`; 
+ 
+     ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
+   });
+
+   test('When string domain primitive property is generated with regex and max should generate result template correctly', (done) => {
+    const generatedTemplateFilePath  = `${__dirname}/templateTestResult/User/NamesWithRegexMax.cs`;
+    const expectedTemplateFilePath = `${__dirname}//expectedTemplateResults/NamesStringPropertyWithRegexMax.cs`; 
+ 
+     ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
+   });
 
 });
 
