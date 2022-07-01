@@ -12,7 +12,11 @@
         { "name": "NamesWithRegex", "type": "string", "isOptional": false, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
         { "name": "NamesWithRegexMin", "type": "string", "isOptional": false, "min": 25, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
         { "name": "NamesWithRegexMax", "type": "string", "isOptional": false, "max": 25, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
-        { "name": "NamesWithRegexMinMax", "type": "string", "isOptional": false,"min": 10, "max": 25, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" }
+        { "name": "NamesWithRegexMinMax", "type": "string", "isOptional": false,"min": 10, "max": 25, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
+        { "name": "IntegerId", "type": "int", "isOptional": false},
+        { "name": "IntegerIdMin", "type": "int", "isOptional": false, "min": 12},
+        { "name": "IntegerIdMax", "type": "int", "isOptional": false, "max": 40},
+        { "name": "IntegerIdMinAndMax", "type": "int", "isOptional": false, "min": 15, "max": 40}
       ]
     }
   ]
