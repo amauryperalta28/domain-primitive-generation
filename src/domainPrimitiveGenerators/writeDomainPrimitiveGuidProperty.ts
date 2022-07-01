@@ -1,10 +1,10 @@
 import { TextWriter } from '@yellicode/core';
 import {
-  ClassDefinition,
-  CSharpWriter, ParameterDefinition
+  ClassDefinition, ParameterDefinition
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
+var _ = require('lodash');
 
 export const writeDomainPrimitiveGuidProperty = (
   textWriter: TextWriter,
@@ -43,7 +43,7 @@ export const writeDomainPrimitiveGuidProperty = (
 
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
-      `<param name="raw${className}">Represents a ${classNameLower}.</param>`,
+      `<param name="raw${className}">Represents a ${_.camelCase(className)}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 

@@ -4,7 +4,7 @@
       "name": "User",
       "namespace": "RI.Novus.Core.Users",
       "properties": [
-        { "name": "Id", "type": "guid", "isOptional": false },
+        { "name": "EmployeeId", "type": "guid", "isOptional": false },
         { "name": "Names", "type": "string", "isOptional": false},
         { "name": "NamesWithMin", "type": "string", "isOptional": false, "min": 10, "max": 50 },
         { "name": "NamesWithMax", "type": "string", "isOptional": false, "max": 65 },
