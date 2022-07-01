@@ -16,7 +16,10 @@
         { "name": "IntegerId", "type": "int", "isOptional": false},
         { "name": "IntegerIdMin", "type": "int", "isOptional": false, "min": 12},
         { "name": "IntegerIdMax", "type": "int", "isOptional": false, "max": 40},
-        { "name": "IntegerIdMinAndMax", "type": "int", "isOptional": false, "min": 15, "max": 40}
+        { "name": "IntegerIdMinAndMax", "type": "int", "isOptional": false, "min": 15, "max": 40},
+        { "name": "DecimalSalary", "type": "decimal", "isOptional": false},
+        { "name": "DecimalSalaryMin", "type": "decimal", "isOptional": false, "min": 12},
+        { "name": "DecimalSalaryMax", "type": "decimal", "isOptional": false, "max": 40}
       ]
     }
   ]
