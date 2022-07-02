@@ -15,5 +15,19 @@ describe('writeDomainPrimitiveEntity.ts tests', () => {
      ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
    });
 
+   test('When a domain primitive entity has all supported property types required should generate entity template correctly', (done) => {
+    const generatedTemplateFilePath  = `${__dirname}/templateTestResult/EntityWithAllSupportedPropertyTypesRequired/EntityWithAllSupportedPropertyTypesRequired.cs`;
+    const expectedTemplateFilePath = `${__dirname}//expectedTemplateResults/entity/EntityWithAllSupportedPropertyTypesRequired.cs`; 
+ 
+     ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
+   });
+
+   test('When a domain primitive entity has all supported property types optional should generate entity template correctly', (done) => {
+    const generatedTemplateFilePath  = `${__dirname}/templateTestResult/EntityWithAllSupportedPropertyTypesOptional/EntityWithAllSupportedPropertyTypesOptional.cs`;
+    const expectedTemplateFilePath = `${__dirname}//expectedTemplateResults/entity/EntityWithAllSupportedPropertyTypesOptional.cs`; 
+ 
+     ExpectGeneratedPropertyFileToMatchWithExpectedTemplateResult(generatedTemplateFilePath, expectedTemplateFilePath, done);
+   });
+
 });
 
