@@ -92,7 +92,7 @@ npm run generation-watch
 │       └───helpers
 ├───GenerateEntityRequest
 ├───result
-│   └───NotarialReceipt
+│   └───Entity
 └───src
     ├───customWriters
     ├───domainPrimitiveGenerators
