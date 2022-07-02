@@ -23,6 +23,20 @@
         { "name": "DecimalSalaryMinAndMax", "type": "decimal", "isOptional": false, "min":15, "max": 40},
         { "name": "Birthday", "type": "datetime", "isOptional": false }
       ]
+    },
+    {
+      "name": "CitizenWithOneRequiredProperty",
+      "namespace": "RI.Novus.Core.Users",
+      "properties": [
+        { "name": "Id", "type":"guid", "isOptional":false }
+      ]
+    },
+    {
+      "name": "CitizenWithOneOptionalProperty",
+      "namespace": "RI.Novus.Core.Users",
+      "properties": [
+        { "name": "Id", "type":"guid", "isOptional":true }
+      ]
     }
   ]
 }

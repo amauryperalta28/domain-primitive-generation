@@ -55,7 +55,8 @@ const generateEntityClass = (entity: Entity)=>{
   writeDomainPrimitiveEntity(
     entity.name,
     entity.namespace,
-    entity.properties
+    entity.properties,
+    outputDirectory
   );
 
   entity.properties.forEach((property: DomainPrimitiveProperty) => {
@@ -64,7 +65,7 @@ const generateEntityClass = (entity: Entity)=>{
     const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(property.type);
 
     Generator.generate(
-      { outputFile: `./result/${entity.name}/${className}.cs` },
+      { outputFile: `${outputDirectory}/${entity.name}/${className}.cs` },
       (writer: TextWriter) => {
         domainPrimitivePropertyGenerator(
           writer,

@@ -46,7 +46,8 @@ const generateEntityClass = (entity: Entity)=>{
   writeDomainPrimitiveEntity(
     entity.name,
     entity.namespace,
-    entity.properties
+    entity.properties,
+    './domainPrimitiveGenerators/templateTestResult'
   );
 
   entity.properties.forEach((property: DomainPrimitiveProperty) => {

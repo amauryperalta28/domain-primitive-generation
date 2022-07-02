@@ -3,15 +3,17 @@ import { ClassDefinition, ParameterDefinition } from '@yellicode/csharp';
 import { Generator } from '@yellicode/templating';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
+var _ = require('lodash');
 
 export const writeDomainPrimitiveEntity = (
     className: string,
     namespace: string,
-    properties: DomainPrimitiveProperty[]
+    properties: DomainPrimitiveProperty[],
+    outputDirectory: string
 ) => {
 
     Generator.generate(
-        { outputFile: `./result/${className}/${className}.cs` },
+        { outputFile: `${outputDirectory}/${className}/${className}.cs` },
         (writer: TextWriter) => {
             const customWriter = new CustomCsharpWriter(writer);
             customWriter.writeUsingDirectives('Optional', 'Triplex.Validations');
@@ -73,7 +75,7 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
     const classDefinitions: ClassDefinition = {
         name: 'Builder',
         accessModifier: 'public',
-        inherits: ['AbstractEntityBuilder<Domain>'],
+        inherits: [`AbstractEntityBuilder<${className}>`],
         xmlDocSummary: [`${className}'s builder.`],
     };
     customWriter.writePublicSealedClass(classDefinitions, (c) => {
@@ -100,8 +102,8 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
 
 const writeWithMethod = (className: string, customWriter: CustomCsharpWriter) => {
     const propertyName = className.toLowerCase();
-    customWriter.writeLine(`public Builder With${className}(${className} ${propertyName})`);
-    customWriter.writeLine(`    => SetProperty(() => ${className}Option = Arguments.NotNull(${propertyName}, nameof(${propertyName}).SomeNotNull()));`);
+    customWriter.writeLine(`public Builder With${className}(${className} ${_.camelCase(className)})`);
+    customWriter.writeLine(`    => SetProperty(() => ${className}Option = Arguments.NotNull(${propertyName}, nameof(${_.camelCase(className)}).SomeNotNull()));`);
     customWriter.writeLine();
 }
 
@@ -109,7 +111,7 @@ const writeDoBuild = (className: string, customWriter: CustomCsharpWriter, prope
     customWriter.writeLine(`protected override ${className} DoBuild()`);
     customWriter.writeCodeBlock(() => {
         properties.forEach((property) => {
-            customWriter.writeLine(`State.IsTrue(${property.name.toLowerCase()}Option.HasValue, "${className}'s ${property.name} is missing");`)
+            customWriter.writeLine(`State.IsTrue(${property.name}Option.HasValue, "${className}'s ${property.name} is missing");`)
 
         });
         
