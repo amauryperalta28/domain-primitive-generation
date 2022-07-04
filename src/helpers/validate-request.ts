@@ -43,6 +43,10 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     PropertyType.datetime,
   ];
 
+  if(request.entities === null || request.entities === undefined || request.entities.length === 0){
+    throw new Error("Entities can't be null or undefined");
+  }
+
   request.entities.forEach((entity)=>{
     if (isEmptyCollection(entity.properties)) {
       throw new Error('Domain primitive properties cant be null or empty');

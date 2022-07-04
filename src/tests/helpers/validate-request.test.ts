@@ -137,4 +137,23 @@ describe('request-validator.ts tests', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  test.each([
+    [null],
+    [undefined],
+    [[]],
+  ])('When entities is null, undefined or empty array should fail', (value) => {
+    const request: CreateDomainPrimitivesRequest = {
+      entities: value,
+    };
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: false,
+      message: "Entities can't be null or undefined",
+    };
+
+    expect(actual).toEqual(expected);
+  });
 });
