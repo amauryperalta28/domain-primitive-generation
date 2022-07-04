@@ -44,7 +44,7 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
   ];
 
   if(request.entities === null || request.entities === undefined || request.entities.length === 0){
-    throw new Error("Entities can't be null or undefined");
+    throw new Error("Entities can't be null, undefined or empty array");
   }
 
   request.entities.forEach((entity)=>{
