@@ -1,10 +1,21 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
 import * as fsPromises from 'fs/promises';
-import { writeDomainPrimitiveDateProperty, writeDomainPrimitiveDecimalProperty, writeDomainPrimitiveEntity, writeDomainPrimitiveGuidProperty, writeDomainPrimitiveIntegerProperty, writeDomainPrimitiveStringProperty } from '../domainPrimitiveGenerators';
+import {
+  writeDomainPrimitiveDateProperty,
+  writeDomainPrimitiveDecimalProperty,
+  writeDomainPrimitiveEntity,
+  writeDomainPrimitiveGuidProperty,
+  writeDomainPrimitiveIntegerProperty,
+  writeDomainPrimitiveStringProperty,
+} from '../domainPrimitiveGenerators';
 import { PropertyType } from '../enums/property-types';
 import { validateRequest } from '../helpers/validate-request';
-import { CreateDomainPrimitivesRequest, DomainPrimitiveProperty, Entity } from '../models';
+import {
+  CreateDomainPrimitivesRequest,
+  DomainPrimitiveProperty,
+  Entity,
+} from '../models';
 
 const outputDirectory = './domainPrimitiveGenerators/templateTestResult';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
@@ -20,14 +31,14 @@ let domainPrimitiveGenerators = new Map<
 >();
 
 domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
-domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
-domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
-domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
-domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
+domainPrimitiveGenerators.set(PropertyType.guid,writeDomainPrimitiveGuidProperty);
+domainPrimitiveGenerators.set(PropertyType.decimal,writeDomainPrimitiveDecimalProperty);
+domainPrimitiveGenerators.set(PropertyType.int,writeDomainPrimitiveIntegerProperty);
+domainPrimitiveGenerators.set(PropertyType.datetime,writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
- async (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
+  async (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
     const validationResult = validateRequest(model);
 
     if (!validationResult.success) {
@@ -36,13 +47,13 @@ Generator.generateFromModel(
 
     await fsPromises.rm(outputDirectory, { recursive: true });
 
-    model.entities.forEach((entity: Entity)=>{
+    model.entities.forEach((entity: Entity) => {
       generateEntityClass(entity);
-    })
+    });
   }
 );
 
-const generateEntityClass = (entity: Entity)=>{
+const generateEntityClass = (entity: Entity) => {
   writeDomainPrimitiveEntity(
     entity.name,
     entity.namespace,
@@ -53,10 +64,14 @@ const generateEntityClass = (entity: Entity)=>{
   entity.properties.forEach((property: DomainPrimitiveProperty) => {
     const className = property.name;
 
-    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(property.type);
+    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(
+      property.type
+    );
 
     Generator.generate(
-      { outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs` },
+      {
+        outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs`,
+      },
       (writer: TextWriter) => {
         domainPrimitivePropertyGenerator(
           writer,
@@ -67,4 +82,4 @@ const generateEntityClass = (entity: Entity)=>{
       }
     );
   });
-}
+};

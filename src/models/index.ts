@@ -3,5 +3,9 @@ import { DomainPrimitiveProperty } from './domain-primitive-property';
 import { Entity } from './Entity';
 import { ValidationResult } from './validation-result';
 
-
-export {CreateDomainPrimitivesRequest, DomainPrimitiveProperty, ValidationResult, Entity};
+export {
+  CreateDomainPrimitivesRequest,
+  DomainPrimitiveProperty,
+  ValidationResult,
+  Entity,
+};

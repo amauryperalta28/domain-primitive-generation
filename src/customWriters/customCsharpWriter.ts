@@ -1,11 +1,9 @@
 import {
-  CSharpWriter,
+  AccessModifier, ClassDefinition, CSharpWriter,
   MethodDefinition,
-  ParameterDefinition,
+  ParameterDefinition
 } from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
-import { AccessModifier, ClassDefinition } from '@yellicode/csharp';
-import { UnCapitalizingTransform } from '@yellicode/elements';
 var _ = require('lodash');
 
 export class CustomCsharpWriter extends CSharpWriter {
@@ -36,7 +34,6 @@ export class CustomCsharpWriter extends CSharpWriter {
 
   public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string, paramType: string): void {
     const typeName = method.returnTypeName;
-    const lowerCasePropertyName = typeName.toLowerCase();
     this.writeLine(
       `public static readonly ${typeName} ${method.name}(${paramType} raw${typeName}) => new(${defaultValue});`
     );

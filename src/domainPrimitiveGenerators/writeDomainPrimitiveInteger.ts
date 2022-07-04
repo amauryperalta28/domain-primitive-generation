@@ -1,8 +1,6 @@
 import { TextWriter } from '@yellicode/core';
 import {
-  ClassDefinition,
-  CSharpWriter,
-  ParameterDefinition,
+  ClassDefinition, ParameterDefinition
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';

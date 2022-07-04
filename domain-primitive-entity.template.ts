@@ -6,12 +6,14 @@ import {
   writeDomainPrimitiveEntity,
   writeDomainPrimitiveGuidProperty,
   writeDomainPrimitiveIntegerProperty,
-  writeDomainPrimitiveStringProperty
+  writeDomainPrimitiveStringProperty,
 } from './src/domainPrimitiveGenerators';
 import { PropertyType } from './src/enums/property-types';
 import { validateRequest } from './src/helpers/validate-request';
 import {
-  CreateDomainPrimitivesRequest, DomainPrimitiveProperty, Entity
+  CreateDomainPrimitivesRequest,
+  DomainPrimitiveProperty,
+  Entity,
 } from './src/models';
 import * as fsPromises from 'fs/promises';
 
@@ -28,15 +30,30 @@ let domainPrimitiveGenerators = new Map<
   ) => void
 >();
 
-domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
-domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
-domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
-domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
-domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
+domainPrimitiveGenerators.set(
+  PropertyType.string,
+  writeDomainPrimitiveStringProperty
+);
+domainPrimitiveGenerators.set(
+  PropertyType.guid,
+  writeDomainPrimitiveGuidProperty
+);
+domainPrimitiveGenerators.set(
+  PropertyType.decimal,
+  writeDomainPrimitiveDecimalProperty
+);
+domainPrimitiveGenerators.set(
+  PropertyType.int,
+  writeDomainPrimitiveIntegerProperty
+);
+domainPrimitiveGenerators.set(
+  PropertyType.datetime,
+  writeDomainPrimitiveDateProperty
+);
 
 Generator.generateFromModel(
   options,
- async (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
+  async (_textWriter: TextWriter, model: CreateDomainPrimitivesRequest) => {
     const validationResult = validateRequest(model);
 
     if (!validationResult.success) {
@@ -45,13 +62,13 @@ Generator.generateFromModel(
 
     await fsPromises.rm(outputDirectory, { recursive: true });
 
-    model.entities.forEach((entity: Entity)=>{
+    model.entities.forEach((entity: Entity) => {
       generateEntityClass(entity);
-    })
+    });
   }
 );
 
-const generateEntityClass = (entity: Entity)=>{
+const generateEntityClass = (entity: Entity) => {
   writeDomainPrimitiveEntity(
     entity.name,
     entity.namespace,
@@ -62,7 +79,9 @@ const generateEntityClass = (entity: Entity)=>{
   entity.properties.forEach((property: DomainPrimitiveProperty) => {
     const className = property.name;
 
-    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(property.type);
+    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(
+      property.type
+    );
 
     Generator.generate(
       { outputFile: `${outputDirectory}/${entity.name}/${className}.cs` },
@@ -76,4 +95,4 @@ const generateEntityClass = (entity: Entity)=>{
       }
     );
   });
-}
+};

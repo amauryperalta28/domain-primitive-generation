@@ -1,9 +1,8 @@
 import { PropertyType } from '../enums/property-types';
 import {
   CreateDomainPrimitivesRequest,
-  DomainPrimitiveProperty,
+  DomainPrimitiveProperty, ValidationResult
 } from '../models';
-import { ValidationResult } from '../models';
 
 const isEmptyCollection = (properties: DomainPrimitiveProperty[]) =>
   properties.length === 0;
