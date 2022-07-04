@@ -1,17 +1,11 @@
-import { CodeWriter, TextWriter } from '@yellicode/core';
+import { CodeWriter } from '@yellicode/core';
 import {
-  MethodDefinition,
-  ParameterDefinition,
-  ClassDefinition,
-  CSharpWriter,
+  ClassDefinition, MethodDefinition,
+  ParameterDefinition
 } from '@yellicode/csharp';
 import { mock } from 'jest-mock-extended';
 import { CustomCsharpWriter } from '../../customWriters/customCsharpWriter';
-import { CustomFieldDefinition as CustomFieldDefinition } from '../../models/customPropertyDefinition';
-
-/*
-writePublicStaticMethodReturningProperty
-*/
+import { CustomFieldDefinition } from '../../models/customPropertyDefinition';
 
 describe('Custom-writer.ts tests', () => {
   test('When call writeField private static with initial value should return correct property', () => {
