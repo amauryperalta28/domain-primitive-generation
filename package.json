@@ -1,7 +1,7 @@
 {
   "name": "domain-primitive-generation",
   "version": "1.1.0",
-  "description": "",
+  "description": "A project to generate domain primitives entities and its property classes",
   "main": "index.js",
   "scripts": {
     "generation": "yellicode",
@@ -16,7 +16,7 @@
     }
   },
   "keywords": [],
-  "author": "",
+  "author": "Amaury Peralta",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^28.1.2",
