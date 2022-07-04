@@ -1,7 +1,7 @@
 import { PropertyType } from '../enums/property-types';
 import {
   CreateDomainPrimitivesRequest,
-  DomainPrimitiveProperty, ValidationResult
+  DomainPrimitiveProperty, Entity, ValidationResult
 } from '../models';
 
 const isEmptyCollection = (properties: DomainPrimitiveProperty[]) =>
@@ -46,23 +46,23 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     throw new Error("Entities can't be null, undefined or empty array");
   }
 
-  request.entities.forEach((entity)=>{
+  request.entities.forEach((entity: Entity)=>{
     if (isEmptyCollection(entity.properties)) {
       throw new Error('Domain primitive properties cant be null or empty');
     }
   
-    if (entity.properties.some((property) => isNullOrEmpty(property.name))) {
+    if (entity.properties.some((property: DomainPrimitiveProperty) => isNullOrEmpty(property.name))) {
       throw new Error('Property name is required');
     }
   
-    if (entity.properties.some((property) => isNullOrEmpty(property.type))) {
+    if (entity.properties.some((property: DomainPrimitiveProperty) => isNullOrEmpty(property.type))) {
       throw new Error('Property type is required');
     }
   
-    entity.properties.forEach((property)=>{
+    entity.properties.forEach((property: DomainPrimitiveProperty)=>{
       const isInvalidPropertyType = !validPropertyTypes.some(validPropertyType => validPropertyType == property.type);
       if(isInvalidPropertyType){
-        throw new Error(`${property.name} Property type is invalid`);
+        throw new Error(`${entity.name}'s ${property.name} Property type is invalid`);
       }
     })
   })
