@@ -96,11 +96,14 @@ npm run generation-watch
 └───src
     ├───customWriters
     ├───domainPrimitiveGenerators
+    ├───enums    
     ├───helpers
     ├───models
     └───tests
         ├───customWriters
         └───helpers
+├── codegenconfig.json
+├── domain-primitive-entity.template.ts
 ```
 
 * `coverage` : Contain code coverage html reports.
@@ -110,3 +113,5 @@ npm run generation-watch
 * `domainPrimitiveGenerators`, contain different domain primitive types generators.
 * `helpers`: Helpers to validate Create template request.
 * `tests`: Where project tests are located.
+* `codegenconfig.json`: Where templates and the templates's model relation are configured
+* `domain-primitive-entity.template.ts`: Represents the Domain primitive Entity template generator
