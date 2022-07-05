@@ -92,7 +92,9 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
         customWriter.writeLine('private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);');
         customWriter.writeLine();
 
-        writeDoBuild(className, customWriter, properties);
+        const requiredProperties = properties.filter(property => !property.isOptional)
+
+        writeDoBuild(className, customWriter, requiredProperties);
 
         properties.forEach((property: DomainPrimitiveProperty) => {
             writeWithMethod(property.name, customWriter);

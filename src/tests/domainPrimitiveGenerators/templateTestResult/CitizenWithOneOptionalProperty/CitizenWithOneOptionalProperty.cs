@@ -35,7 +35,6 @@ public sealed class CitizenWithOneOptionalProperty
 
 		protected override CitizenWithOneOptionalProperty DoBuild()
 		{
-			State.IsTrue(IdOption.HasValue, "CitizenWithOneOptionalProperty's Id is missing");
 
 			return new CitizenWithOneOptionalProperty(this);
 		}

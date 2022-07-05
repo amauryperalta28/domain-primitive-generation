@@ -67,11 +67,6 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 
 		protected override EntityWithAllSupportedPropertyTypesOptional DoBuild()
 		{
-			State.IsTrue(IdOption.HasValue, "EntityWithAllSupportedPropertyTypesOptional's Id is missing");
-			State.IsTrue(NamesOption.HasValue, "EntityWithAllSupportedPropertyTypesOptional's Names is missing");
-			State.IsTrue(SalaryOption.HasValue, "EntityWithAllSupportedPropertyTypesOptional's Salary is missing");
-			State.IsTrue(AgeOption.HasValue, "EntityWithAllSupportedPropertyTypesOptional's Age is missing");
-			State.IsTrue(BirthdayOption.HasValue, "EntityWithAllSupportedPropertyTypesOptional's Birthday is missing");
 
 			return new EntityWithAllSupportedPropertyTypesOptional(this);
 		}
