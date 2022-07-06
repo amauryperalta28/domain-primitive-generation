@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents EntityWithAllSupportedPropertyTypesOptional's Birthday
-/// </summary>
+///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Birthday</summary>
 public sealed class Birthday : AbstractPastOrPresentTimestampPrimitive
 {
 	private Birthday(PastOrPresentTimestamp date) : base(date)

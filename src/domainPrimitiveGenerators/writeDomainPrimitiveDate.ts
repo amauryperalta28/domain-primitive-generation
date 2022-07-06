@@ -17,7 +17,6 @@ export const writeDomainPrimitiveDateProperty = (
     name: className,
     inherits: ['AbstractPastOrPresentTimestampPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const emptyContentCallback = () => {};
@@ -30,6 +29,7 @@ export const writeDomainPrimitiveDateProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
 
+  customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}`);
   customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PastOrPresentTimestamp', name: 'date' },
