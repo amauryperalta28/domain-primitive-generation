@@ -80,6 +80,7 @@ export const writeDomainPrimitiveIntegerProperty = (
       },
       `new PositiveInteger(raw${className})`,
       'int',
+      false
     );
 
     customWriter.writeLine();

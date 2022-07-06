@@ -75,7 +75,7 @@ export const writeDomainPrimitiveDecimalProperty = (
       returnTypeName: className,
       accessModifier: 'public',
       isStatic: true
-    });
+    }, false);
 
     customWriter.writeLine();
 

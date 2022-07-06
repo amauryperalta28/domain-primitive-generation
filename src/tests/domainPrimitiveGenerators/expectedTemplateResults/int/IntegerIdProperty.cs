@@ -23,6 +23,6 @@ public sealed class IntegerId : AbstractPositiveIntegerPrimitive
 	/// <param name="rawIntegerId">Represents a integerid.</param>
 	/// <returns>An instance of <see cref="IntegerId"/></returns>
 	/// </summary>
-	public static readonly IntegerId From(int rawIntegerId) => new(new PositiveInteger(rawIntegerId));
+	public static IntegerId From(int rawIntegerId) => new(new PositiveInteger(rawIntegerId));
 
 }

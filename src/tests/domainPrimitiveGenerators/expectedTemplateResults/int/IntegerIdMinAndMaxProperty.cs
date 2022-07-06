@@ -23,6 +23,6 @@ public sealed class IntegerIdMinAndMax : AbstractPositiveIntegerPrimitive
 	/// <param name="rawIntegerIdMinAndMax">Represents a integeridminandmax.</param>
 	/// <returns>An instance of <see cref="IntegerIdMinAndMax"/></returns>
 	/// </summary>
-	public static readonly IntegerIdMinAndMax From(int rawIntegerIdMinAndMax) => new(new PositiveInteger(rawIntegerIdMinAndMax));
+	public static IntegerIdMinAndMax From(int rawIntegerIdMinAndMax) => new(new PositiveInteger(rawIntegerIdMinAndMax));
 
 }

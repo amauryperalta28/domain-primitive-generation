@@ -23,6 +23,6 @@ public sealed class IntegerIdMax : AbstractPositiveIntegerPrimitive
 	/// <param name="rawIntegerIdMax">Represents a integeridmax.</param>
 	/// <returns>An instance of <see cref="IntegerIdMax"/></returns>
 	/// </summary>
-	public static readonly IntegerIdMax From(int rawIntegerIdMax) => new(new PositiveInteger(rawIntegerIdMax));
+	public static IntegerIdMax From(int rawIntegerIdMax) => new(new PositiveInteger(rawIntegerIdMax));
 
 }

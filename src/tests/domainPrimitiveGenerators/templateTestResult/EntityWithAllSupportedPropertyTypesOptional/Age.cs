@@ -23,6 +23,6 @@ public sealed class Age : AbstractPositiveIntegerPrimitive
 	/// <param name="rawAge">Represents a age.</param>
 	/// <returns>An instance of <see cref="Age"/></returns>
 	/// </summary>
-	public static readonly Age From(int rawAge) => new(new PositiveInteger(rawAge));
+	public static Age From(int rawAge) => new(new PositiveInteger(rawAge));
 
 }

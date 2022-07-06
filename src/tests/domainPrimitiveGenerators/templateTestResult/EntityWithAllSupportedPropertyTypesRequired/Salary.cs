@@ -23,7 +23,7 @@ public sealed class Salary : ICoreDomainPrimitive<decimal>
 	/// <param name="salary">Represents a salary.</param>
 	/// <returns>An instance of <see cref="Salary"/></returns>
 	/// </summary>
-	public static readonly Salary From(string salary) => new(salary);
+	public static Salary From(string salary) => new(salary);
 
 	private Salary(decimal rawSalary)
 	  => Value = Arguments.Between(rawSalary, MinValue, MaxValue, nameof(rawSalary), "Invalid value or format for EntityWithAllSupportedPropertyTypesRequired's Salary");

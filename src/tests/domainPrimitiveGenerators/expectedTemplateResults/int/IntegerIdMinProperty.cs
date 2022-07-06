@@ -23,6 +23,6 @@ public sealed class IntegerIdMin : AbstractPositiveIntegerPrimitive
 	/// <param name="rawIntegerIdMin">Represents a integeridmin.</param>
 	/// <returns>An instance of <see cref="IntegerIdMin"/></returns>
 	/// </summary>
-	public static readonly IntegerIdMin From(int rawIntegerIdMin) => new(new PositiveInteger(rawIntegerIdMin));
+	public static IntegerIdMin From(int rawIntegerIdMin) => new(new PositiveInteger(rawIntegerIdMin));
 
 }
