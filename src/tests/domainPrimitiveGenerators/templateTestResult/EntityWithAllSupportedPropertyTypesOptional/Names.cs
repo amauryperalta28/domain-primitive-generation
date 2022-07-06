@@ -21,7 +21,7 @@ public sealed class Names : AbstractStringPrimitive
 	/// <param name="names">Represents a names.</param>
 	/// <returns>An instance of <see cref="Names"/></returns>
 	/// </summary>
-	public static readonly Names From(string names) => new(names);
+	public static Names From(string names) => new(names);
 	private Names(string rawNames) : base(rawNames, LengthRange, ErrorMessage)
 	{
 	}

@@ -21,7 +21,7 @@ public sealed class NamesWithMinMax : AbstractStringPrimitive
 	/// <param name="namesWithMinMax">Represents a namesWithMinMax.</param>
 	/// <returns>An instance of <see cref="NamesWithMinMax"/></returns>
 	/// </summary>
-	public static readonly NamesWithMinMax From(string namesWithMinMax) => new(namesWithMinMax);
+	public static NamesWithMinMax From(string namesWithMinMax) => new(namesWithMinMax);
 	private NamesWithMinMax(string rawNamesWithMinMax) : base(rawNamesWithMinMax, LengthRange, ErrorMessage)
 	{
 	}

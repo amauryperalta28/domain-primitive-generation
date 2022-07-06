@@ -23,7 +23,7 @@ public sealed class NamesWithRegexMin : AbstractStringPrimitive
 	/// <param name="namesWithRegexMin">Represents a namesWithRegexMin.</param>
 	/// <returns>An instance of <see cref="NamesWithRegexMin"/></returns>
 	/// </summary>
-	public static readonly NamesWithRegexMin From(string namesWithRegexMin) => new(namesWithRegexMin);
+	public static NamesWithRegexMin From(string namesWithRegexMin) => new(namesWithRegexMin);
 	private NamesWithRegexMin(string rawNamesWithRegexMin) : base(rawNamesWithRegexMin, LengthRange, ValidPattern, ErrorMessage)
 	{
 	}

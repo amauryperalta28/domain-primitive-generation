@@ -23,7 +23,7 @@ public sealed class NamesWithRegex : AbstractStringPrimitive
 	/// <param name="namesWithRegex">Represents a namesWithRegex.</param>
 	/// <returns>An instance of <see cref="NamesWithRegex"/></returns>
 	/// </summary>
-	public static readonly NamesWithRegex From(string namesWithRegex) => new(namesWithRegex);
+	public static NamesWithRegex From(string namesWithRegex) => new(namesWithRegex);
 	private NamesWithRegex(string rawNamesWithRegex) : base(rawNamesWithRegex, LengthRange, ValidPattern, ErrorMessage)
 	{
 	}

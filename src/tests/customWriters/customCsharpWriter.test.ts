@@ -92,6 +92,8 @@ describe('Custom-writer.ts tests', () => {
     const methodDefinition: MethodDefinition = {
       name: 'From',
       returnTypeName: typeName,
+      accessModifier: 'public',
+      isStatic: true
     };
     customWriter.writeShortMethodInitializedWithParameter(methodDefinition);
     const expected = `public static readonly ${typeName} From(string ${typeName.toLowerCase()}) => new(${typeName.toLowerCase()});`;

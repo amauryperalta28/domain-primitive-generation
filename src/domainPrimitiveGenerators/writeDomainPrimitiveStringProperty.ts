@@ -89,7 +89,9 @@ export const writeDomainPrimitiveStringProperty = (
     customWriter.writeShortMethodInitializedWithParameter({
       name: 'From',
       returnTypeName: className,
-    });
+      accessModifier: 'public',
+      isStatic: true
+    }, false);
 
     const parameters: ParameterDefinition[] = [
       { typeName: 'string', name: `raw${className}` },

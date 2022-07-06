@@ -23,7 +23,7 @@ public sealed class NamesWithRegexMax : AbstractStringPrimitive
 	/// <param name="namesWithRegexMax">Represents a namesWithRegexMax.</param>
 	/// <returns>An instance of <see cref="NamesWithRegexMax"/></returns>
 	/// </summary>
-	public static readonly NamesWithRegexMax From(string namesWithRegexMax) => new(namesWithRegexMax);
+	public static NamesWithRegexMax From(string namesWithRegexMax) => new(namesWithRegexMax);
 	private NamesWithRegexMax(string rawNamesWithRegexMax) : base(rawNamesWithRegexMax, LengthRange, ValidPattern, ErrorMessage)
 	{
 	}

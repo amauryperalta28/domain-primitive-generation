@@ -23,12 +23,26 @@ export class CustomCsharpWriter extends CSharpWriter {
     this.writeLine(`namespace ${namespace};`);
   }
 
-  public writeShortMethodInitializedWithParameter(method: MethodDefinition): void {
+  public writeShortMethodInitializedWithParameter(method: MethodDefinition, isReadOnly: boolean = true): void {
 
     const typeName = method.returnTypeName;
     const camelCasePropertyName =  _.camelCase(typeName);
+    let result = '';
+
+    if(method.accessModifier){
+      result += `${method.accessModifier}`;
+    }
+
+    if(method.isStatic){
+      result += ' static'
+    }
+
+    if(isReadOnly){
+      result += ' readonly'
+    }
+
     this.writeLine(
-      `public static readonly ${typeName} ${method.name}(string ${camelCasePropertyName}) => new(${camelCasePropertyName});`
+      `${result} ${typeName} ${method.name}(string ${camelCasePropertyName}) => new(${camelCasePropertyName});`
     );
   }
 

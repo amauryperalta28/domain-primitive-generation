@@ -21,7 +21,7 @@ public sealed class NamesWithMin : AbstractStringPrimitive
 	/// <param name="namesWithMin">Represents a namesWithMin.</param>
 	/// <returns>An instance of <see cref="NamesWithMin"/></returns>
 	/// </summary>
-	public static readonly NamesWithMin From(string namesWithMin) => new(namesWithMin);
+	public static NamesWithMin From(string namesWithMin) => new(namesWithMin);
 	private NamesWithMin(string rawNamesWithMin) : base(rawNamesWithMin, LengthRange, ErrorMessage)
 	{
 	}

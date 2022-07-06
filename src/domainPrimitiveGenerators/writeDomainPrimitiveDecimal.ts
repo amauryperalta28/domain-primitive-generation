@@ -73,6 +73,8 @@ export const writeDomainPrimitiveDecimalProperty = (
     customWriter.writeShortMethodInitializedWithParameter({
       name: 'From',
       returnTypeName: className,
+      accessModifier: 'public',
+      isStatic: true
     });
 
     customWriter.writeLine();

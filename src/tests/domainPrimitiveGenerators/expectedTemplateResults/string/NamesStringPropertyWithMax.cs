@@ -21,7 +21,7 @@ public sealed class NamesWithMax : AbstractStringPrimitive
 	/// <param name="namesWithMax">Represents a namesWithMax.</param>
 	/// <returns>An instance of <see cref="NamesWithMax"/></returns>
 	/// </summary>
-	public static readonly NamesWithMax From(string namesWithMax) => new(namesWithMax);
+	public static NamesWithMax From(string namesWithMax) => new(namesWithMax);
 	private NamesWithMax(string rawNamesWithMax) : base(rawNamesWithMax, LengthRange, ErrorMessage)
 	{
 	}
