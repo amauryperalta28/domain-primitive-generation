@@ -59,7 +59,8 @@ export const writeDomainPrimitiveDateProperty = (
         isStatic: true
       },
       `new PastOrPresentTimestamp(raw${className})`,
-      'DateTimeOffset'
+      'DateTimeOffset',
+      false
     );
 
     customWriter.writeLine();

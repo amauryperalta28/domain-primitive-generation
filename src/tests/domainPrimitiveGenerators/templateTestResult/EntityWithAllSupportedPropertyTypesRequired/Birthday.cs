@@ -16,6 +16,6 @@ public sealed class Birthday : AbstractPastOrPresentTimestampPrimitive
 	/// <param name="rawBirthday">Represents a birthday.</param>
 	/// <returns>An instance of <see cref="Birthday"/></returns>
 	/// </summary>
-	public static readonly Birthday From(DateTimeOffset rawBirthday) => new(new PastOrPresentTimestamp(rawBirthday));
+	public static Birthday From(DateTimeOffset rawBirthday) => new(new PastOrPresentTimestamp(rawBirthday));
 
 }
