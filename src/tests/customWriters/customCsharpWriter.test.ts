@@ -108,6 +108,8 @@ describe('Custom-writer.ts tests', () => {
     const methodDefinition: MethodDefinition = {
       name: 'Generate',
       returnTypeName: typeName,
+      accessModifier: 'public',
+      isStatic: true
     };
 
     const defaultValue = 'Guid.NewGuid()';
@@ -130,6 +132,8 @@ describe('Custom-writer.ts tests', () => {
     const methodDefinition: MethodDefinition = {
       name: 'From',
       returnTypeName: typeName,
+      accessModifier: 'public',
+      isStatic: true
     };
 
     const defaultValue = `(new PositiveInteger(${typeName.toLowerCase()}))`;

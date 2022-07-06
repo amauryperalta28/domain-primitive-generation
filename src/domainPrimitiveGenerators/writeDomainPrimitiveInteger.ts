@@ -75,6 +75,8 @@ export const writeDomainPrimitiveIntegerProperty = (
       {
         name: 'From',
         returnTypeName: className,
+        accessModifier: 'public',
+        isStatic: true
       },
       `new PositiveInteger(raw${className})`,
       'int',

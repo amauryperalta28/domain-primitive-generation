@@ -17,7 +17,7 @@ import {
 } from './src/models';
 import * as fsPromises from 'fs/promises';
 
-const outputDirectory = './result';
+const outputDirectory = './Result_Wepsys_Core_3.1.1';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
 
 let domainPrimitiveGenerators = new Map<

@@ -16,11 +16,11 @@ public sealed class Id : AbstractGuidBasedIdPrimitive
 	/// <param name="rawId">Represents a id.</param>
 	/// <returns>An instance of <see cref="Id"/></returns>
 	/// </summary>
-	public static readonly Id From(Guid rawId) => new(rawId);
+	public static Id From(Guid rawId) => new(rawId);
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="Id"/>.
 	/// <returns>An instance of <see cref="Id"/></returns>
 	/// </summary>
-	public static readonly Id Generate() => new(Guid.NewGuid());
+	public static Id Generate() => new(Guid.NewGuid());
 }

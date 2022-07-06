@@ -55,7 +55,7 @@ export const writeDomainPrimitiveDateProperty = (
       {
         name: 'From',
         returnTypeName: className,
-
+        accessModifier: 'public',
         isStatic: true
       },
       `new PastOrPresentTimestamp(raw${className})`,

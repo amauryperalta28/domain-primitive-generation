@@ -16,11 +16,11 @@ public sealed class EmployeeId : AbstractGuidBasedIdPrimitive
 	/// <param name="rawEmployeeId">Represents a employeeId.</param>
 	/// <returns>An instance of <see cref="EmployeeId"/></returns>
 	/// </summary>
-	public static readonly EmployeeId From(Guid rawEmployeeId) => new(rawEmployeeId);
+	public static EmployeeId From(Guid rawEmployeeId) => new(rawEmployeeId);
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="EmployeeId"/>.
 	/// <returns>An instance of <see cref="EmployeeId"/></returns>
 	/// </summary>
-	public static readonly EmployeeId Generate() => new(Guid.NewGuid());
+	public static EmployeeId Generate() => new(Guid.NewGuid());
 }

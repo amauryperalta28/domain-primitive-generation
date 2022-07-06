@@ -3,7 +3,7 @@ import {
   MethodDefinition,
   ParameterDefinition
 } from '@yellicode/csharp';
-import { CustomFieldDefinition } from '../models/customPropertyDefinition';
+import { CustomFieldDefinition } from '../models';
 var _ = require('lodash');
 
 export class CustomCsharpWriter extends CSharpWriter {
@@ -32,20 +32,51 @@ export class CustomCsharpWriter extends CSharpWriter {
     );
   }
 
-  public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string, paramType: string): void {
+  public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string, paramType: string, isReadOnly: boolean = true): void {
     const typeName = method.returnTypeName;
+    
+    let result = '';
+
+    if(method.accessModifier){
+      result += `${method.accessModifier}`;
+    }
+
+    if(method.isStatic){
+      result += ' static'
+    }
+
+    if(isReadOnly){
+      result += ' readonly'
+    }
+    
     this.writeLine(
-      `public static readonly ${typeName} ${method.name}(${paramType} raw${typeName}) => new(${defaultValue});`
+      `${result} ${typeName} ${method.name}(${paramType} raw${typeName}) => new(${defaultValue});`
     );
   }
 
   public writeShortMethodInitializedWithoutParameters(
     method: MethodDefinition,
-    defaultValue: string
+    defaultValue: string,
+    isReadOnly: boolean = true
   ): void {
     const typeName = method.returnTypeName;
+    let result = '';
+
+    if(method.accessModifier){
+      result += `${method.accessModifier}`;
+    }
+
+    if(method.isStatic){
+      result += ' static'
+    }
+
+    if(isReadOnly){
+      result += ' readonly'
+    }
+    
+
     this.writeLine(
-      `public static readonly ${typeName} ${method.name}() => new(${defaultValue});`
+      `${result} ${typeName} ${method.name}() => new(${defaultValue});`
     );
   }
 

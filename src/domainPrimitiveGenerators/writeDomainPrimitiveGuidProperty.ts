@@ -50,11 +50,13 @@ export const writeDomainPrimitiveGuidProperty = (
     customWriter.writeShortMethodInitializedWithGivenValue({
       name: 'From',
       returnTypeName: className,
-
+      accessModifier: 'public',
+      isStatic: true
 
     },
     `raw${className}`,
-    'Guid'
+    'Guid',
+    false
     );
 
     customWriter.writeLine();
@@ -68,8 +70,11 @@ export const writeDomainPrimitiveGuidProperty = (
       {
         name: 'Generate',
         returnTypeName: className,
+        accessModifier: 'public',
+        isStatic: true
       },
-      'Guid.NewGuid()'
+      'Guid.NewGuid()',
+      false
     );
   });
 };
