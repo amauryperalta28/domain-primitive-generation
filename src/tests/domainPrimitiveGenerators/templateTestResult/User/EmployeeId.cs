@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User's EmployeeId
-/// </summary>
+///<summary>Represents User's EmployeeId. </summary>
 public sealed class EmployeeId : AbstractGuidBasedIdPrimitive
 {
 	private EmployeeId(Guid rawId) : base(rawId)

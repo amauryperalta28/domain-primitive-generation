@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents CitizenWithOneOptionalProperty's Id
-/// </summary>
+///<summary>Represents CitizenWithOneOptionalProperty's Id. </summary>
 public sealed class Id : AbstractGuidBasedIdPrimitive
 {
 	private Id(Guid rawId) : base(rawId)

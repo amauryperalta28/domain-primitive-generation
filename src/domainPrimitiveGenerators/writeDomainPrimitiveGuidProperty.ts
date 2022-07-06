@@ -18,7 +18,6 @@ export const writeDomainPrimitiveGuidProperty = (
     name: className,
     inherits: ['AbstractGuidBasedIdPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const emptyContentCallback = () => {};
@@ -30,12 +29,11 @@ export const writeDomainPrimitiveGuidProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine(); // insert a blank line
 
+  customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}. `);
   customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'Guid', name: 'rawId' },
     ];
-
-    const classNameLower = classDefinitions.name.toLowerCase();
 
     customWriter.writeConstructor('private', className, parameters, 'base(rawId)');
     customWriter.writeCodeBlock(emptyContentCallback);

@@ -25,7 +25,6 @@ export const writeDomainPrimitiveEntity = (
             const classDefinitions: ClassDefinition = {
                 name: className,
                 accessModifier: 'public',
-                // xmlDocSummary: [`Represents ${className} entity.`],
             };
 
             customWriter.writeOneLineXmlDocSummary(`Represents ${className} entity. `);
@@ -38,7 +37,6 @@ export const writeDomainPrimitiveEntity = (
                         noGetter: false,
                         noSetter: true,
                         accessModifier: 'public',
-                        // xmlDocSummary: [`Represents ${className}'s ${property.name}`],
                     });
                     customWriter.writeLine();
                 });
@@ -79,7 +77,6 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
         name: 'Builder',
         accessModifier: 'public',
         inherits: [`AbstractEntityBuilder<${className}>`],
-        // xmlDocSummary: [`${className}'s builder.`],
     };
 
     customWriter.writeOneLineXmlDocSummary(`${className}'s builder. `);
