@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents EntityWithAllSupportedPropertyTypesOptional's Salary
-/// </summary>
+///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Salary</summary>
 public sealed class Salary : ICoreDomainPrimitive<decimal>
 {
 	/// <summary>

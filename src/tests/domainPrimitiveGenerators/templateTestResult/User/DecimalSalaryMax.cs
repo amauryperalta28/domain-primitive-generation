@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User's DecimalSalaryMax
-/// </summary>
+///<summary>Represents User's DecimalSalaryMax</summary>
 public sealed class DecimalSalaryMax : ICoreDomainPrimitive<decimal>
 {
 	/// <summary>

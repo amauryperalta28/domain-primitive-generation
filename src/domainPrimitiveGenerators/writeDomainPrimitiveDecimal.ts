@@ -18,7 +18,6 @@ export const writeDomainPrimitiveDecimalProperty = (
     name: className,
     inherits: ['ICoreDomainPrimitive<decimal>'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const customWriter = new CustomCsharpWriter(textWriter);
@@ -29,8 +28,8 @@ export const writeDomainPrimitiveDecimalProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine(); // insert a blank line
 
+  customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}`);
   customWriter.writePublicSealedClass(classDefinitions, (c) => {
-    const classNameLower = classDefinitions.name.toLowerCase();
 
     customWriter.writeXmlDocSummary([
       'As primitive types are inlined by the compiler the coverlet tool does not catch a hit for ',
