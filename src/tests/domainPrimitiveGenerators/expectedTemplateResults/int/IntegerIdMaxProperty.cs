@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User's IntegerIdMax
-/// </summary>
+///<summary>Represents User's IntegerIdMax</summary>
 public sealed class IntegerIdMax : AbstractPositiveIntegerPrimitive
 {
 	private static readonly PositiveInteger MinValue = new(1);

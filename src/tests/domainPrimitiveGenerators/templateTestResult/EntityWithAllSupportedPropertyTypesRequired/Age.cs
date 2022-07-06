@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents EntityWithAllSupportedPropertyTypesRequired's Age
-/// </summary>
+///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Age</summary>
 public sealed class Age : AbstractPositiveIntegerPrimitive
 {
 	private static readonly PositiveInteger MinValue = new(1);

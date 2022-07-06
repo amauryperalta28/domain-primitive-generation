@@ -17,7 +17,6 @@ export const writeDomainPrimitiveIntegerProperty = (
     name: property.name,
     inherits: ['AbstractPositiveIntegerPrimitive'],
     accessModifier: 'public',
-    xmlDocSummary: [`Represents ${entityName}'s ${className}`],
   };
 
   const emptyContentCallback = () => {};
@@ -30,6 +29,7 @@ export const writeDomainPrimitiveIntegerProperty = (
   customWriter.writeCsharpTenNamespace(namespace);
   customWriter.writeLine();
 
+  customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}`);
   customWriter.writePublicSealedClass(classDefinitions, (c) => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PositiveInteger', name: 'rawValue' },

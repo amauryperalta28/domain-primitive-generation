@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User's IntegerId
-/// </summary>
+///<summary>Represents User's IntegerId</summary>
 public sealed class IntegerId : AbstractPositiveIntegerPrimitive
 {
 	private static readonly PositiveInteger MinValue = new(1);
