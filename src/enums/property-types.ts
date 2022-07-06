@@ -4,4 +4,5 @@ export enum PropertyType {
   decimal = 'decimal',
   int = 'int',
   datetime = 'datetime',
+  enum = 'enum',
 }

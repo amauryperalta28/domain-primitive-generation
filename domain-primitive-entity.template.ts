@@ -30,26 +30,11 @@ let domainPrimitiveGenerators = new Map<
   ) => void
 >();
 
-domainPrimitiveGenerators.set(
-  PropertyType.string,
-  writeDomainPrimitiveStringProperty
-);
-domainPrimitiveGenerators.set(
-  PropertyType.guid,
-  writeDomainPrimitiveGuidProperty
-);
-domainPrimitiveGenerators.set(
-  PropertyType.decimal,
-  writeDomainPrimitiveDecimalProperty
-);
-domainPrimitiveGenerators.set(
-  PropertyType.int,
-  writeDomainPrimitiveIntegerProperty
-);
-domainPrimitiveGenerators.set(
-  PropertyType.datetime,
-  writeDomainPrimitiveDateProperty
-);
+domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
+domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
+domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
+domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
+domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
@@ -76,7 +61,9 @@ const generateEntityClass = (entity: Entity) => {
     outputDirectory
   );
 
-  entity.properties.forEach((property: DomainPrimitiveProperty) => {
+  const generableClassProperty: DomainPrimitiveProperty[] = entity.properties.filter(property => property.type !== PropertyType.enum);
+
+  generableClassProperty.forEach((property: DomainPrimitiveProperty) => {
     const className = property.name;
 
     const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(

@@ -40,6 +40,7 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     PropertyType.decimal,
     PropertyType.int,
     PropertyType.datetime,
+    PropertyType.enum,
   ];
 
   if(request.entities === null || request.entities === undefined || request.entities.length === 0){

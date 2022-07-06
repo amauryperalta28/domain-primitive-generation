@@ -11,7 +11,8 @@
         { "name": "EmployeeId", "type": "guid", "isOptional": true },
         { "name": "Age", "type": "int", "isOptional": false, "min": 18, "max": 70 },
         { "name": "Birthday", "type": "datetime", "isOptional": false },
-        { "name": "LastNames", "type": "string", "isOptional": false }
+        { "name": "LastNames", "type": "string", "isOptional": false },
+        { "name": "Status", "type": "enum", "isOptional": false }
       ]
     },
     {

@@ -3,6 +3,7 @@ import { ClassDefinition, ParameterDefinition } from '@yellicode/csharp';
 import { Generator } from '@yellicode/templating';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
+import { PropertyType } from '../enums/property-types';
 var _ = require('lodash');
 
 export const writeDomainPrimitiveEntity = (
@@ -107,7 +108,20 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
 const writeWithMethod = (property: DomainPrimitiveProperty, customWriter: CustomCsharpWriter) => {
     const propertyName = property.name.toLowerCase();
     customWriter.writeLine(`public Builder With${property.name}(${property.name} ${_.camelCase(property.name)})`);
-    customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
+
+    if(property.type == PropertyType.enum){
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
+    } else{
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
+    }
+
+    customWriter.writeLine();
+}
+
+const writeWithMethodEnum = (property: DomainPrimitiveProperty, customWriter: CustomCsharpWriter) => {
+    const propertyName = property.name.toLowerCase();
+    customWriter.writeLine(`public Builder With${property.name}(${property.name} ${_.camelCase(property.name)})`);
+    customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
     customWriter.writeLine();
 }
 
