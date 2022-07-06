@@ -42,7 +42,8 @@ Modify **domain-primitives-definition.json** to produce the needed result.
         { "name": "Domain", "type": "string", "isOptional": false, "min": 1, "max": 50, "regex": "^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\\.(xn--)?([a-zA-Z0-9\\-]{1,61}|[a-zA-Z0-9-]{1,30}\\.[a-zA-Z]{2,})$" },
         { "name": "Salary", "type": "decimal", "isOptional": true },
         { "name": "Age", "type": "int", "isOptional": false, "min": 18, "max": 70 },
-        { "name": "Birthday", "type": "datetime", "isOptional": false }
+        { "name": "Birthday", "type": "datetime", "isOptional": false },
+        { "name": "Status", "type": "enum", "isOptional": false }
       ]
     },
     {
@@ -68,6 +69,7 @@ The supported property types for the moment are:
 3. **decimal**
 4. **int**
 5. **datetime**
+6. **enum**
 
 ```
 npm run generation
