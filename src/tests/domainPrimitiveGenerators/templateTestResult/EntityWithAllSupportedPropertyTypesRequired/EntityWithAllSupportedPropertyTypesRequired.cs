@@ -3,34 +3,22 @@ using Triplex.Validations;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents EntityWithAllSupportedPropertyTypesRequired entity.
-/// </summary>
+///<summary>Represents EntityWithAllSupportedPropertyTypesRequired entity. </summary>
 public sealed class EntityWithAllSupportedPropertyTypesRequired 
 {
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesRequired's Id
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Id. </summary>
 	public Id Id { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesRequired's Names
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Names. </summary>
 	public Names Names { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesRequired's Salary
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Salary. </summary>
 	public Salary Salary { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesRequired's Age
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Age. </summary>
 	public Age Age { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesRequired's Birthday
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Birthday. </summary>
 	public Birthday Birthday { get; }
 
 	private EntityWithAllSupportedPropertyTypesRequired(Builder builder)
@@ -46,9 +34,7 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 	/// TODO: Remember to write tests for businnes logic
 	/// TODO: and then if code coverage decreases comment or delete the code not used
 
-	/// <summary>
-	/// EntityWithAllSupportedPropertyTypesRequired's builder.
-	/// </summary>
+	///<summary>EntityWithAllSupportedPropertyTypesRequired's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<EntityWithAllSupportedPropertyTypesRequired>
 	{
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();

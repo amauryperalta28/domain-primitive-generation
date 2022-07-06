@@ -149,4 +149,8 @@ export class CustomCsharpWriter extends CSharpWriter {
     this.writeCodeBlock(contents);
   }
 
+  public writeOneLineXmlDocSummary(text: string){
+    this.writeLine(`///<summary>${text}</summary>`);
+  }
+
 }

@@ -281,4 +281,15 @@ describe('Custom-writer.ts tests', () => {
     expect(myWriter.writeLine).toHaveBeenCalledWith( '{');
     expect(myWriter.writeLine).toHaveBeenLastCalledWith( '}');
   });
+
+  test('When writeOneLineXmlDocSummary is called should write correct summary documentation', () => { 
+    const myWriter = mock<CodeWriter>();
+    const customWriter = new CustomCsharpWriter(myWriter);
+    const text = 'This is a documentation';
+
+    const expectedDocumentation = `///<summary>${text}</summary>`
+    customWriter.writeOneLineXmlDocSummary(text);
+
+    expect(myWriter.writeLine).toHaveBeenLastCalledWith(expectedDocumentation);
+   })
 });

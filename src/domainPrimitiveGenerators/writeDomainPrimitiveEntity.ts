@@ -25,17 +25,20 @@ export const writeDomainPrimitiveEntity = (
             const classDefinitions: ClassDefinition = {
                 name: className,
                 accessModifier: 'public',
-                xmlDocSummary: [`Represents ${className} entity.`],
+                // xmlDocSummary: [`Represents ${className} entity.`],
             };
+
+            customWriter.writeOneLineXmlDocSummary(`Represents ${className} entity. `);
             customWriter.writePublicSealedClass(classDefinitions, (c) => {
                 properties.forEach((property: DomainPrimitiveProperty) => {
+                    customWriter.writeOneLineXmlDocSummary(`Represents ${className}'s ${property.name}. `);
                     customWriter.writeAutoProperty({
                         name: property.name,
                         typeName: property.isOptional? `Option<${property.name}>` : property.name,
                         noGetter: false,
                         noSetter: true,
                         accessModifier: 'public',
-                        xmlDocSummary: [`Represents ${className}'s ${property.name}`],
+                        // xmlDocSummary: [`Represents ${className}'s ${property.name}`],
                     });
                     customWriter.writeLine();
                 });
@@ -76,8 +79,10 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
         name: 'Builder',
         accessModifier: 'public',
         inherits: [`AbstractEntityBuilder<${className}>`],
-        xmlDocSummary: [`${className}'s builder.`],
+        // xmlDocSummary: [`${className}'s builder.`],
     };
+
+    customWriter.writeOneLineXmlDocSummary(`${className}'s builder. `);
     customWriter.writePublicSealedClass(classDefinitions, (c) => {
 
         customWriter.writeLine('protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();');

@@ -3,34 +3,22 @@ using Triplex.Validations;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents EntityWithAllSupportedPropertyTypesOptional entity.
-/// </summary>
+///<summary>Represents EntityWithAllSupportedPropertyTypesOptional entity. </summary>
 public sealed class EntityWithAllSupportedPropertyTypesOptional 
 {
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesOptional's Id
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Id. </summary>
 	public Option<Id> Id { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesOptional's Names
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Names. </summary>
 	public Option<Names> Names { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesOptional's Salary
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Salary. </summary>
 	public Option<Salary> Salary { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesOptional's Age
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Age. </summary>
 	public Option<Age> Age { get; }
 
-	/// <summary>
-	/// Represents EntityWithAllSupportedPropertyTypesOptional's Birthday
-	/// </summary>
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Birthday. </summary>
 	public Option<Birthday> Birthday { get; }
 
 	private EntityWithAllSupportedPropertyTypesOptional(Builder builder)
@@ -46,9 +34,7 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 	/// TODO: Remember to write tests for businnes logic
 	/// TODO: and then if code coverage decreases comment or delete the code not used
 
-	/// <summary>
-	/// EntityWithAllSupportedPropertyTypesOptional's builder.
-	/// </summary>
+	///<summary>EntityWithAllSupportedPropertyTypesOptional's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<EntityWithAllSupportedPropertyTypesOptional>
 	{
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();

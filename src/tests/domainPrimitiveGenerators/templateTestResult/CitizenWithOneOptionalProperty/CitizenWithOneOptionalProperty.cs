@@ -3,14 +3,10 @@ using Triplex.Validations;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents CitizenWithOneOptionalProperty entity.
-/// </summary>
+///<summary>Represents CitizenWithOneOptionalProperty entity. </summary>
 public sealed class CitizenWithOneOptionalProperty 
 {
-	/// <summary>
-	/// Represents CitizenWithOneOptionalProperty's Id
-	/// </summary>
+	///<summary>Represents CitizenWithOneOptionalProperty's Id. </summary>
 	public Option<Id> Id { get; }
 
 	private CitizenWithOneOptionalProperty(Builder builder)
@@ -22,9 +18,7 @@ public sealed class CitizenWithOneOptionalProperty
 	/// TODO: Remember to write tests for businnes logic
 	/// TODO: and then if code coverage decreases comment or delete the code not used
 
-	/// <summary>
-	/// CitizenWithOneOptionalProperty's builder.
-	/// </summary>
+	///<summary>CitizenWithOneOptionalProperty's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<CitizenWithOneOptionalProperty>
 	{
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();

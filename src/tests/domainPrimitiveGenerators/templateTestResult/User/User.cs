@@ -3,99 +3,61 @@ using Triplex.Validations;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User entity.
-/// </summary>
+///<summary>Represents User entity. </summary>
 public sealed class User 
 {
-	/// <summary>
-	/// Represents User's EmployeeId
-	/// </summary>
+	///<summary>Represents User's EmployeeId. </summary>
 	public EmployeeId EmployeeId { get; }
 
-	/// <summary>
-	/// Represents User's Names
-	/// </summary>
+	///<summary>Represents User's Names. </summary>
 	public Names Names { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithMin
-	/// </summary>
+	///<summary>Represents User's NamesWithMin. </summary>
 	public NamesWithMin NamesWithMin { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithMax
-	/// </summary>
+	///<summary>Represents User's NamesWithMax. </summary>
 	public NamesWithMax NamesWithMax { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithMinMax
-	/// </summary>
+	///<summary>Represents User's NamesWithMinMax. </summary>
 	public NamesWithMinMax NamesWithMinMax { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithRegex
-	/// </summary>
+	///<summary>Represents User's NamesWithRegex. </summary>
 	public NamesWithRegex NamesWithRegex { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithRegexMin
-	/// </summary>
+	///<summary>Represents User's NamesWithRegexMin. </summary>
 	public NamesWithRegexMin NamesWithRegexMin { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithRegexMax
-	/// </summary>
+	///<summary>Represents User's NamesWithRegexMax. </summary>
 	public NamesWithRegexMax NamesWithRegexMax { get; }
 
-	/// <summary>
-	/// Represents User's NamesWithRegexMinMax
-	/// </summary>
+	///<summary>Represents User's NamesWithRegexMinMax. </summary>
 	public NamesWithRegexMinMax NamesWithRegexMinMax { get; }
 
-	/// <summary>
-	/// Represents User's IntegerId
-	/// </summary>
+	///<summary>Represents User's IntegerId. </summary>
 	public IntegerId IntegerId { get; }
 
-	/// <summary>
-	/// Represents User's IntegerIdMin
-	/// </summary>
+	///<summary>Represents User's IntegerIdMin. </summary>
 	public IntegerIdMin IntegerIdMin { get; }
 
-	/// <summary>
-	/// Represents User's IntegerIdMax
-	/// </summary>
+	///<summary>Represents User's IntegerIdMax. </summary>
 	public IntegerIdMax IntegerIdMax { get; }
 
-	/// <summary>
-	/// Represents User's IntegerIdMinAndMax
-	/// </summary>
+	///<summary>Represents User's IntegerIdMinAndMax. </summary>
 	public IntegerIdMinAndMax IntegerIdMinAndMax { get; }
 
-	/// <summary>
-	/// Represents User's DecimalSalary
-	/// </summary>
+	///<summary>Represents User's DecimalSalary. </summary>
 	public DecimalSalary DecimalSalary { get; }
 
-	/// <summary>
-	/// Represents User's DecimalSalaryMin
-	/// </summary>
+	///<summary>Represents User's DecimalSalaryMin. </summary>
 	public DecimalSalaryMin DecimalSalaryMin { get; }
 
-	/// <summary>
-	/// Represents User's DecimalSalaryMax
-	/// </summary>
+	///<summary>Represents User's DecimalSalaryMax. </summary>
 	public DecimalSalaryMax DecimalSalaryMax { get; }
 
-	/// <summary>
-	/// Represents User's DecimalSalaryMinAndMax
-	/// </summary>
+	///<summary>Represents User's DecimalSalaryMinAndMax. </summary>
 	public DecimalSalaryMinAndMax DecimalSalaryMinAndMax { get; }
 
-	/// <summary>
-	/// Represents User's Birthday
-	/// </summary>
+	///<summary>Represents User's Birthday. </summary>
 	public Birthday Birthday { get; }
 
 	private User(Builder builder)
@@ -124,9 +86,7 @@ public sealed class User
 	/// TODO: Remember to write tests for businnes logic
 	/// TODO: and then if code coverage decreases comment or delete the code not used
 
-	/// <summary>
-	/// User's builder.
-	/// </summary>
+	///<summary>User's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<User>
 	{
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();
