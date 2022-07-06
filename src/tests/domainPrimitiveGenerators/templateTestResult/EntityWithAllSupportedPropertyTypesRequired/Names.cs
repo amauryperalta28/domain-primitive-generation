@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents EntityWithAllSupportedPropertyTypesRequired's Names
-/// </summary>
+///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Names</summary>
 public sealed class Names : AbstractStringPrimitive
 {
 	/// Represents the Description minimum length restriction.

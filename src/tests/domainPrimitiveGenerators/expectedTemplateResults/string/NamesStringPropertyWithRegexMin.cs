@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User's NamesWithRegexMin
-/// </summary>
+///<summary>Represents User's NamesWithRegexMin</summary>
 public sealed class NamesWithRegexMin : AbstractStringPrimitive
 {
 	/// Represents the Description minimum length restriction.

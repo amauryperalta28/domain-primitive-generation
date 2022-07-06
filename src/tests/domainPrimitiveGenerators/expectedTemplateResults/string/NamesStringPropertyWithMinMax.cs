@@ -2,9 +2,7 @@ using Wepsys.Core;
 
 namespace RI.Novus.Core.Users;
 
-/// <summary>
-/// Represents User's NamesWithMinMax
-/// </summary>
+///<summary>Represents User's NamesWithMinMax</summary>
 public sealed class NamesWithMinMax : AbstractStringPrimitive
 {
 	/// Represents the Description minimum length restriction.
