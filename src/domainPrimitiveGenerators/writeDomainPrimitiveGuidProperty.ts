@@ -24,10 +24,10 @@ export const writeDomainPrimitiveGuidProperty = (
   const customWriter = new CustomCsharpWriter(textWriter);
 
   customWriter.writeUsingDirectives('Wepsys.Core');
-  customWriter.writeLine(); // insert a blank line
+  customWriter.writeLine();
 
   customWriter.writeCsharpTenNamespace(namespace);
-  customWriter.writeLine(); // insert a blank line
+  customWriter.writeLine();
 
   customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}. `);
   customWriter.writePublicSealedClass(classDefinitions, (c) => {

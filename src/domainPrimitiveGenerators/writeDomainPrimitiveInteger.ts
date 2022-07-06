@@ -30,7 +30,7 @@ export const writeDomainPrimitiveIntegerProperty = (
   customWriter.writeLine();
 
   customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}`);
-  customWriter.writePublicSealedClass(classDefinitions, (c) => {
+  customWriter.writePublicSealedClass(classDefinitions, () => {
     const parameters: ParameterDefinition[] = [
       { typeName: 'PositiveInteger', name: 'rawValue' },
     ];

@@ -17,10 +17,10 @@ export const writeDomainPrimitiveEntity = (
         (writer: TextWriter) => {
             const customWriter = new CustomCsharpWriter(writer);
             customWriter.writeUsingDirectives('Optional', 'Triplex.Validations');
-            customWriter.writeLine(); // insert a blank line
+            customWriter.writeLine();
 
             customWriter.writeCsharpTenNamespace(namespace);
-            customWriter.writeLine(); // insert a blank line
+            customWriter.writeLine();
 
             const classDefinitions: ClassDefinition = {
                 name: className,
@@ -28,7 +28,7 @@ export const writeDomainPrimitiveEntity = (
             };
 
             customWriter.writeOneLineXmlDocSummary(`Represents ${className} entity. `);
-            customWriter.writePublicSealedClass(classDefinitions, (c) => {
+            customWriter.writePublicSealedClass(classDefinitions, () => {
                 properties.forEach((property: DomainPrimitiveProperty) => {
                     customWriter.writeOneLineXmlDocSummary(`Represents ${className}'s ${property.name}. `);
                     customWriter.writeAutoProperty({
@@ -99,15 +99,15 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
         writeDoBuild(className, customWriter, requiredProperties);
 
         properties.forEach((property: DomainPrimitiveProperty) => {
-            writeWithMethod(property.name, customWriter);
+            writeWithMethod(property, customWriter);
         });
     });
 }
 
-const writeWithMethod = (className: string, customWriter: CustomCsharpWriter) => {
-    const propertyName = className.toLowerCase();
-    customWriter.writeLine(`public Builder With${className}(${className} ${_.camelCase(className)})`);
-    customWriter.writeLine(`    => SetProperty(() => ${className}Option = Arguments.NotNull(${propertyName}, nameof(${_.camelCase(className)}).SomeNotNull()));`);
+const writeWithMethod = (property: DomainPrimitiveProperty, customWriter: CustomCsharpWriter) => {
+    const propertyName = property.name.toLowerCase();
+    customWriter.writeLine(`public Builder With${property.name}(${property.name} ${_.camelCase(property.name)})`);
+    customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
     customWriter.writeLine();
 }
 
