@@ -87,7 +87,7 @@ public sealed class User
 		Type = builder.TypeOption.ValueOrFailure();
 	}
 
-	/// TODO: Remember to write tests for businnes logic
+	/// TODO: Remember to write tests for business logic
 	/// TODO: and then if code coverage decreases comment or delete the code not used
 
 	///<summary>User's builder. </summary>

@@ -5,4 +5,5 @@ export enum PropertyType {
   int = 'int',
   datetime = 'datetime',
   enum = 'enum',
+  boolean = 'boolean',
 }

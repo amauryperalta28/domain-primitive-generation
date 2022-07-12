@@ -31,7 +31,7 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 		Birthday = builder.BirthdayOption.ValueOrFailure();
 	}
 
-	/// TODO: Remember to write tests for businnes logic
+	/// TODO: Remember to write tests for business logic
 	/// TODO: and then if code coverage decreases comment or delete the code not used
 
 	///<summary>EntityWithAllSupportedPropertyTypesRequired's builder. </summary>
