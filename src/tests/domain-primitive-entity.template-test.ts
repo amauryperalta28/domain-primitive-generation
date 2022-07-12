@@ -31,10 +31,10 @@ let domainPrimitiveGenerators = new Map<
 >();
 
 domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
-domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
-domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
-domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
-domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
+domainPrimitiveGenerators.set(PropertyType.guid,writeDomainPrimitiveGuidProperty);
+domainPrimitiveGenerators.set(PropertyType.decimal,writeDomainPrimitiveDecimalProperty);
+domainPrimitiveGenerators.set(PropertyType.int,writeDomainPrimitiveIntegerProperty);
+domainPrimitiveGenerators.set(PropertyType.datetime,writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
@@ -55,33 +55,31 @@ Generator.generateFromModel(
 
 const generateEntityClass = (entity: Entity) => {
   writeDomainPrimitiveEntity(
-    entity,
+    entity.name,
+    entity.namespace,
+    entity.properties,
     './domainPrimitiveGenerators/templateTestResult'
   );
 
   entity.properties.forEach((property: DomainPrimitiveProperty) => {
     const className = property.name;
 
-    if (domainPrimitiveGenerators.has(property.type)) {
-      const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(
-        property.type
-      );
+    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(
+      property.type
+    );
 
-      Generator.generate(
-        {
-          outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs`,
-        },
-        (writer: TextWriter) => {
-          domainPrimitivePropertyGenerator(
-            writer,
-            property,
-            entity.name,
-            entity.namespace
-          );
-        }
-      );
-
-    }
-
+    Generator.generate(
+      {
+        outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs`,
+      },
+      (writer: TextWriter) => {
+        domainPrimitivePropertyGenerator(
+          writer,
+          property,
+          entity.name,
+          entity.namespace
+        );
+      }
+    );
   });
 };

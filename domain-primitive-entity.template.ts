@@ -55,7 +55,9 @@ Generator.generateFromModel(
 
 const generateEntityClass = (entity: Entity) => {
   writeDomainPrimitiveEntity(
-    entity,
+    entity.name,
+    entity.namespace,
+    entity.properties,
     outputDirectory
   );
 
