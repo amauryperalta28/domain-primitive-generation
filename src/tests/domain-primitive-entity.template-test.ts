@@ -7,14 +7,14 @@ import {
   writeDomainPrimitiveEntity,
   writeDomainPrimitiveGuidProperty,
   writeDomainPrimitiveIntegerProperty,
-  writeDomainPrimitiveStringProperty,
+  writeDomainPrimitiveStringProperty
 } from '../domainPrimitiveGenerators';
 import { PropertyType } from '../enums/property-types';
 import { validateRequest } from '../helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest,
   DomainPrimitiveProperty,
-  Entity,
+  Entity
 } from '../models';
 
 const outputDirectory = './domainPrimitiveGenerators/templateTestResult';
@@ -31,10 +31,10 @@ let domainPrimitiveGenerators = new Map<
 >();
 
 domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringProperty);
-domainPrimitiveGenerators.set(PropertyType.guid,writeDomainPrimitiveGuidProperty);
-domainPrimitiveGenerators.set(PropertyType.decimal,writeDomainPrimitiveDecimalProperty);
-domainPrimitiveGenerators.set(PropertyType.int,writeDomainPrimitiveIntegerProperty);
-domainPrimitiveGenerators.set(PropertyType.datetime,writeDomainPrimitiveDateProperty);
+domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
+domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
+domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
+domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,
@@ -55,9 +55,7 @@ Generator.generateFromModel(
 
 const generateEntityClass = (entity: Entity) => {
   writeDomainPrimitiveEntity(
-    entity.name,
-    entity.namespace,
-    entity.properties,
+    entity,
     './domainPrimitiveGenerators/templateTestResult'
   );
 
@@ -68,18 +66,22 @@ const generateEntityClass = (entity: Entity) => {
       property.type
     );
 
-    Generator.generate(
-      {
-        outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs`,
-      },
-      (writer: TextWriter) => {
-        domainPrimitivePropertyGenerator(
-          writer,
-          property,
-          entity.name,
-          entity.namespace
-        );
-      }
-    );
+    if (domainPrimitiveGenerators.has(property.type)) {
+      Generator.generate(
+        {
+          outputFile: `./domainPrimitiveGenerators/templateTestResult/${entity.name}/${className}.cs`,
+        },
+        (writer: TextWriter) => {
+          domainPrimitivePropertyGenerator(
+            writer,
+            property,
+            entity.name,
+            entity.namespace
+          );
+        }
+      );
+
+    }
+
   });
 };

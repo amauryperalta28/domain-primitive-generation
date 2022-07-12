@@ -1,21 +1,21 @@
 import { TextWriter } from '@yellicode/core';
 import { Generator } from '@yellicode/templating';
+import * as fsPromises from 'fs/promises';
 import {
   writeDomainPrimitiveDateProperty,
   writeDomainPrimitiveDecimalProperty,
   writeDomainPrimitiveEntity,
   writeDomainPrimitiveGuidProperty,
   writeDomainPrimitiveIntegerProperty,
-  writeDomainPrimitiveStringProperty,
+  writeDomainPrimitiveStringProperty
 } from './src/domainPrimitiveGenerators';
 import { PropertyType } from './src/enums/property-types';
 import { validateRequest } from './src/helpers/validate-request';
 import {
   CreateDomainPrimitivesRequest,
   DomainPrimitiveProperty,
-  Entity,
+  Entity
 } from './src/models';
-import * as fsPromises from 'fs/promises';
 
 const outputDirectory = './Result_Wepsys_Core_3.1.1';
 let options = { outputFile: `${outputDirectory}/Entity.cs` };
@@ -55,31 +55,30 @@ Generator.generateFromModel(
 
 const generateEntityClass = (entity: Entity) => {
   writeDomainPrimitiveEntity(
-    entity.name,
-    entity.namespace,
-    entity.properties,
+    entity,
     outputDirectory
   );
 
-  const generableClassProperty: DomainPrimitiveProperty[] = entity.properties.filter(property => property.type !== PropertyType.enum);
-
-  generableClassProperty.forEach((property: DomainPrimitiveProperty) => {
+  entity.properties.forEach((property: DomainPrimitiveProperty) => {
     const className = property.name;
 
-    const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(
-      property.type
-    );
+    if (domainPrimitiveGenerators.has(property.type)) {
+      const domainPrimitivePropertyGenerator = domainPrimitiveGenerators.get(
+        property.type
+      );
 
-    Generator.generate(
-      { outputFile: `${outputDirectory}/${entity.name}/${className}.cs` },
-      (writer: TextWriter) => {
-        domainPrimitivePropertyGenerator(
-          writer,
-          property,
-          entity.name,
-          entity.namespace
-        );
-      }
-    );
+      Generator.generate(
+        { outputFile: `${outputDirectory}/${entity.name}/${className}.cs` },
+        (writer: TextWriter) => {
+          domainPrimitivePropertyGenerator(
+            writer,
+            property,
+            entity.name,
+            entity.namespace
+          );
+        }
+      );
+
+    }
   });
 };
