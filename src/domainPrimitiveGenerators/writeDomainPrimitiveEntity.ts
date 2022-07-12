@@ -105,13 +105,13 @@ const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: string,
 }
 
 const writeWithMethod = (property: DomainPrimitiveProperty, customWriter: CustomCsharpWriter) => {
-    const propertyName = property.name.toLowerCase();
-    customWriter.writeLine(`public Builder With${property.name}(${property.name} ${_.camelCase(property.name)})`);
+    const camelCasePropertyName = _.camelCase(property.name);
+    customWriter.writeLine(`public Builder With${property.name}(${property.name} ${camelCasePropertyName})`);
 
     if(property.type == PropertyType.enum){
-        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${camelCasePropertyName}, nameof(${camelCasePropertyName}).SomeNotNull()));`);
     } else{
-        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${propertyName}, nameof(${_.camelCase(property.name)}).SomeNotNull()));`);
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${camelCasePropertyName}, nameof(${camelCasePropertyName}).SomeNotNull()));`);
     }
 
     customWriter.writeLine();

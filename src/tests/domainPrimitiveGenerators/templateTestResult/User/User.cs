@@ -60,6 +60,9 @@ public sealed class User
 	///<summary>Represents User's Birthday. </summary>
 	public Birthday Birthday { get; }
 
+	///<summary>Represents User's Type. </summary>
+	public Type Type { get; }
+
 	private User(Builder builder)
 	{
 		Arguments.NotNull(builder, nameof(builder));
@@ -81,6 +84,7 @@ public sealed class User
 		DecimalSalaryMax = builder.DecimalSalaryMaxOption.ValueOrFailure();
 		DecimalSalaryMinAndMax = builder.DecimalSalaryMinAndMaxOption.ValueOrFailure();
 		Birthday = builder.BirthdayOption.ValueOrFailure();
+		Type = builder.TypeOption.ValueOrFailure();
 	}
 
 	/// TODO: Remember to write tests for businnes logic
@@ -127,6 +131,8 @@ public sealed class User
 
 		internal Option<Birthday> BirthdayOption { get; private set; }
 
+		internal Option<Type> TypeOption { get; private set; }
+
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
 		protected override User DoBuild()
@@ -149,63 +155,67 @@ public sealed class User
 			State.IsTrue(DecimalSalaryMaxOption.HasValue, "User's DecimalSalaryMax is missing");
 			State.IsTrue(DecimalSalaryMinAndMaxOption.HasValue, "User's DecimalSalaryMinAndMax is missing");
 			State.IsTrue(BirthdayOption.HasValue, "User's Birthday is missing");
+			State.IsTrue(TypeOption.HasValue, "User's Type is missing");
 
 			return new User(this);
 		}
 
 		public Builder WithEmployeeId(EmployeeId employeeId)
-		    => SetProperty(() => EmployeeIdOption = Arguments.NotNull(employeeid, nameof(employeeId).SomeNotNull()));
+		    => SetProperty(() => EmployeeIdOption = Arguments.NotNull(employeeId, nameof(employeeId).SomeNotNull()));
 
 		public Builder WithNames(Names names)
 		    => SetProperty(() => NamesOption = Arguments.NotNull(names, nameof(names).SomeNotNull()));
 
 		public Builder WithNamesWithMin(NamesWithMin namesWithMin)
-		    => SetProperty(() => NamesWithMinOption = Arguments.NotNull(nameswithmin, nameof(namesWithMin).SomeNotNull()));
+		    => SetProperty(() => NamesWithMinOption = Arguments.NotNull(namesWithMin, nameof(namesWithMin).SomeNotNull()));
 
 		public Builder WithNamesWithMax(NamesWithMax namesWithMax)
-		    => SetProperty(() => NamesWithMaxOption = Arguments.NotNull(nameswithmax, nameof(namesWithMax).SomeNotNull()));
+		    => SetProperty(() => NamesWithMaxOption = Arguments.NotNull(namesWithMax, nameof(namesWithMax).SomeNotNull()));
 
 		public Builder WithNamesWithMinMax(NamesWithMinMax namesWithMinMax)
-		    => SetProperty(() => NamesWithMinMaxOption = Arguments.NotNull(nameswithminmax, nameof(namesWithMinMax).SomeNotNull()));
+		    => SetProperty(() => NamesWithMinMaxOption = Arguments.NotNull(namesWithMinMax, nameof(namesWithMinMax).SomeNotNull()));
 
 		public Builder WithNamesWithRegex(NamesWithRegex namesWithRegex)
-		    => SetProperty(() => NamesWithRegexOption = Arguments.NotNull(nameswithregex, nameof(namesWithRegex).SomeNotNull()));
+		    => SetProperty(() => NamesWithRegexOption = Arguments.NotNull(namesWithRegex, nameof(namesWithRegex).SomeNotNull()));
 
 		public Builder WithNamesWithRegexMin(NamesWithRegexMin namesWithRegexMin)
-		    => SetProperty(() => NamesWithRegexMinOption = Arguments.NotNull(nameswithregexmin, nameof(namesWithRegexMin).SomeNotNull()));
+		    => SetProperty(() => NamesWithRegexMinOption = Arguments.NotNull(namesWithRegexMin, nameof(namesWithRegexMin).SomeNotNull()));
 
 		public Builder WithNamesWithRegexMax(NamesWithRegexMax namesWithRegexMax)
-		    => SetProperty(() => NamesWithRegexMaxOption = Arguments.NotNull(nameswithregexmax, nameof(namesWithRegexMax).SomeNotNull()));
+		    => SetProperty(() => NamesWithRegexMaxOption = Arguments.NotNull(namesWithRegexMax, nameof(namesWithRegexMax).SomeNotNull()));
 
 		public Builder WithNamesWithRegexMinMax(NamesWithRegexMinMax namesWithRegexMinMax)
-		    => SetProperty(() => NamesWithRegexMinMaxOption = Arguments.NotNull(nameswithregexminmax, nameof(namesWithRegexMinMax).SomeNotNull()));
+		    => SetProperty(() => NamesWithRegexMinMaxOption = Arguments.NotNull(namesWithRegexMinMax, nameof(namesWithRegexMinMax).SomeNotNull()));
 
 		public Builder WithIntegerId(IntegerId integerId)
-		    => SetProperty(() => IntegerIdOption = Arguments.NotNull(integerid, nameof(integerId).SomeNotNull()));
+		    => SetProperty(() => IntegerIdOption = Arguments.NotNull(integerId, nameof(integerId).SomeNotNull()));
 
 		public Builder WithIntegerIdMin(IntegerIdMin integerIdMin)
-		    => SetProperty(() => IntegerIdMinOption = Arguments.NotNull(integeridmin, nameof(integerIdMin).SomeNotNull()));
+		    => SetProperty(() => IntegerIdMinOption = Arguments.NotNull(integerIdMin, nameof(integerIdMin).SomeNotNull()));
 
 		public Builder WithIntegerIdMax(IntegerIdMax integerIdMax)
-		    => SetProperty(() => IntegerIdMaxOption = Arguments.NotNull(integeridmax, nameof(integerIdMax).SomeNotNull()));
+		    => SetProperty(() => IntegerIdMaxOption = Arguments.NotNull(integerIdMax, nameof(integerIdMax).SomeNotNull()));
 
 		public Builder WithIntegerIdMinAndMax(IntegerIdMinAndMax integerIdMinAndMax)
-		    => SetProperty(() => IntegerIdMinAndMaxOption = Arguments.NotNull(integeridminandmax, nameof(integerIdMinAndMax).SomeNotNull()));
+		    => SetProperty(() => IntegerIdMinAndMaxOption = Arguments.NotNull(integerIdMinAndMax, nameof(integerIdMinAndMax).SomeNotNull()));
 
 		public Builder WithDecimalSalary(DecimalSalary decimalSalary)
-		    => SetProperty(() => DecimalSalaryOption = Arguments.NotNull(decimalsalary, nameof(decimalSalary).SomeNotNull()));
+		    => SetProperty(() => DecimalSalaryOption = Arguments.NotNull(decimalSalary, nameof(decimalSalary).SomeNotNull()));
 
 		public Builder WithDecimalSalaryMin(DecimalSalaryMin decimalSalaryMin)
-		    => SetProperty(() => DecimalSalaryMinOption = Arguments.NotNull(decimalsalarymin, nameof(decimalSalaryMin).SomeNotNull()));
+		    => SetProperty(() => DecimalSalaryMinOption = Arguments.NotNull(decimalSalaryMin, nameof(decimalSalaryMin).SomeNotNull()));
 
 		public Builder WithDecimalSalaryMax(DecimalSalaryMax decimalSalaryMax)
-		    => SetProperty(() => DecimalSalaryMaxOption = Arguments.NotNull(decimalsalarymax, nameof(decimalSalaryMax).SomeNotNull()));
+		    => SetProperty(() => DecimalSalaryMaxOption = Arguments.NotNull(decimalSalaryMax, nameof(decimalSalaryMax).SomeNotNull()));
 
 		public Builder WithDecimalSalaryMinAndMax(DecimalSalaryMinAndMax decimalSalaryMinAndMax)
-		    => SetProperty(() => DecimalSalaryMinAndMaxOption = Arguments.NotNull(decimalsalaryminandmax, nameof(decimalSalaryMinAndMax).SomeNotNull()));
+		    => SetProperty(() => DecimalSalaryMinAndMaxOption = Arguments.NotNull(decimalSalaryMinAndMax, nameof(decimalSalaryMinAndMax).SomeNotNull()));
 
 		public Builder WithBirthday(Birthday birthday)
 		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday).SomeNotNull()));
+
+		public Builder WithType(Type type)
+		    => SetProperty(() => TypeOption = Arguments.ValidEnumerationMember(type, nameof(type).SomeNotNull()));
 
 	}
 }

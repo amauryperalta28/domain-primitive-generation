@@ -18,7 +18,7 @@ public sealed class IntegerIdMax : AbstractPositiveIntegerPrimitive
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="IntegerIdMax"/>.
-	/// <param name="rawIntegerIdMax">Represents a integeridmax.</param>
+	/// <param name="rawIntegerIdMax">Represents a integerIdMax.</param>
 	/// <returns>An instance of <see cref="IntegerIdMax"/></returns>
 	/// </summary>
 	public static IntegerIdMax From(int rawIntegerIdMax) => new(new PositiveInteger(rawIntegerIdMax));

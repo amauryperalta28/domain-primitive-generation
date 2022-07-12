@@ -18,7 +18,7 @@ public sealed class IntegerId : AbstractPositiveIntegerPrimitive
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="IntegerId"/>.
-	/// <param name="rawIntegerId">Represents a integerid.</param>
+	/// <param name="rawIntegerId">Represents a integerId.</param>
 	/// <returns>An instance of <see cref="IntegerId"/></returns>
 	/// </summary>
 	public static IntegerId From(int rawIntegerId) => new(new PositiveInteger(rawIntegerId));

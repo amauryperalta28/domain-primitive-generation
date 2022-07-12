@@ -21,7 +21,8 @@
         { "name": "DecimalSalaryMin", "type": "decimal", "isOptional": false, "min": 12},
         { "name": "DecimalSalaryMax", "type": "decimal", "isOptional": false, "max": 40},
         { "name": "DecimalSalaryMinAndMax", "type": "decimal", "isOptional": false, "min":15, "max": 40},
-        { "name": "Birthday", "type": "datetime", "isOptional": false }
+        { "name": "Birthday", "type": "datetime", "isOptional": false },
+        { "name": "Type", "type": "enum", "isOptional": false }
       ]
     },
     {
