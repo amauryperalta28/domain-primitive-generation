@@ -2,16 +2,15 @@ import { TextWriter } from '@yellicode/core';
 import { ClassDefinition, ParameterDefinition } from '@yellicode/csharp';
 import { Generator } from '@yellicode/templating';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
-import { DomainPrimitiveProperty } from '../models';
 import { PropertyType } from '../enums/property-types';
+import { DomainPrimitiveProperty, Entity } from '../models';
 var _ = require('lodash');
 
 export const writeDomainPrimitiveEntity = (
-    className: string,
-    namespace: string,
-    properties: DomainPrimitiveProperty[],
+    entity: Entity,
     outputDirectory: string
 ) => {
+    const className = entity.name;
 
     Generator.generate(
         { outputFile: `${outputDirectory}/${className}/${className}.cs` },
@@ -20,7 +19,7 @@ export const writeDomainPrimitiveEntity = (
             customWriter.writeUsingDirectives('Optional', 'Triplex.Validations');
             customWriter.writeLine();
 
-            customWriter.writeCsharpTenNamespace(namespace);
+            customWriter.writeCsharpTenNamespace(entity.namespace);
             customWriter.writeLine();
 
             const classDefinitions: ClassDefinition = {
@@ -30,7 +29,7 @@ export const writeDomainPrimitiveEntity = (
 
             customWriter.writeOneLineXmlDocSummary(`Represents ${className} entity. `);
             customWriter.writePublicSealedClass(classDefinitions, () => {
-                properties.forEach((property: DomainPrimitiveProperty) => {
+                entity.properties.forEach((property: DomainPrimitiveProperty) => {
                     customWriter.writeOneLineXmlDocSummary(`Represents ${className}'s ${property.name}. `);
                     customWriter.writeAutoProperty({
                         name: property.name,
@@ -42,12 +41,12 @@ export const writeDomainPrimitiveEntity = (
                     customWriter.writeLine();
                 });
 
-                writeEntityConstructor(customWriter, className, properties);
+                writeEntityConstructor(customWriter, className, entity.properties);
 
                 customWriter.writeXmlDocParagraph(['TODO: Remember to write tests for businnes logic','TODO: and then if code coverage decreases comment or delete the code not used']);
 
                 customWriter.writeLine();
-                writeEntityBuilder(customWriter, className, properties);
+                writeEntityBuilder(customWriter, className, entity.properties);
             }
             );
 
