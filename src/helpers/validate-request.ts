@@ -10,7 +10,7 @@ const isEmptyCollection = (properties: DomainPrimitiveProperty[]) =>
 const isNullOrEmpty = (param: string) =>
   param === undefined || param === null || param.length === 0;
 
-const buildFailedValitionResult = (message: string) => ({
+const buildFailedValidationResult = (message: string) => ({
   success: false,
   message,
 });
@@ -20,14 +20,14 @@ export const validateRequest = (
 ): ValidationResult => {
   try {
     if (request === null || request === undefined) {
-      return buildFailedValitionResult(
+      return buildFailedValidationResult(
         'Domain primitive request cant be null or undefined'
       );
     }
 
     validateRequestProperties(request);
   } catch (Error) {
-    return buildFailedValitionResult(Error.message);
+    return buildFailedValidationResult(Error.message);
   }
 
   return { success: true, message: '' };

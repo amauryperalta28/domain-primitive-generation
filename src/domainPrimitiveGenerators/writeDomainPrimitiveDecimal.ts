@@ -4,7 +4,7 @@ import {
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
-var _ = require('lodash');
+import _ = require('lodash');
 
 export const writeDomainPrimitiveDecimalProperty = (
   textWriter: TextWriter,

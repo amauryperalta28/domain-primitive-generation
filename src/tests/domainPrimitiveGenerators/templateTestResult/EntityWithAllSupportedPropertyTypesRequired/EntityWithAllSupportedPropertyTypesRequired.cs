@@ -21,6 +21,12 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Birthday. </summary>
 	public Birthday Birthday { get; }
 
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's Status. </summary>
+	public Status Status { get; }
+
+	///<summary>Represents EntityWithAllSupportedPropertyTypesRequired's IsValid. </summary>
+	public bool IsValid { get; }
+
 	private EntityWithAllSupportedPropertyTypesRequired(Builder builder)
 	{
 		Arguments.NotNull(builder, nameof(builder));
@@ -29,6 +35,8 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 		Salary = builder.SalaryOption.ValueOrFailure();
 		Age = builder.AgeOption.ValueOrFailure();
 		Birthday = builder.BirthdayOption.ValueOrFailure();
+		Status = builder.StatusOption.ValueOrFailure();
+		IsValid = builder.IsValidOption.ValueOrFailure();
 	}
 
 	/// TODO: Remember to write tests for business logic
@@ -49,6 +57,10 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 
 		internal Option<Birthday> BirthdayOption { get; private set; }
 
+		internal Option<Status> StatusOption { get; private set; }
+
+		internal Option<bool> IsValidOption { get; private set; }
+
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
 		protected override EntityWithAllSupportedPropertyTypesRequired DoBuild()
@@ -58,6 +70,8 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 			State.IsTrue(SalaryOption.HasValue, "EntityWithAllSupportedPropertyTypesRequired's Salary is missing");
 			State.IsTrue(AgeOption.HasValue, "EntityWithAllSupportedPropertyTypesRequired's Age is missing");
 			State.IsTrue(BirthdayOption.HasValue, "EntityWithAllSupportedPropertyTypesRequired's Birthday is missing");
+			State.IsTrue(StatusOption.HasValue, "EntityWithAllSupportedPropertyTypesRequired's Status is missing");
+			State.IsTrue(IsValidOption.HasValue, "EntityWithAllSupportedPropertyTypesRequired's IsValid is missing");
 
 			return new EntityWithAllSupportedPropertyTypesRequired(this);
 		}
@@ -76,6 +90,12 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 
 		public Builder WithBirthday(Birthday birthday)
 		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday).SomeNotNull()));
+
+		public Builder WithStatus(Status status)
+		    => SetProperty(() => StatusOption = Arguments.ValidEnumerationMember(status, nameof(status).SomeNotNull()));
+
+		public Builder WithIsValid(bool isValid)
+		    => SetProperty(() => IsValidOption = Arguments.NotNull(isValid, nameof(isValid).SomeNotNull()));
 
 	}
 }

@@ -13,7 +13,7 @@ const generalAutoPropertyTypeGenerator = (property: DomainPrimitiveProperty): st
    return property.isOptional ? `Option<${property.name}>` : property.name;
 }
 
-const booleanAutoPropertyTypeGenerator = (property: DomainPrimitiveProperty): string => 'bool'
+const booleanAutoPropertyTypeGenerator = (_property: DomainPrimitiveProperty): string => 'bool'
 
 domainPrimitivePropertyTypeGenerators.set(PropertyType.string, generalAutoPropertyTypeGenerator);
 domainPrimitivePropertyTypeGenerators.set(PropertyType.guid, generalAutoPropertyTypeGenerator);

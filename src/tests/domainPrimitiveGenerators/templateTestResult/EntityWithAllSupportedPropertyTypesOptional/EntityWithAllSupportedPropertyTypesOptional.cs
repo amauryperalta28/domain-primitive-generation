@@ -21,6 +21,12 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Birthday. </summary>
 	public Option<Birthday> Birthday { get; }
 
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's Status. </summary>
+	public Option<Status> Status { get; }
+
+	///<summary>Represents EntityWithAllSupportedPropertyTypesOptional's IsValid. </summary>
+	public bool IsValid { get; }
+
 	private EntityWithAllSupportedPropertyTypesOptional(Builder builder)
 	{
 		Arguments.NotNull(builder, nameof(builder));
@@ -29,6 +35,8 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 		Salary = builder.SalaryOption;
 		Age = builder.AgeOption;
 		Birthday = builder.BirthdayOption;
+		Status = builder.StatusOption;
+		IsValid = builder.IsValidOption;
 	}
 
 	/// TODO: Remember to write tests for business logic
@@ -48,6 +56,10 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 		internal Option<Age> AgeOption { get; private set; }
 
 		internal Option<Birthday> BirthdayOption { get; private set; }
+
+		internal Option<Status> StatusOption { get; private set; }
+
+		internal Option<bool> IsValidOption { get; private set; }
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
@@ -71,6 +83,12 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 
 		public Builder WithBirthday(Birthday birthday)
 		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday).SomeNotNull()));
+
+		public Builder WithStatus(Status status)
+		    => SetProperty(() => StatusOption = Arguments.ValidEnumerationMember(status, nameof(status).SomeNotNull()));
+
+		public Builder WithIsValid(bool isValid)
+		    => SetProperty(() => IsValidOption = Arguments.NotNull(isValid, nameof(isValid).SomeNotNull()));
 
 	}
 }

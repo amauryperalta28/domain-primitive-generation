@@ -4,7 +4,7 @@ import {
 } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
-var _ = require('lodash');
+import _ = require('lodash');
 
 export const writeDomainPrimitiveIntegerProperty = (
   textWriter: TextWriter,
@@ -20,7 +20,7 @@ export const writeDomainPrimitiveIntegerProperty = (
     accessModifier: 'public',
   };
 
-  const emptyContentCallback = () => {};
+  const emptyContentCallback = () => { /* To have an empty constructor block */ };
 
   const customWriter = new CustomCsharpWriter(textWriter);
 

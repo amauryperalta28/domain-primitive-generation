@@ -3,7 +3,7 @@ import { ClassDefinition, ParameterDefinition } from '@yellicode/csharp';
 import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import { DomainPrimitiveProperty } from '../models';
 import { CustomFieldDefinition } from '../models/customPropertyDefinition';
-var _ = require('lodash');
+import _ = require('lodash');
 
 export const writeDomainPrimitiveStringProperty = (
   textWriter: TextWriter,
@@ -27,7 +27,7 @@ export const writeDomainPrimitiveStringProperty = (
   };
 
   customWriter.writeOneLineXmlDocSummary(`Represents ${entityName}'s ${className}`);
-  customWriter.writePublicSealedClass(classDefinitions, (c) => {
+  customWriter.writePublicSealedClass(classDefinitions, () => {
     const errorMessageField: CustomFieldDefinition = {
       name: 'ErrorMessage',
       isStatic: true,
