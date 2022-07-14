@@ -10,7 +10,7 @@
         { "name": "Salary", "type": "decimal", "isOptional": true },
         { "name": "EmployeeId", "type": "guid", "isOptional": true },
         { "name": "Age", "type": "int", "isOptional": false, "min": 18, "max": 70 },
-        { "name": "Birthday", "type": "datetime", "isOptional": false },
+        { "name": "Birthday", "type": "dateTime", "isOptional": false },
         { "name": "LastNames", "type": "string", "isOptional": false },
         { "name": "Status", "type": "enum", "isOptional": false },
         { "name": "IsValid", "type": "boolean" }
@@ -25,7 +25,7 @@
         { "name": "Names", "type": "string", "isOptional": false },
         { "name": "Salary", "type": "decimal", "isOptional": true,  "min": 0.01, "max": 100.5  },
         { "name": "Age", "type": "int", "isOptional": false },
-        { "name": "Birthday", "type": "datetime", "isOptional": false }
+        { "name": "Birthday", "type": "dateTime", "isOptional": false }
       ]
     }
   ]

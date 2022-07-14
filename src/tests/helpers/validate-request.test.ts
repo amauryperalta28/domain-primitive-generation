@@ -114,7 +114,7 @@ describe('request-validator.ts tests', () => {
   test('When property type is invalid should fail', () => {
     const properties: DomainPrimitiveProperty[] = [
       { name: 'Name', type: 'string', isOptional: false },
-      { name: 'Lastnames', type: 'unknown', isOptional: false },
+      { name: 'LastNames', type: 'unknown', isOptional: false },
     ];
 
     const entityName = 'Employee';
@@ -129,7 +129,7 @@ describe('request-validator.ts tests', () => {
 
     const expected = {
       success: false,
-      message: `${entityName}'s Lastnames Property type is invalid`,
+      message: `${entityName}'s LastNames Property type is invalid`,
     };
 
     expect(actual).toEqual(expected);
@@ -158,8 +158,8 @@ describe('request-validator.ts tests', () => {
     const request: CreateDomainPrimitivesRequest = {
       entities: [
         {
-          properties: [{ name: 'Name', type: 'string', isOptional: false }],
-          name: 'Name',
+          properties: [{ name: 'LastName', type: 'string', isOptional: false }],
+          name: 'LastName',
           namespace: 'Users',
         },
       ],

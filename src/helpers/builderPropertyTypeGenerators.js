@@ -12,7 +12,7 @@ builderPropertyTypeGenerators.set(property_types_1.PropertyType.string, generalA
 builderPropertyTypeGenerators.set(property_types_1.PropertyType.guid, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(property_types_1.PropertyType.decimal, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(property_types_1.PropertyType.int, generalAutoPropertyTypeGenerator);
-builderPropertyTypeGenerators.set(property_types_1.PropertyType.datetime, generalAutoPropertyTypeGenerator);
+builderPropertyTypeGenerators.set(property_types_1.PropertyType.dateTime, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(property_types_1.PropertyType.enum, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(property_types_1.PropertyType.boolean, booleanAutoPropertyTypeGenerator);
 exports.default = builderPropertyTypeGenerators;

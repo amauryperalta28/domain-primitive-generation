@@ -4,6 +4,6 @@
         "module": "commonjs",
         "inlineSourceMap": true,             
         "removeComments": true,
-        "skipLibCheck": true        
+        "skipLibCheck": true, 
     }
 }   

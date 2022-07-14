@@ -34,7 +34,7 @@ domainPrimitiveGenerators.set(PropertyType.string, writeDomainPrimitiveStringPro
 domainPrimitiveGenerators.set(PropertyType.guid, writeDomainPrimitiveGuidProperty);
 domainPrimitiveGenerators.set(PropertyType.decimal, writeDomainPrimitiveDecimalProperty);
 domainPrimitiveGenerators.set(PropertyType.int, writeDomainPrimitiveIntegerProperty);
-domainPrimitiveGenerators.set(PropertyType.datetime, writeDomainPrimitiveDateProperty);
+domainPrimitiveGenerators.set(PropertyType.dateTime, writeDomainPrimitiveDateProperty);
 
 Generator.generateFromModel(
   options,

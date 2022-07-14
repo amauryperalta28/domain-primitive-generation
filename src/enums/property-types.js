@@ -7,7 +7,7 @@ var PropertyType;
     PropertyType["guid"] = "guid";
     PropertyType["decimal"] = "decimal";
     PropertyType["int"] = "int";
-    PropertyType["datetime"] = "datetime";
+    PropertyType["dateTime"] = "dateTime";
     PropertyType["enum"] = "enum";
     PropertyType["boolean"] = "boolean";
 })(PropertyType = exports.PropertyType || (exports.PropertyType = {}));

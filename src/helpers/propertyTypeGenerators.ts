@@ -19,7 +19,7 @@ domainPrimitivePropertyTypeGenerators.set(PropertyType.string, generalAutoProper
 domainPrimitivePropertyTypeGenerators.set(PropertyType.guid, generalAutoPropertyTypeGenerator);
 domainPrimitivePropertyTypeGenerators.set(PropertyType.decimal, generalAutoPropertyTypeGenerator);
 domainPrimitivePropertyTypeGenerators.set(PropertyType.int, generalAutoPropertyTypeGenerator);
-domainPrimitivePropertyTypeGenerators.set(PropertyType.datetime, generalAutoPropertyTypeGenerator);
+domainPrimitivePropertyTypeGenerators.set(PropertyType.dateTime, generalAutoPropertyTypeGenerator);
 domainPrimitivePropertyTypeGenerators.set(PropertyType.enum, generalAutoPropertyTypeGenerator);
 domainPrimitivePropertyTypeGenerators.set(PropertyType.boolean, booleanAutoPropertyTypeGenerator);
 

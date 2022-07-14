@@ -26,7 +26,7 @@ export const validateRequest = (
     }
 
     validateRequestProperties(request);
-  } catch (Error) {
+  } catch (Error: any) {
     return buildFailedValidationResult(Error.message);
   }
 
@@ -39,7 +39,7 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     PropertyType.guid,
     PropertyType.decimal,
     PropertyType.int,
-    PropertyType.datetime,
+    PropertyType.dateTime,
     PropertyType.enum,
     PropertyType.boolean,
   ];
@@ -56,6 +56,7 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     if(isNullOrEmpty(entity.namespace)){
       throw new Error('Entity Namespace cant be null, undefined or empty');
     }
+
     if(isNullOrEmpty(entity.name)){
       throw new Error('Entity Name cant be null, undefined or empty');
     }

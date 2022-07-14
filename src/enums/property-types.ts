@@ -3,7 +3,7 @@ export enum PropertyType {
   guid = 'guid',
   decimal = 'decimal',
   int = 'int',
-  datetime = 'datetime',
+  dateTime = 'dateTime',
   enum = 'enum',
   boolean = 'boolean',
 }

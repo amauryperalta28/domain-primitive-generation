@@ -21,7 +21,7 @@ builderPropertyTypeGenerators.set(PropertyType.string, generalAutoPropertyTypeGe
 builderPropertyTypeGenerators.set(PropertyType.guid, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(PropertyType.decimal, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(PropertyType.int, generalAutoPropertyTypeGenerator);
-builderPropertyTypeGenerators.set(PropertyType.datetime, generalAutoPropertyTypeGenerator);
+builderPropertyTypeGenerators.set(PropertyType.dateTime, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(PropertyType.enum, generalAutoPropertyTypeGenerator);
 builderPropertyTypeGenerators.set(PropertyType.boolean, booleanAutoPropertyTypeGenerator);
 

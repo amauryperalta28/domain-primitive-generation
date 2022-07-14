@@ -21,7 +21,7 @@
         { "name": "DecimalSalaryMin", "type": "decimal", "isOptional": false, "min": 12},
         { "name": "DecimalSalaryMax", "type": "decimal", "isOptional": false, "max": 40},
         { "name": "DecimalSalaryMinAndMax", "type": "decimal", "isOptional": false, "min":15, "max": 40},
-        { "name": "Birthday", "type": "datetime", "isOptional": false },
+        { "name": "Birthday", "type": "dateTime", "isOptional": false },
         { "name": "Type", "type": "enum", "isOptional": false }
       ]
     },
@@ -47,7 +47,7 @@
         { "name": "Names", "type": "string", "isOptional": false},
         { "name": "Salary", "type": "decimal", "isOptional": false },
         { "name": "Age", "type": "int", "isOptional": false },
-        { "name": "Birthday", "type": "datetime", "isOptional": false },        
+        { "name": "Birthday", "type": "dateTime", "isOptional": false },        
         { "name": "Status", "type": "enum", "isOptional": false },
         { "name": "IsValid", "type": "boolean" }
       ]
@@ -60,7 +60,7 @@
         { "name": "Names", "type": "string", "isOptional": true},
         { "name": "Salary", "type": "decimal", "isOptional": true },
         { "name": "Age", "type": "int", "isOptional": true },
-        { "name": "Birthday", "type": "datetime", "isOptional": true },        
+        { "name": "Birthday", "type": "dateTime", "isOptional": true },        
         { "name": "Status", "type": "enum", "isOptional": true },
         { "name": "IsValid", "type": "boolean", "isOptional": true }
       ]

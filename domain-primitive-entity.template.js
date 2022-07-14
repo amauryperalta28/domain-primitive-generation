@@ -21,7 +21,7 @@ domainPrimitiveGenerators.set(property_types_1.PropertyType.string, domainPrimit
 domainPrimitiveGenerators.set(property_types_1.PropertyType.guid, domainPrimitiveGenerators_1.writeDomainPrimitiveGuidProperty);
 domainPrimitiveGenerators.set(property_types_1.PropertyType.decimal, domainPrimitiveGenerators_1.writeDomainPrimitiveDecimalProperty);
 domainPrimitiveGenerators.set(property_types_1.PropertyType.int, domainPrimitiveGenerators_1.writeDomainPrimitiveIntegerProperty);
-domainPrimitiveGenerators.set(property_types_1.PropertyType.datetime, domainPrimitiveGenerators_1.writeDomainPrimitiveDateProperty);
+domainPrimitiveGenerators.set(property_types_1.PropertyType.dateTime, domainPrimitiveGenerators_1.writeDomainPrimitiveDateProperty);
 templating_1.Generator.generateFromModel(options, (_textWriter, model) => __awaiter(void 0, void 0, void 0, function* () {
     const validationResult = validate_request_1.validateRequest(model);
     if (!validationResult.success) {
