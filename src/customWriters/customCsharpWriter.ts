@@ -4,7 +4,7 @@ import {
   ParameterDefinition
 } from '@yellicode/csharp';
 import { CustomFieldDefinition } from '../models';
-var _ = require('lodash');
+import _ = require('lodash');
 
 export class CustomCsharpWriter extends CSharpWriter {
   public writeField(propertyDefinition: CustomFieldDefinition): void {
@@ -26,18 +26,18 @@ export class CustomCsharpWriter extends CSharpWriter {
   public writeShortMethodInitializedWithParameter(method: MethodDefinition, isReadOnly: boolean = true): void {
 
     const typeName = method.returnTypeName;
-    const camelCasePropertyName =  _.camelCase(typeName);
+    const camelCasePropertyName = _.camelCase(typeName);
     let result = '';
 
-    if(method.accessModifier){
+    if (method.accessModifier) {
       result += `${method.accessModifier}`;
     }
 
-    if(method.isStatic){
+    if (method.isStatic) {
       result += ' static'
     }
 
-    if(isReadOnly){
+    if (isReadOnly) {
       result += ' readonly'
     }
 
@@ -48,21 +48,21 @@ export class CustomCsharpWriter extends CSharpWriter {
 
   public writeShortMethodInitializedWithGivenValue(method: MethodDefinition, defaultValue: string, paramType: string, isReadOnly: boolean = true): void {
     const typeName = method.returnTypeName;
-    
+
     let result = '';
 
-    if(method.accessModifier){
+    if (method.accessModifier) {
       result += `${method.accessModifier}`;
     }
 
-    if(method.isStatic){
+    if (method.isStatic) {
       result += ' static'
     }
 
-    if(isReadOnly){
+    if (isReadOnly) {
       result += ' readonly'
     }
-    
+
     this.writeLine(
       `${result} ${typeName} ${method.name}(${paramType} raw${typeName}) => new(${defaultValue});`
     );
@@ -76,18 +76,18 @@ export class CustomCsharpWriter extends CSharpWriter {
     const typeName = method.returnTypeName;
     let result = '';
 
-    if(method.accessModifier){
+    if (method.accessModifier) {
       result += `${method.accessModifier}`;
     }
 
-    if(method.isStatic){
+    if (method.isStatic) {
       result += ' static'
     }
 
-    if(isReadOnly){
+    if (isReadOnly) {
       result += ' readonly'
     }
-    
+
 
     this.writeLine(
       `${result} ${typeName} ${method.name}() => new(${defaultValue});`
@@ -107,7 +107,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     name: string,
     parameters: ParameterDefinition[],
     baseMethodImplementation: string = undefined
-  ): void  {
+  ): void {
     let params = this.getStringParameters(parameters);
 
     const baseImplementation = baseMethodImplementation ? `: ${baseMethodImplementation}` : '';
@@ -132,15 +132,15 @@ export class CustomCsharpWriter extends CSharpWriter {
     return params;
   }
 
-  public writePublicSealedClass(classDefinition : ClassDefinition, contents: (writer: CSharpWriter) => void): void {
-    if(classDefinition.xmlDocSummary != undefined){
+  public writePublicSealedClass(classDefinition: ClassDefinition, contents: (writer: CSharpWriter) => void): void {
+    if (classDefinition.xmlDocSummary != undefined) {
       this.writeXmlDocSummary(classDefinition.xmlDocSummary);
     }
 
     let classHeader = `public sealed class ${classDefinition.name} `
 
-    if(classDefinition.inherits != undefined){
-      const inherits = classDefinition.inherits.reduce((currentInherit, nextInherit) => currentInherit + ', ' + nextInherit );
+    if (classDefinition.inherits != undefined) {
+      const inherits = classDefinition.inherits.reduce((currentInherit, nextInherit) => currentInherit + ', ' + nextInherit);
       classHeader += `: ${inherits}`;
     }
 
@@ -149,7 +149,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     this.writeCodeBlock(contents);
   }
 
-  public writeOneLineXmlDocSummary(text: string){
+  public writeOneLineXmlDocSummary(text: string) {
     this.writeLine(`///<summary>${text}</summary>`);
   }
 

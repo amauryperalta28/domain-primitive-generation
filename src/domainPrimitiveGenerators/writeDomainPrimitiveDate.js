@@ -9,7 +9,7 @@ exports.writeDomainPrimitiveDateProperty = (textWriter, property, entityName, na
         inherits: ['AbstractPastOrPresentTimestampPrimitive'],
         accessModifier: 'public',
     };
-    const emptyContentCallback = () => { };
+    const emptyContentCallback = () => { /* To have an empty constructor block */  };
     const customWriter = new customCsharpWriter_1.CustomCsharpWriter(textWriter);
     customWriter.writeUsingDirectives('Wepsys.Core');
     customWriter.writeLine();

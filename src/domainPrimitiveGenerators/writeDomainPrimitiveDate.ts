@@ -19,7 +19,7 @@ export const writeDomainPrimitiveDateProperty = (
     accessModifier: 'public',
   };
 
-  const emptyContentCallback = () => {};
+  const emptyContentCallback = () => { /* To have an empty constructor block */  };
 
   const customWriter = new CustomCsharpWriter(textWriter);
 

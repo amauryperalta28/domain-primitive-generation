@@ -5,7 +5,6 @@ import { CustomCsharpWriter } from '../customWriters/customCsharpWriter';
 import domainPrimitivePropertyTypeGenerators from '../helpers/propertyTypeGenerators';
 import { DomainPrimitiveProperty, Entity } from '../models';
 import { writeEntityBuilder } from './writeDomainPrimitiveEntityBuilder';
-import _ = require('lodash');
 
 export const writeDomainPrimitiveEntity = (
     entity: Entity,

@@ -20,7 +20,7 @@ export const writeDomainPrimitiveGuidProperty = (
     accessModifier: 'public',
   };
 
-  const emptyContentCallback = () => {};
+  const emptyContentCallback = () => { /* To have an empty constructor block */ };
   const customWriter = new CustomCsharpWriter(textWriter);
 
   customWriter.writeUsingDirectives('Wepsys.Core');
