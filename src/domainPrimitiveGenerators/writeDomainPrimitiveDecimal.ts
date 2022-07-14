@@ -69,12 +69,14 @@ export const writeDomainPrimitiveDecimalProperty = (
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
+    const isReadOnly = false;
+
     customWriter.writeShortMethodInitializedWithParameter({
       name: 'From',
       returnTypeName: className,
       accessModifier: 'public',
       isStatic: true
-    }, false);
+    }, isReadOnly);
 
     customWriter.writeLine();
 

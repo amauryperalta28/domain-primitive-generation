@@ -45,6 +45,7 @@ export const writeDomainPrimitiveGuidProperty = (
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
+    const isReadOnly = false;
     customWriter.writeShortMethodInitializedWithGivenValue({
       name: 'From',
       returnTypeName: className,
@@ -54,7 +55,7 @@ export const writeDomainPrimitiveGuidProperty = (
     },
     `raw${className}`,
     'Guid',
-    false
+    isReadOnly
     );
 
     customWriter.writeLine();

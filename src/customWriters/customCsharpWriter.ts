@@ -30,7 +30,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     let result = '';
 
     if (method.accessModifier) {
-      result += `${method.accessModifier}`;
+      result += method.accessModifier;
     }
 
     if (method.isStatic) {
@@ -52,7 +52,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     let result = '';
 
     if (method.accessModifier) {
-      result += `${method.accessModifier}`;
+      result += method.accessModifier;
     }
 
     if (method.isStatic) {
@@ -77,7 +77,7 @@ export class CustomCsharpWriter extends CSharpWriter {
     let result = '';
 
     if (method.accessModifier) {
-      result += `${method.accessModifier}`;
+      result += method.accessModifier;
     }
 
     if (method.isStatic) {
@@ -137,7 +137,7 @@ export class CustomCsharpWriter extends CSharpWriter {
       this.writeXmlDocSummary(classDefinition.xmlDocSummary);
     }
 
-    let classHeader = `public sealed class ${classDefinition.name} `
+    let classHeader = `public sealed class ${classDefinition.name} `;
 
     if (classDefinition.inherits != undefined) {
       const inherits = classDefinition.inherits.reduce((currentInherit, nextInherit) => currentInherit + ', ' + nextInherit);

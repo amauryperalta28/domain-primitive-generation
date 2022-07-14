@@ -51,6 +51,8 @@ export const writeDomainPrimitiveDateProperty = (
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
+    const isReadOnly = false;
+
     customWriter.writeShortMethodInitializedWithGivenValue(
       {
         name: 'From',
@@ -60,7 +62,7 @@ export const writeDomainPrimitiveDateProperty = (
       },
       `new PastOrPresentTimestamp(raw${className})`,
       'DateTimeOffset',
-      false
+      isReadOnly
     );
 
     customWriter.writeLine();

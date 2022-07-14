@@ -5,11 +5,6 @@ import {
   ValidationResult,
 } from '../../models';
 
-/*
-
-  When property is null, empty or whitespace should fail
-*/
-
 describe('request-validator.ts tests', () => {
   test('When create domain primitive request is null or undefined should fail', () => {
     const request = null;
@@ -154,6 +149,77 @@ describe('request-validator.ts tests', () => {
     const expected = {
       success: false,
       message: "Entities can't be null, undefined or empty array",
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  test('When namespace is empty should fail', () => {
+    const request: CreateDomainPrimitivesRequest = {
+      entities: [
+        {
+          properties: [{ name: 'Name', type: 'string', isOptional: false }],
+          name: 'Name',
+          namespace: 'Users',
+        },
+      ],
+    };
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: true,
+      message: '',
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  test.each([
+    [null],
+    [undefined],
+    [''],
+  ])('When namespace is null, undefined or empty should fail', (namespace) => {
+    const request: CreateDomainPrimitivesRequest = {
+      entities: [
+        {
+          properties: [{ name: 'Name', type: 'string', isOptional: false }],
+          name: 'Name',
+          namespace: namespace,
+        },
+      ],
+    };
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: false,
+      message: 'Entity Namespace cant be null, undefined or empty',
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  test.each([
+    [null],
+    [undefined],
+    [''],
+  ])('When entity name is null, undefined or empty should fail', (name) => {
+    const request: CreateDomainPrimitivesRequest = {
+      entities: [
+        {
+          properties: [{ name: 'Name', type: 'string', isOptional: false }],
+          name: name,
+          namespace: 'Users',
+        },
+      ],
+    };
+
+    const actual: ValidationResult = validateRequest(request);
+
+    const expected = {
+      success: false,
+      message: 'Entity Name cant be null, undefined or empty',
     };
 
     expect(actual).toEqual(expected);

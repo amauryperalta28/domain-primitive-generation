@@ -52,6 +52,13 @@ const validateRequestProperties = (request: CreateDomainPrimitivesRequest) => {
     if (isEmptyCollection(entity.properties)) {
       throw new Error('Domain primitive properties cant be null or empty');
     }
+
+    if(isNullOrEmpty(entity.namespace)){
+      throw new Error('Entity Namespace cant be null, undefined or empty');
+    }
+    if(isNullOrEmpty(entity.name)){
+      throw new Error('Entity Name cant be null, undefined or empty');
+    }
   
     if (entity.properties.some((property: DomainPrimitiveProperty) => isNullOrEmpty(property.name))) {
       throw new Error('Property name is required');

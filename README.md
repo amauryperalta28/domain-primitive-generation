@@ -43,7 +43,8 @@ Modify **domain-primitives-definition.json** to produce the needed result.
         { "name": "Salary", "type": "decimal", "isOptional": true },
         { "name": "Age", "type": "int", "isOptional": false, "min": 18, "max": 70 },
         { "name": "Birthday", "type": "datetime", "isOptional": false },
-        { "name": "Status", "type": "enum", "isOptional": false }
+        { "name": "Status", "type": "enum", "isOptional": false },        
+        { "name": "IsValid", "type": "boolean" }
       ]
     },
     {
@@ -70,6 +71,7 @@ The supported property types for the moment are:
 4. **int**
 5. **datetime**
 6. **enum**
+7. **boolean**
 
 ```
 npm run generation

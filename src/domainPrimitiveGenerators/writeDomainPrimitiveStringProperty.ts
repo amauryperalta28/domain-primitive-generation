@@ -205,12 +205,15 @@ export const writeDomainPrimitiveStringProperty = (
       `<param name="${_.camelCase(className)}">Represents a ${_.camelCase(className)}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
+
+    const isReadOnly = false;
+
     customWriter.writeShortMethodInitializedWithParameter({
       name: 'From',
       returnTypeName: className,
       accessModifier: 'public',
       isStatic: true
-    }, false);
+    }, isReadOnly);
 
     const parameters: ParameterDefinition[] = [
       { typeName: 'string', name: `raw${className}` },

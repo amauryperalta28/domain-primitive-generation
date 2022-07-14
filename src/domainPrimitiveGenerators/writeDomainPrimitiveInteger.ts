@@ -65,13 +65,13 @@ export const writeDomainPrimitiveIntegerProperty = (
     customWriter.writeCodeBlock(emptyContentCallback);
     customWriter.writeLine();
 
-    const classNameLower = classDefinitions.name.toLowerCase();
     customWriter.writeXmlDocSummary([
       `Shortcut for constructor <see cref="${className}"/>.`,
       `<param name="raw${className}">Represents a ${_.camelCase(className)}.</param>`,
       `<returns>An instance of <see cref="${className}"/></returns>`,
     ]);
 
+    const isReadOnly = false;
     customWriter.writeShortMethodInitializedWithGivenValue(
       {
         name: 'From',
@@ -81,7 +81,7 @@ export const writeDomainPrimitiveIntegerProperty = (
       },
       `new PositiveInteger(raw${className})`,
       'int',
-      false
+      isReadOnly
     );
 
     customWriter.writeLine();
