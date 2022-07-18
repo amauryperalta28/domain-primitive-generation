@@ -26,7 +26,7 @@ export const validateRequest = (
     }
 
     validateRequestProperties(request);
-  } catch (Error: any) {
+  } catch (Error) {
     return buildFailedValidationResult(Error.message);
   }
 
