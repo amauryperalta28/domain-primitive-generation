@@ -77,25 +77,25 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 		}
 
 		public Builder WithId(Id id)
-		    => SetProperty(() => IdOption = Arguments.NotNull(id, nameof(id).SomeNotNull()));
+		    => SetProperty(() => IdOption = Arguments.NotNull(id, nameof(id)).SomeNotNull());
 
 		public Builder WithNames(Names names)
-		    => SetProperty(() => NamesOption = Arguments.NotNull(names, nameof(names).SomeNotNull()));
+		    => SetProperty(() => NamesOption = Arguments.NotNull(names, nameof(names)).SomeNotNull());
 
 		public Builder WithSalary(Salary salary)
-		    => SetProperty(() => SalaryOption = Arguments.NotNull(salary, nameof(salary).SomeNotNull()));
+		    => SetProperty(() => SalaryOption = Arguments.NotNull(salary, nameof(salary)).SomeNotNull());
 
 		public Builder WithAge(Age age)
-		    => SetProperty(() => AgeOption = Arguments.NotNull(age, nameof(age).SomeNotNull()));
+		    => SetProperty(() => AgeOption = Arguments.NotNull(age, nameof(age)).SomeNotNull());
 
 		public Builder WithBirthday(Birthday birthday)
-		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday).SomeNotNull()));
+		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday)).SomeNotNull());
 
 		public Builder WithStatus(Status status)
-		    => SetProperty(() => StatusOption = Arguments.ValidEnumerationMember(status, nameof(status).SomeNotNull()));
+		    => SetProperty(() => StatusOption = Arguments.ValidEnumerationMember(status, nameof(status)).SomeNotNull());
 
 		public Builder WithIsValid(bool isValid)
-		    => SetProperty(() => IsValidOption = Arguments.NotNull(isValid, nameof(isValid).SomeNotNull()));
+		    => SetProperty(() => IsValidOption = Arguments.NotNull(isValid, nameof(isValid)).SomeNotNull());
 
 	}
 }

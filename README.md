@@ -8,6 +8,7 @@ For template generation "**yellicode**" is being used
 # Getting Started
 
 1. Clone this repo
+2. npm install ``@yellicode/cli -g`` for installing yellicode CLI
 2. Run command ```npm install```
 
 # Build and Test

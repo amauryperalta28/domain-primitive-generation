@@ -35,7 +35,7 @@ public sealed class CitizenWithOneRequiredProperty
 		}
 
 		public Builder WithId(Id id)
-		    => SetProperty(() => IdOption = Arguments.NotNull(id, nameof(id).SomeNotNull()));
+		    => SetProperty(() => IdOption = Arguments.NotNull(id, nameof(id)).SomeNotNull());
 
 	}
 }

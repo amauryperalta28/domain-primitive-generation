@@ -43,10 +43,10 @@ const writeWithMethod = (property, customWriter) => {
     let WithMethodSignature = property.type === property_types_1.PropertyType.boolean ? booleanWithMethodSignature : generalWithMethodSignature;
     customWriter.writeLine(WithMethodSignature);
     if (property.type == property_types_1.PropertyType.enum) {
-        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${camelCasePropertyName}, nameof(${camelCasePropertyName}).SomeNotNull()));`);
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${camelCasePropertyName}, nameof(${camelCasePropertyName})).SomeNotNull());`);
     }
     else {
-        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${camelCasePropertyName}, nameof(${camelCasePropertyName}).SomeNotNull()));`);
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${camelCasePropertyName}, nameof(${camelCasePropertyName})).SomeNotNull());`);
     }
     customWriter.writeLine();
 };

@@ -57,9 +57,9 @@ const writeWithMethod = (property: DomainPrimitiveProperty, customWriter: Custom
     customWriter.writeLine(WithMethodSignature);
 
     if (property.type == PropertyType.enum) {
-        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${camelCasePropertyName}, nameof(${camelCasePropertyName}).SomeNotNull()));`);
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.ValidEnumerationMember(${camelCasePropertyName}, nameof(${camelCasePropertyName})).SomeNotNull());`);
     } else {
-        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${camelCasePropertyName}, nameof(${camelCasePropertyName}).SomeNotNull()));`);
+        customWriter.writeLine(`    => SetProperty(() => ${property.name}Option = Arguments.NotNull(${camelCasePropertyName}, nameof(${camelCasePropertyName})).SomeNotNull());`);
     }
 
     customWriter.writeLine();
