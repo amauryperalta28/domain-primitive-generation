@@ -66,6 +66,8 @@ const writeWithMethod = (property: DomainPrimitiveProperty, customWriter: Custom
 }
 
 const writeDoBuild = (className: string, customWriter: CustomCsharpWriter, properties: DomainPrimitiveProperty[]) => {
+
+    customWriter.writeLine('/// <inheritdoc />');
     customWriter.writeLine(`protected override ${className} DoBuild()`);
     customWriter.writeCodeBlock(() => {
         properties.forEach((property) => {

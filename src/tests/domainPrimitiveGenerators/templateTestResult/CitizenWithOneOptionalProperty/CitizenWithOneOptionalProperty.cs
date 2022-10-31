@@ -27,6 +27,7 @@ public sealed class CitizenWithOneOptionalProperty
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
+		/// <inheritdoc />
 		protected override CitizenWithOneOptionalProperty DoBuild()
 		{
 

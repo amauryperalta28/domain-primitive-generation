@@ -27,6 +27,7 @@ public sealed class CitizenWithOneRequiredProperty
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
+		/// <inheritdoc />
 		protected override CitizenWithOneRequiredProperty DoBuild()
 		{
 			State.IsTrue(IdOption.HasValue, "CitizenWithOneRequiredProperty's Id is missing");

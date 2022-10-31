@@ -135,6 +135,7 @@ public sealed class User
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
+		/// <inheritdoc />
 		protected override User DoBuild()
 		{
 			State.IsTrue(EmployeeIdOption.HasValue, "User's EmployeeId is missing");

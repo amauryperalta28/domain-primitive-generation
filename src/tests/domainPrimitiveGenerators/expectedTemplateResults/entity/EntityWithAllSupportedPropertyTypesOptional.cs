@@ -63,6 +63,7 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
+		/// <inheritdoc />
 		protected override EntityWithAllSupportedPropertyTypesOptional DoBuild()
 		{
 

@@ -27,6 +27,13 @@
         { "name": "Age", "type": "int", "isOptional": false },
         { "name": "Birthday", "type": "dateTime", "isOptional": false }
       ]
+    },
+    {
+      "name": "MigrationHistory",
+      "namespace":"RI.Novus.Core.MigrationHistories",
+      "properties": [
+        { "name": "MigrationId", "type": "string", "isOptional": false, "min": 5, "max": 150}
+      ]
     }
   ]
 }

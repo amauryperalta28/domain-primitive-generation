@@ -63,6 +63,7 @@ public sealed class EntityWithAllSupportedPropertyTypesRequired
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
 
+		/// <inheritdoc />
 		protected override EntityWithAllSupportedPropertyTypesRequired DoBuild()
 		{
 			State.IsTrue(IdOption.HasValue, "EntityWithAllSupportedPropertyTypesRequired's Id is missing");
