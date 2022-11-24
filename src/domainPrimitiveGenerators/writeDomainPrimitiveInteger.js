@@ -32,7 +32,7 @@ exports.writeDomainPrimitiveIntegerProperty = (textWriter, property, entityName,
             accessModifier: 'private',
             isStatic: true,
             typeName: 'PositiveInteger',
-            name: 'MinValue',
+            name: 'MaxValue',
             defaultValue: property.max ? `new(${property.max})` : 'new(100)',
         });
         customWriter.writeLine();

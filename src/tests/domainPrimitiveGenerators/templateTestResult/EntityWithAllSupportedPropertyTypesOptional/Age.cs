@@ -6,7 +6,7 @@ namespace RI.Novus.Core.Users;
 public sealed class Age : AbstractPositiveIntegerPrimitive
 {
 	private static readonly PositiveInteger MinValue = new(1);
-	private static readonly PositiveInteger MinValue = new(100);
+	private static readonly PositiveInteger MaxValue = new(100);
 
 	/// <summary>
 	/// Creates an instance of <see cref="Age"/>.

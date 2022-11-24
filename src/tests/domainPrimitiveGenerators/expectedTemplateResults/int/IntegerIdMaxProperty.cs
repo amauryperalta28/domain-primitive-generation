@@ -6,7 +6,7 @@ namespace RI.Novus.Core.Users;
 public sealed class IntegerIdMax : AbstractPositiveIntegerPrimitive
 {
 	private static readonly PositiveInteger MinValue = new(1);
-	private static readonly PositiveInteger MinValue = new(40);
+	private static readonly PositiveInteger MaxValue = new(40);
 
 	/// <summary>
 	/// Creates an instance of <see cref="IntegerIdMax"/>.

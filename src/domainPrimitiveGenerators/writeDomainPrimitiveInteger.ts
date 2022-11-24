@@ -47,7 +47,7 @@ export const writeDomainPrimitiveIntegerProperty = (
       accessModifier: 'private',
       isStatic: true,
       typeName: 'PositiveInteger',
-      name: 'MinValue',
+      name: 'MaxValue',
       defaultValue: property.max ? `new(${property.max})`: 'new(100)',
     });
 
