@@ -71,12 +71,25 @@ export const writeDomainPrimitiveDecimalProperty = (
 
     const isReadOnly = false;
 
-    customWriter.writeShortMethodInitializedWithParameter({
-      name: 'From',
-      returnTypeName: className,
-      accessModifier: 'public',
-      isStatic: true
-    }, isReadOnly);
+    //TODO: Fix template decimal
+    // customWriter.writeShortMethodInitializedWithParameter({
+    //   name: 'From',
+    //   returnTypeName: className,
+    //   accessModifier: 'public',
+    //   isStatic: true
+    // }, isReadOnly);
+    
+    customWriter.writeShortMethodInitializedWithGivenValue(
+      {
+        name: 'From',
+        returnTypeName: className,
+        accessModifier: 'public',
+        isStatic: true
+      },
+      `raw${className}`,
+      'decimal',
+      isReadOnly
+    );
 
     customWriter.writeLine();
 

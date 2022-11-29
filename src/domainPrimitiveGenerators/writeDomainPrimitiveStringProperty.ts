@@ -73,11 +73,19 @@ export const writeDomainPrimitiveStringProperty = (
     customWriter.writeLine();
 
     if (property.regex) {
-      customWriter.writePublicFieldConst(
-        'ValidPattern',
-        'string',
-        `@"${property.regex}"`
-      );
+      const validPatternField: CustomFieldDefinition = {
+        name: 'ValidPattern',
+        isStatic: false,
+        typeName: 'string',
+        defaultValue:  `@"${property.regex}"`,
+        accessModifier: 'private',
+      };
+      customWriter.writeField(validPatternField);
+      // customWriter.writePublicFieldConst(
+      //   'ValidPattern',
+      //   'string',
+      //   `@"${property.regex}"`
+      // );
       customWriter.writeLine();
     }
 

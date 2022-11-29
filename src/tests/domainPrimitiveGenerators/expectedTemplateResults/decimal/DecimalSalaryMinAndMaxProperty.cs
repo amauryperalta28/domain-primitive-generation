@@ -21,7 +21,7 @@ public sealed class DecimalSalaryMinAndMax : ICoreDomainPrimitive<decimal>
 	/// <param name="decimalSalaryMinAndMax">Represents a decimalSalaryMinAndMax.</param>
 	/// <returns>An instance of <see cref="DecimalSalaryMinAndMax"/></returns>
 	/// </summary>
-	public static DecimalSalaryMinAndMax From(string decimalSalaryMinAndMax) => new(decimalSalaryMinAndMax);
+	public static DecimalSalaryMinAndMax From(decimal rawDecimalSalaryMinAndMax) => new(rawDecimalSalaryMinAndMax);
 
 	private DecimalSalaryMinAndMax(decimal rawDecimalSalaryMinAndMax)
 	  => Value = Arguments.Between(rawDecimalSalaryMinAndMax, MinValue, MaxValue, nameof(rawDecimalSalaryMinAndMax), "Invalid value or format for User's DecimalSalaryMinAndMax");

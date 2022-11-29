@@ -14,7 +14,7 @@ public sealed class NamesWithRegexMax : AbstractStringPrimitive
 	private static readonly Message ErrorMessage = new("Invalid value or format for NamesWithRegexMax");
 	private static readonly StringLengthRange LengthRange = (MinLength, MaxLength).ToLengthRange();
 
-	public const string ValidPattern = @"^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.(xn--)?([a-zA-Z0-9\-]{1,61}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,})$";
+	private readonly string ValidPattern = @"^((?!-))(xn--)?[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.(xn--)?([a-zA-Z0-9\-]{1,61}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,})$";
 
 	/// <summary>
 	/// Shortcut for constructor <see cref="NamesWithRegexMax"/>.
