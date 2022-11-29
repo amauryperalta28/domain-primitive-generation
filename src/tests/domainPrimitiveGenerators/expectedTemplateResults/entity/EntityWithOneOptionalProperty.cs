@@ -21,8 +21,12 @@ public sealed class CitizenWithOneOptionalProperty
 	///<summary>CitizenWithOneOptionalProperty's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<CitizenWithOneOptionalProperty>
 	{
+		/// <inheritdoc />
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();
+
+		/// <inheritdoc />
 		protected override Option<string> MustBeBuiltErrorMessage => Option.None<string>();
+
 		internal Option<Id> IdOption { get; private set; }
 
 		private new Builder SetProperty(Action setter) => (Builder)base.SetProperty(setter);
@@ -34,6 +38,10 @@ public sealed class CitizenWithOneOptionalProperty
 			return new CitizenWithOneOptionalProperty(this);
 		}
 
+		/// <summary>
+		/// Sets CitizenWithOneOptionalProperty's id
+		/// <param name="id"></param>
+		/// <returns></returns>
 		public Builder WithId(Id id)
 		    => SetProperty(() => IdOption = Arguments.NotNull(id, nameof(id)).SomeNotNull());
 

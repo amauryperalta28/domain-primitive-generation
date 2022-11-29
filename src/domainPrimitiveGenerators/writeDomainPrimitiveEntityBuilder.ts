@@ -15,9 +15,13 @@ export const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: 
 
     customWriter.writeOneLineXmlDocSummary(`${className}'s builder. `);
     customWriter.writePublicSealedClass(classDefinitions, () => {
-
+        customWriter.writeLine('/// <inheritdoc />');
         customWriter.writeLine('protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();');
+        customWriter.writeLine();
+       
+        customWriter.writeLine('/// <inheritdoc />');
         customWriter.writeLine('protected override Option<string> MustBeBuiltErrorMessage => Option.None<string>();');
+        customWriter.writeLine();
 
         properties.forEach((property: DomainPrimitiveProperty) => {
             customWriter.writeLine(getBuilderPropertyTypeName(property));
@@ -33,7 +37,7 @@ export const writeEntityBuilder = (customWriter: CustomCsharpWriter, className: 
         writeDoBuild(className, customWriter, requiredProperties);
 
         properties.forEach((property: DomainPrimitiveProperty) => {
-            writeWithMethod(property, customWriter);
+            writeWithMethod(property, className, customWriter);
         });
     });
 }
@@ -48,11 +52,22 @@ const getBuilderPropertyTypeName = (property: DomainPrimitiveProperty): string =
     }
 }
 
-const writeWithMethod = (property: DomainPrimitiveProperty, customWriter: CustomCsharpWriter) => {
+const writeMethodDocumentation = (entityName: string, propertyName: string,  customWriter: CustomCsharpWriter) =>{
+    customWriter.writeLine('/// <summary>');
+    customWriter.writeLine(`/// Sets ${entityName}'s ${propertyName}`);
+    customWriter.writeLine(`/// <param name="${propertyName}"></param>`);
+    customWriter.writeLine('/// <returns></returns>');
+
+
+}
+
+const writeWithMethod = (property: DomainPrimitiveProperty, entityName: string,  customWriter: CustomCsharpWriter) => {
     const camelCasePropertyName = _.camelCase(property.name);
     const booleanWithMethodSignature = `public Builder With${property.name}(bool ${camelCasePropertyName})`;
     const generalWithMethodSignature = `public Builder With${property.name}(${property.name} ${camelCasePropertyName})`;
     let WithMethodSignature = property.type === PropertyType.boolean ? booleanWithMethodSignature :  generalWithMethodSignature;
+
+    writeMethodDocumentation(entityName,camelCasePropertyName,  customWriter);
 
     customWriter.writeLine(WithMethodSignature);
 

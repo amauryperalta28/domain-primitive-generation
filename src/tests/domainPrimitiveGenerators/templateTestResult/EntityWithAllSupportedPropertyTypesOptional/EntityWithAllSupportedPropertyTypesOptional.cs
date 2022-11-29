@@ -45,8 +45,12 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 	///<summary>EntityWithAllSupportedPropertyTypesOptional's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<EntityWithAllSupportedPropertyTypesOptional>
 	{
+		/// <inheritdoc />
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();
+
+		/// <inheritdoc />
 		protected override Option<string> MustBeBuiltErrorMessage => Option.None<string>();
+
 		internal Option<Id> IdOption { get; private set; }
 
 		internal Option<Names> NamesOption { get; private set; }
@@ -70,24 +74,52 @@ public sealed class EntityWithAllSupportedPropertyTypesOptional
 			return new EntityWithAllSupportedPropertyTypesOptional(this);
 		}
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's id
+		/// <param name="id"></param>
+		/// <returns></returns>
 		public Builder WithId(Id id)
 		    => SetProperty(() => IdOption = Arguments.NotNull(id, nameof(id)).SomeNotNull());
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's names
+		/// <param name="names"></param>
+		/// <returns></returns>
 		public Builder WithNames(Names names)
 		    => SetProperty(() => NamesOption = Arguments.NotNull(names, nameof(names)).SomeNotNull());
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's salary
+		/// <param name="salary"></param>
+		/// <returns></returns>
 		public Builder WithSalary(Salary salary)
 		    => SetProperty(() => SalaryOption = Arguments.NotNull(salary, nameof(salary)).SomeNotNull());
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's age
+		/// <param name="age"></param>
+		/// <returns></returns>
 		public Builder WithAge(Age age)
 		    => SetProperty(() => AgeOption = Arguments.NotNull(age, nameof(age)).SomeNotNull());
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's birthday
+		/// <param name="birthday"></param>
+		/// <returns></returns>
 		public Builder WithBirthday(Birthday birthday)
 		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday)).SomeNotNull());
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's status
+		/// <param name="status"></param>
+		/// <returns></returns>
 		public Builder WithStatus(Status status)
 		    => SetProperty(() => StatusOption = Arguments.ValidEnumerationMember(status, nameof(status)).SomeNotNull());
 
+		/// <summary>
+		/// Sets EntityWithAllSupportedPropertyTypesOptional's isValid
+		/// <param name="isValid"></param>
+		/// <returns></returns>
 		public Builder WithIsValid(bool isValid)
 		    => SetProperty(() => IsValidOption = Arguments.NotNull(isValid, nameof(isValid)).SomeNotNull());
 

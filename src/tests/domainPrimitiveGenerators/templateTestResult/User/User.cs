@@ -93,8 +93,12 @@ public sealed class User
 	///<summary>User's builder. </summary>
 	public sealed class Builder : AbstractEntityBuilder<User>
 	{
+		/// <inheritdoc />
 		protected override Option<string> AlreadyBuiltErrorMessage => Option.None<string>();
+
+		/// <inheritdoc />
 		protected override Option<string> MustBeBuiltErrorMessage => Option.None<string>();
+
 		internal Option<EmployeeId> EmployeeIdOption { get; private set; }
 
 		internal Option<Names> NamesOption { get; private set; }
@@ -161,60 +165,136 @@ public sealed class User
 			return new User(this);
 		}
 
+		/// <summary>
+		/// Sets User's employeeId
+		/// <param name="employeeId"></param>
+		/// <returns></returns>
 		public Builder WithEmployeeId(EmployeeId employeeId)
 		    => SetProperty(() => EmployeeIdOption = Arguments.NotNull(employeeId, nameof(employeeId)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's names
+		/// <param name="names"></param>
+		/// <returns></returns>
 		public Builder WithNames(Names names)
 		    => SetProperty(() => NamesOption = Arguments.NotNull(names, nameof(names)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithMin
+		/// <param name="namesWithMin"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithMin(NamesWithMin namesWithMin)
 		    => SetProperty(() => NamesWithMinOption = Arguments.NotNull(namesWithMin, nameof(namesWithMin)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithMax
+		/// <param name="namesWithMax"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithMax(NamesWithMax namesWithMax)
 		    => SetProperty(() => NamesWithMaxOption = Arguments.NotNull(namesWithMax, nameof(namesWithMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithMinMax
+		/// <param name="namesWithMinMax"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithMinMax(NamesWithMinMax namesWithMinMax)
 		    => SetProperty(() => NamesWithMinMaxOption = Arguments.NotNull(namesWithMinMax, nameof(namesWithMinMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithRegex
+		/// <param name="namesWithRegex"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithRegex(NamesWithRegex namesWithRegex)
 		    => SetProperty(() => NamesWithRegexOption = Arguments.NotNull(namesWithRegex, nameof(namesWithRegex)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithRegexMin
+		/// <param name="namesWithRegexMin"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithRegexMin(NamesWithRegexMin namesWithRegexMin)
 		    => SetProperty(() => NamesWithRegexMinOption = Arguments.NotNull(namesWithRegexMin, nameof(namesWithRegexMin)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithRegexMax
+		/// <param name="namesWithRegexMax"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithRegexMax(NamesWithRegexMax namesWithRegexMax)
 		    => SetProperty(() => NamesWithRegexMaxOption = Arguments.NotNull(namesWithRegexMax, nameof(namesWithRegexMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's namesWithRegexMinMax
+		/// <param name="namesWithRegexMinMax"></param>
+		/// <returns></returns>
 		public Builder WithNamesWithRegexMinMax(NamesWithRegexMinMax namesWithRegexMinMax)
 		    => SetProperty(() => NamesWithRegexMinMaxOption = Arguments.NotNull(namesWithRegexMinMax, nameof(namesWithRegexMinMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's integerId
+		/// <param name="integerId"></param>
+		/// <returns></returns>
 		public Builder WithIntegerId(IntegerId integerId)
 		    => SetProperty(() => IntegerIdOption = Arguments.NotNull(integerId, nameof(integerId)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's integerIdMin
+		/// <param name="integerIdMin"></param>
+		/// <returns></returns>
 		public Builder WithIntegerIdMin(IntegerIdMin integerIdMin)
 		    => SetProperty(() => IntegerIdMinOption = Arguments.NotNull(integerIdMin, nameof(integerIdMin)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's integerIdMax
+		/// <param name="integerIdMax"></param>
+		/// <returns></returns>
 		public Builder WithIntegerIdMax(IntegerIdMax integerIdMax)
 		    => SetProperty(() => IntegerIdMaxOption = Arguments.NotNull(integerIdMax, nameof(integerIdMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's integerIdMinAndMax
+		/// <param name="integerIdMinAndMax"></param>
+		/// <returns></returns>
 		public Builder WithIntegerIdMinAndMax(IntegerIdMinAndMax integerIdMinAndMax)
 		    => SetProperty(() => IntegerIdMinAndMaxOption = Arguments.NotNull(integerIdMinAndMax, nameof(integerIdMinAndMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's decimalSalary
+		/// <param name="decimalSalary"></param>
+		/// <returns></returns>
 		public Builder WithDecimalSalary(DecimalSalary decimalSalary)
 		    => SetProperty(() => DecimalSalaryOption = Arguments.NotNull(decimalSalary, nameof(decimalSalary)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's decimalSalaryMin
+		/// <param name="decimalSalaryMin"></param>
+		/// <returns></returns>
 		public Builder WithDecimalSalaryMin(DecimalSalaryMin decimalSalaryMin)
 		    => SetProperty(() => DecimalSalaryMinOption = Arguments.NotNull(decimalSalaryMin, nameof(decimalSalaryMin)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's decimalSalaryMax
+		/// <param name="decimalSalaryMax"></param>
+		/// <returns></returns>
 		public Builder WithDecimalSalaryMax(DecimalSalaryMax decimalSalaryMax)
 		    => SetProperty(() => DecimalSalaryMaxOption = Arguments.NotNull(decimalSalaryMax, nameof(decimalSalaryMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's decimalSalaryMinAndMax
+		/// <param name="decimalSalaryMinAndMax"></param>
+		/// <returns></returns>
 		public Builder WithDecimalSalaryMinAndMax(DecimalSalaryMinAndMax decimalSalaryMinAndMax)
 		    => SetProperty(() => DecimalSalaryMinAndMaxOption = Arguments.NotNull(decimalSalaryMinAndMax, nameof(decimalSalaryMinAndMax)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's birthday
+		/// <param name="birthday"></param>
+		/// <returns></returns>
 		public Builder WithBirthday(Birthday birthday)
 		    => SetProperty(() => BirthdayOption = Arguments.NotNull(birthday, nameof(birthday)).SomeNotNull());
 
+		/// <summary>
+		/// Sets User's type
+		/// <param name="type"></param>
+		/// <returns></returns>
 		public Builder WithType(Type type)
 		    => SetProperty(() => TypeOption = Arguments.ValidEnumerationMember(type, nameof(type)).SomeNotNull());
 
